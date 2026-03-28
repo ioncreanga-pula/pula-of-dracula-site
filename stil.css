@@ -1,0 +1,351 @@
+/* Stiluri Generale PULA - Versiune Finală Corectă */
+body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    line-height: 1.6;
+    padding-top: 70px; /* Spațiu pentru header-ul fixed */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Header și Navigație */
+.site-header {
+    background-color: #111;
+    padding: 10px 0;
+    border-bottom: 3px solid #e53935;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo + Text P.U.L.A. */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+.logo-nav {
+    height: 40px;
+    width: auto;
+    margin-right: 10px;
+}
+.logo-text {
+    color: #f0f0f0;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif; /* MODIFICAT: Font Arial */
+    transition: color 0.3s ease;
+}
+/* Regulă nouă pentru a face textul roșu când este activ */
+.logo-text.active {
+    color: #e53935;
+}
+.logo-link:hover .logo-text {
+    color: #e53935;
+}
+
+/* Stil pentru linkurile din textul principal */
+main a {
+    color: #4CAF50; /* Un verde plăcut, vizibil */
+    text-decoration: underline;
+}
+
+main a:hover {
+    color: #81C784; /* Un verde mai deschis la hover */
+}
+
+/* Butoane & Linkuri Comunitate */
+.comunitate-linkuri {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.comunitate-linkuri a {
+    display: inline-block;
+    background-color: #333;
+    color: #f0f0f0; /* Am schimbat în alb pentru contrast mai bun */
+    padding: 12px 25px;
+    margin: 8px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 1px solid #555;
+    min-width: 120px; /* Asigură o lățime minimă pentru butoane */
+}
+
+.comunitate-linkuri a:hover {
+    background-color: #e53935; /* Roșu PULA la hover */
+    color: white;
+    border-color: #c62828;
+    transform: translateY(-2px); /* Efect de ridicare la hover */
+}
+
+/* Meniul de Navigație */
+.navigatie-principala {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Această linie împinge totul (meniu, steaguri, hamburger) la dreapta */
+}
+.nav-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.nav-lista li {
+    margin-left: 20px;
+}
+.nav-link {
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+    font-size: 0.95em;
+}
+.nav-link:hover, .nav-link.active {
+    color: #e53935;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #e53935;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+.nav-link:hover::after, .nav-link.active::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Comutator de Limbă (Stegulețe) */
+.language-switcher {
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+}
+.lang-link img {
+    width: 28px;
+    height: auto;
+    border-radius: 4px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    border: 2px solid transparent;
+}
+.lang-link {
+    margin: 0 5px;
+    opacity: 0.6;
+}
+.lang-link.active-lang {
+    opacity: 1;
+    border-color: #e53935;
+    border-radius: 4px;
+}
+.lang-link:not(.active-lang):hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Butonul Hamburger pentru Mobil */
+.nav-toggle { display: none; } 
+
+/* Hero Section cu Tricolor */
+.hero {
+    background: linear-gradient(to right, #002B7F 33.33%, #FCD116 33.33%, #FCD116 66.66%, #CE1126 66.66%);
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    box-sizing: border-box;
+}
+
+.hero-content {
+    background-color: rgba(252, 209, 22, 0.9); /* Galben semi-transparent */
+    color: #1a1a1a;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 600px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border: 2px solid #333;
+}
+
+.hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 15px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #1a1a1a;
+    text-shadow: none;
+}
+.hero-content .logo-pula-mare {
+    width: 100px;
+    margin-bottom: 20px;
+}
+.hero-content p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    color: #333;
+    font-style: normal;
+}
+.hero-content .btn-principal {
+    background-color: #222;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 2px solid #000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    text-transform: uppercase;
+}
+.hero-content .btn-principal:hover {
+    background-color: #000;
+    transform: scale(1.05);
+}
+
+/* Secțiuni Generale */
+.sectiune {
+    padding: 50px 0;
+    border-bottom: 1px dashed #444;
+}
+.sectiune:last-of-type { border-bottom: none; }
+.sectiune h2 {
+    text-align: center;
+    font-size: 2.8em;
+    color: #e53935;
+    margin-bottom: 40px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+.sectiune p, .sectiune ul, .sectiune ol { max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 1.5em; font-size: 1.05em; }
+.sectiune ul { list-style: disc; padding-left: 20px;}
+.sectiune ol { list-style: decimal; padding-left: 20px;}
+.sectiune strong { color: #e53935; }
+
+/* Carduri */
+.carduri-container { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; }
+.card { background: #2a2a2a; border: 1px solid #444; border-left: 5px solid #e53935; padding: 25px; border-radius: 8px; width: calc(50% - 45px); min-width: 290px; box-shadow: 0 3px 7px rgba(0,0,0,0.3); }
+.card h3 { font-size: 1.6em; color: #f0f0f0; margin-top: 0; margin-bottom: 10px;}
+.card p { font-size: 1em; }
+
+/* Jurnal de Ardei / Cronologie */
+.jurnal-ardei-container { max-width: 800px; margin: 40px auto; position: relative; }
+.jurnal-ardei-container::after { content: ''; position: absolute; width: 4px; background-color: #e53935; top: 0; bottom: 0; left: 50%; margin-left: -2px; box-shadow: 0 0 10px rgba(229, 57, 53, 0.5); }
+.jurnal-intrare { padding: 10px 40px; position: relative; width: 50%; box-sizing: border-box; }
+.jurnal-intrare.stanga { left: 0; text-align: right; }
+.jurnal-intrare.dreapta { left: 50%; }
+.jurnal-intrare::after { content: ''; position: absolute; width: 20px; height: 20px; background-color: #1a1a1a; border: 4px solid #e53935; top: 25px; border-radius: 50%; z-index: 1; }
+.jurnal-intrare.stanga::after { right: -12px; }
+.jurnal-intrare.dreapta::after { left: -12px; }
+.jurnal-continut { padding: 20px; background-color: #2a2a2a; position: relative; border-radius: 8px; border: 1px solid #444; }
+.jurnal-intrare.dreapta .jurnal-continut { text-align: left; }
+.jurnal-continut h3 { margin-top: 0; color: #e53935; font-size: 1.4em; }
+.jurnal-imagine { width: 100%; height: auto; border-radius: 5px; margin-top: 15px; }
+
+/* Alte stiluri */
+.porunci-lista { list-style-type: none; padding-left: 0; }
+.porunci-lista li { background: #2a2a2a; border-left: 5px solid #e53935; padding: 15px; margin-bottom: 15px; border-radius: 5px; }
+.porunci-lista strong { display: block; font-size: 1.2em; margin-bottom: 5px; }
+.interpretare-text { background-color: rgba(255, 255, 0, 0.1); border-left: 4px solid #FCD116; padding: 10px 15px; margin: 15px 0; border-radius: 4px; }
+
+/* Footer */
+footer { text-align: center; padding: 25px 0; background: #111; margin-top: 50px; font-size: 0.9em; border-top: 3px solid #e53935; }
+footer p { margin: 8px 0; }
+footer a { color: #e53935; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    /* Pe mobil, ascundem meniul principal cu linkuri */
+    .nav-lista {
+        display: none;
+    }
+
+    /* Afișăm butonul hamburger și îl împingem la dreapta */
+    .nav-toggle {
+        display: block;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        padding: 0.5em;
+        margin-left: 15px; /* Spațiu între steaguri și hamburger */
+    }
+
+    /* Stilurile pentru meniul dropdown care apare la click */
+    .nav-lista--vizibila {
+        display: flex;
+        position: absolute;
+        background-color: rgba(28, 28, 28, 0.98);
+        width: 100%;
+        left: 0;
+        top: 100%;
+        flex-direction: column;
+        padding: 0.5em 0;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        border-top: 1px solid #444;
+    }
+
+    /* Stilurile pentru elementele din meniul dropdown */
+    .nav-lista--vizibila li { margin: 0; text-align: center; width: 100%;}
+    .nav-lista--vizibila .nav-link { display: block; padding: 0.8em 1em; width: 100%; border-bottom: 1px solid #333;}
+    .nav-lista--vizibila li:last-child .nav-link { border-bottom: none; }
+    .nav-lista--vizibila .nav-link:hover { background-color: #333; }
+    .nav-lista--vizibila .nav-link::after { display: none; }
+}
+
+@media (max-width: 768px) {
+    body { padding-top: 60px; }
+    .site-header { padding: 8px 0; }
+    .logo-text { display: none; } 
+    .logo-nav { height: 35px; }
+
+    .hero { padding: 40px 10px; min-height: 300px; }
+    .hero-content { padding: 20px; }
+    .hero-content h1 { font-size: 2.2em; }
+    .hero-content p { font-size: 1em; }
+    .hero-content .btn-principal { font-size: 1.1em; padding: 12px 25px; }
+    .logo-pula-mare { width: 80px; }
+
+    .sectiune h2 { font-size: 2em; }
+    .card { width: 100%; margin-bottom: 20px;}
+    .carduri-container { gap: 0; }
+    
+    .jurnal-ardei-container::after { left: 20px; }
+    .jurnal-intrare { width: 100%; padding-left: 50px; padding-right: 15px; }
+    .jurnal-intrare.stanga, .jurnal-intrare.dreapta { left: 0%; text-align: left; }
+    .jurnal-intrare::after { left: 8px; }
+}
+
+/* Stilurile pentru hamburger - NU se modifică */
+.hamburger { display: block; position: relative; background-color: #f0f0f0; width: 2em; height: 3px; border-radius: 1px; transition: transform 0.3s ease-in-out; }
+.hamburger::before, .hamburger::after { content: ''; position: absolute; left: 0; background-color: #f0f0f0; width: 100%; height: 100%; border-radius: 1px; transition: transform 0.3s ease-in-out, top 0.3s ease-in-out; }
+.hamburger::before { top: -0.6em; }
+.hamburger::after { top: 0.6em; }
+.nav-toggle.active .hamburger { transform: rotate(45deg); }
+.nav-toggle.active .hamburger::before { top: 0; transform: rotate(90deg); }
+.nav-toggle.active .hamburger::after { display: none; }
