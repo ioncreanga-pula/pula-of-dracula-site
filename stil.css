@@ -184,7 +184,7 @@ main a:hover {
 }
 
 .hero-content {
-    background-color: rgba(252, 209, 22, 0.7); /* Galben semi-transparent */
+    background-color: rgba(252, 209, 22, 0.85); /* Galben semi-transparent */
     color: #1a1a1a;
     padding: 40px;
     border-radius: 10px;
