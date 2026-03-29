@@ -19,8 +19,8 @@ body {
 /* Header și Navigație */
 .site-header {
     background-color: #111;
-    padding: 5px 0;
-    border-bottom: 3px solid #e53935;
+    padding: 1px 0;
+    border-bottom: 0px solid #e53935;
     position: fixed;
     top: 0;
     left: 0;
@@ -42,7 +42,7 @@ body {
     text-decoration: none;
 }
 .logo-nav {
-    height: 40px;
+    height: 20px;
     width: auto;
     margin-right: 10px;
 }
@@ -184,7 +184,7 @@ main a:hover {
 }
 
 .hero-content {
-    background-color: rgba(252, 209, 22, 0.9); /* Galben semi-transparent */
+    background-color: rgba(252, 209, 22, 0.7); /* Galben semi-transparent */
     color: #1a1a1a;
     padding: 40px;
     border-radius: 10px;
@@ -202,8 +202,8 @@ main a:hover {
     text-shadow: none;
 }
 .hero-content .logo-pula-mare {
-    width: 100px;
-    margin-bottom: 20px;
+    width: 70px;
+    margin-bottom: 5px;
 }
 .hero-content p {
     font-size: 1.1em;
@@ -320,7 +320,7 @@ footer a:hover { text-decoration: underline; }
 
 @media (max-width: 768px) {
     body { padding-top: 60px; }
-    .site-header { padding: 8px 0; }
+    .site-header { padding: 0px 0; }
     .logo-text { display: none; } 
     .logo-nav { height: 35px; }
 
@@ -408,11 +408,6 @@ footer a:hover { text-decoration: underline; }
     .pret-caruta-ticker {
         margin: 0 30px;
         padding: 8px 18px;
-        font-size: 0.95rem;
-    }
-}
-
-}
         font-size: 0.95rem;
     }
 }
