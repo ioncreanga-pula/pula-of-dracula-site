@@ -349,3 +349,51 @@ footer a:hover { text-decoration: underline; }
 .nav-toggle.active .hamburger { transform: rotate(45deg); }
 .nav-toggle.active .hamburger::before { top: 0; transform: rotate(90deg); }
 .nav-toggle.active .hamburger::after { display: none; }
+
+/* Preț Căruță Ticker Style */
+.pret-caruta-ticker {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 6px 12px;
+    border-radius: 4px;
+    border-left: 3px solid #ce1126;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    margin: 0 10px;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.ticker-label {
+    color: #fcd116; /* Galben pentru etichetă */
+    font-weight: bold;
+    margin-right: 6px;
+    letter-spacing: 1px;
+}
+
+.ticker-value {
+    color: #ffffff;
+    font-weight: bold;
+    margin-right: 6px;
+}
+
+.ticker-change {
+    color: #4caf50; /* Verde pentru creștere */
+    font-size: 0.75rem;
+}
+
+/* Ajustare pentru mobil */
+@media (max-width: 992px) {
+    .pret-caruta-ticker {
+        display: none; /* Ascundem pe tablete/mobil mediu pentru a nu aglomera headerul */
+    }
+}
+
+@media (min-width: 1200px) {
+    .pret-caruta-ticker {
+        margin: 0 30px;
+        padding: 8px 18px;
+        font-size: 0.95rem;
+    }
+}
