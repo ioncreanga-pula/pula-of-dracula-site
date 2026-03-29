@@ -385,8 +385,22 @@ footer a:hover { text-decoration: underline; }
 
 /* Ajustare pentru mobil */
 @media (max-width: 992px) {
+    .header-container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
     .pret-caruta-ticker {
-        display: none; /* Ascundem pe tablete/mobil mediu pentru a nu aglomera headerul */
+        order: 3; /* Îl mutăm pe rândul nou */
+        width: 100%;
+        margin: 8px 0 0 0;
+        justify-content: center;
+        font-size: 0.8rem;
+        padding: 4px 0;
+        border-left: none;
+        border-top: 2px solid #ce1126;
+        border-radius: 0;
+        background-color: rgba(0, 0, 0, 0.6);
     }
 }
 
