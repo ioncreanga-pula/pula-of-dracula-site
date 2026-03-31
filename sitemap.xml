@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Paginile principale EN -->
   <url>
     <loc>https://pulaofdracula.fun/</loc>
     <lastmod>2026-03-31</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://pulaofdracula.fun/ro/</loc>
-    <lastmod>2026-03-31</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://pulaofdracula.fun/pulaverse.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pulaofdracula.fun/ro/pulaverse.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -23,7 +15,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://pulaofdracula.fun/roadmap.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pulaofdracula.fun/how-to-buy.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://pulaofdracula.fun/community.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Paginile principale RO -->
+  <url>
+    <loc>https://pulaofdracula.fun/ro/</loc>
+    <lastmod>2026-03-31</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://pulaofdracula.fun/ro/pulaverse.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pulaofdracula.fun/ro/viziunea.html</loc>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pulaofdracula.fun/ro/harta.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pulaofdracula.fun/ro/cumpara.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://pulaofdracula.fun/ro/comunitate.html</loc>
+    <priority>0.7</priority>
   </url>
 </urlset>
