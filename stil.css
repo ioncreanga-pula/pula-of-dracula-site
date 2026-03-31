@@ -380,7 +380,18 @@ footer a:hover { text-decoration: underline; }
 
 .ticker-change {
     color: #4caf50; /* Verde pentru creștere */
-    font-size: 0.75rem;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+/* Stil pentru Ticker-ul de Motorină (Albastru) */
+.diesel-ticker {
+    border-left: 3px solid #002b7f !important; /* Albastru Tricolor / Motorină */
+    background-color: rgba(0, 43, 127, 0.2) !important;
+}
+
+.diesel-ticker .ticker-label {
+    color: #0055ff; /* Un albastru mai aprins pentru etichetă */
 }
 
 /* Ajustare pentru mobil */
