@@ -397,17 +397,31 @@ footer a:hover { text-decoration: underline; }
 /* Ajustare pentru mobil */
 @media (max-width: 992px) {
     .header-container {
+        display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-container {
+        order: 1;
+    }
+
+    .navigatie-principala {
+        order: 2;
+    }
+
+    .ticker-link-wrapper {
+        order: 3;
+        width: 100%;
     }
 
     .pret-caruta-ticker {
-        order: 3; /* Îl mutăm pe rândul nou */
         width: 100%;
         margin: 8px 0 0 0;
         justify-content: center;
         font-size: 0.8rem;
-        padding: 2px 0;
+        padding: 5px 0;
         border-left: none;
         border-top: 2px solid #ce1126;
         border-radius: 0;
