@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Terminal Jupiter - PULA</title>
+    <script src="https://terminal.jup.ag/main-v3.js" defer></script>
+    <style>
+        body {
+            background-color: #000;
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #integrated-terminal {
+            width: 400px;
+            height: 600px;
+            border: 1px solid #CE1126;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        h1 { color: #CE1126; }
+    </style>
+</head>
+<body>
+    <h1>Obține PULA Direct</h1>
+    <p>Folosește terminalul de mai jos pentru swap sau cumpărare cu cardul.</p>
+    
+    <div id="integrated-terminal"></div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.Jupiter) {
+                window.Jupiter.init({
+                    displayMode: 'integrated',
+                    integratedTargetId: 'integrated-terminal',
+                    endpoint: 'https://mainnet.helius-rpc.com/?api-key=dc00600a-006d-460d-8df3-66ed60060000', // Exemplu de RPC mai stabil
+                    strictTokenList: false,
+                    formProps: {
+                        fixedOutputMint: true,
+                        initialOutputMint: 'B8a7twkUV1fnB317PxihGXsE9XKbyGgfxNUBwicwpump',
+                    },
+                });
+            }
+        });
+    </script>
+</body>
+</html>

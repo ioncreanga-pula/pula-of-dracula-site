@@ -436,3 +436,28 @@ footer a:hover { text-decoration: underline; }
         font-size: 0.95rem;
     }
 }
+
+/* News Section Styling */
+.news-card {
+    background-color: #1a1a1a;
+    border: 1px solid #CE1126;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(206, 17, 38, 0.3);
+}
+.news-date {
+    color: #888;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 10px;
+}
+.news-content h2 {
+    margin-top: 0;
+    color: #CE1126;
+}
+
