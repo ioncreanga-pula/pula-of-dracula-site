@@ -2,14 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>C.U.R. Wallet - PULA of Dracula</title>
+    <script type="module">
+      import { Buffer } from 'buffer';
+      window.Buffer = Buffer;
+      window.global = window;
+      window.process = { env: {} };
+    </script>
     <script src="https://terminal.jup.ag/main-v2.js" defer></script>
-    <script type="module" crossorigin src="./assets/index-Bw6LRP5E.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BTA0t1Dy.css">
-  <link rel="manifest" href="./manifest.webmanifest"></head>
+  </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
