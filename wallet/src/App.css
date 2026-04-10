@@ -657,3 +657,87 @@ body {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+/* Receive & QR Styles */
+.receive-box {
+    background: #151515;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 10px;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    animation: slideDown 0.3s ease-out;
+}
+
+.qr-wrapper {
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.qr-img {
+    width: 150px;
+    height: 150px;
+    display: block;
+}
+
+.qr-hint {
+    color: #666;
+    font-size: 0.6rem;
+    margin-top: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.receive-info {
+    text-align: center;
+}
+
+.receive-username {
+    font-size: 1.1rem;
+    color: var(--accent-green);
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.receive-address {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.receive-address:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.small-btn.active {
+    background: var(--primary-red) !important;
+    box-shadow: 0 0 15px rgba(229, 57, 53, 0.4);
+}
+
+.selectable {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.selectable:hover {
+    border-color: var(--accent-green);
+    background: rgba(57, 255, 20, 0.05);
+}
+
+.input-hint {
+    font-size: 0.65rem;
+    color: #555;
+    font-style: italic;
+    margin-top: 4px;
+}

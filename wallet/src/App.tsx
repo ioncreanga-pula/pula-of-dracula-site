@@ -17,7 +17,7 @@ const USD_TO_RON = 4.65;
 const USD_TO_EUR = 0.92;
 const USD_TO_BWP = 13.75;
 
-function Leaderboard({ currentAddress, hambarValue }: { currentAddress?: string, hambarValue: string }) {
+function Leaderboard({ currentAddress, hambarValue, onSelectAddress }: { currentAddress?: string, hambarValue: string, onSelectAddress?: (addr: string) => void }) {
     const [entries, setEntries] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -63,7 +63,11 @@ function Leaderboard({ currentAddress, hambarValue }: { currentAddress?: string,
             <div className="recolta-header">Recolta totală, 1 Hambar = 1.000.000.000 P.U.L.A.</div>
             <div className="leaderboard-list">
                 {entries.map((entry, index) => (
-                    <div key={entry.address} className={`leaderboard-item ${entry.address === currentAddress ? 'is-me' : ''}`}>
+                    <div 
+                        key={entry.address} 
+                        className={`leaderboard-item ${entry.address === currentAddress ? 'is-me' : ''} ${onSelectAddress ? 'selectable' : ''}`}
+                        onClick={() => onSelectAddress && onSelectAddress(entry.address)}
+                    >
                         <div className="rank-name">
                             <span className="rank">#{index + 1}</span>
                             <span className="username">{entry.username}</span>
@@ -261,9 +265,9 @@ function Dashboard({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsideP
         setSending(true);
         try {
             const destPK = new PublicKey(destAddr);
-            const amount = parseFloat(sendAmt) * 1e6; // 6 decimals for pump.fun tokens
+            const amount = parseFloat(sendAmt) * 1e6; // 6 decimals
 
-            const { Transaction, SystemProgram } = await import('@solana/web3.js');
+            const { Transaction } = await import('@solana/web3.js');
             const { 
                 createTransferCheckedInstruction, 
                 getAssociatedTokenAddressSync, 
@@ -276,11 +280,14 @@ function Dashboard({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsideP
 
             const tx = new Transaction();
             
-            // Verificăm dacă destinatarul are ATA
+            // ADĂUGĂM BLOCKHASH (ESENȚIAL!)
+            const { blockhash } = await connection.getLatestBlockhash();
+            tx.recentBlockhash = blockhash;
+            tx.feePayer = publicKey;
+
             try {
                 await getAccount(connection, destATA);
             } catch (e) {
-                // Dacă nu are, adăugăm instrucțiunea de creare
                 tx.add(createAssociatedTokenAccountInstruction(
                     publicKey,
                     destATA,
@@ -300,8 +307,10 @@ function Dashboard({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsideP
 
             const signature = await (window as any).phantom?.solana?.signAndSendTransaction(tx);
             if (signature) {
-                alert(`Succes! Recolta trimisă.`);
+                alert(`Succes! Recolta a plecat.`);
                 setShowTransfer(false);
+                setDestAddr('');
+                setSendAmt('');
                 fetchBalances();
             }
         } catch (e: any) {
@@ -311,6 +320,8 @@ function Dashboard({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsideP
             setSending(false);
         }
     };
+
+    const [showReceive, setShowReceive] = useState(false);
 
     const handleBuy = (e: any) => {
         e.preventDefault();
@@ -511,27 +522,52 @@ function Dashboard({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsideP
                         </div>
                         
                         <div className="action-row">
-                            <button type="button" className="small-btn receive" onClick={() => handleCopy(publicKey.toBase58(), "Adresa ta")}>
+                            <button type="button" className={`small-btn receive ${showReceive ? 'active' : ''}`} onClick={() => { setShowReceive(!showReceive); setShowTransfer(false); }}>
                                 <span className="btn-icon">⬇️</span>
                                 <span className="btn-text">Ia</span>
                             </button>
-                            <button type="button" className="small-btn send" onClick={() => setShowTransfer(!showTransfer)}>
+                            <button type="button" className={`small-btn send ${showTransfer ? 'active' : ''}`} onClick={() => { setShowTransfer(!showTransfer); setShowReceive(false); }}>
                                 <span className="btn-icon">⬆️</span>
                                 <span className="btn-text">Dă</span>
                             </button>
                         </div>
                     </div>
 
+                    {showReceive && (
+                        <div className="receive-box">
+                            <div className="receive-title">📥 Primește P.U.L.A.</div>
+                            <div className="qr-wrapper" onClick={() => handleCopy(publicKey.toBase58(), "Adresa ta")}>
+                                <img 
+                                    src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${publicKey.toBase58()}`} 
+                                    alt="QR Code" 
+                                    className="qr-img" 
+                                />
+                                <div className="qr-hint">Click pe cod pentru copy</div>
+                            </div>
+                            <div className="receive-info">
+                                <div className="receive-username">
+                                    {(window as any).phantom?.solana?.session?.username ? `@${(window as any).phantom.solana.session.username}` : 'Boier Fără Nume'}
+                                </div>
+                                <code className="receive-address" onClick={() => handleCopy(publicKey.toBase58(), "Adresa ta")}>
+                                    {publicKey.toBase58().slice(0, 6)}...{publicKey.toBase58().slice(-6)}
+                                </code>
+                            </div>
+                        </div>
+                    )}
+
                     {showTransfer && (
                         <div className="transfer-box">
                             <div className="transfer-title">📤 Trimite P.U.L.A.</div>
-                            <input 
-                                type="text" 
-                                placeholder="Adresa portofel (Solana)" 
-                                className="transfer-input"
-                                value={destAddr}
-                                onChange={(e) => setDestAddr(e.target.value)}
-                            />
+                            <div className="transfer-input-wrapper">
+                                <input 
+                                    type="text" 
+                                    placeholder="Adresa portofel (Solana)" 
+                                    className="transfer-input"
+                                    value={destAddr}
+                                    onChange={(e) => setDestAddr(e.target.value)}
+                                />
+                                <div className="input-hint">Poți da click pe cineva din clasament</div>
+                            </div>
                             <div className="transfer-amt-row">
                                 <input 
                                     type="number" 
@@ -541,7 +577,7 @@ function Dashboard({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsideP
                                     onChange={(e) => setSendAmt(e.target.value)}
                                 />
                                 <button type="button" className="transfer-btn" onClick={handleTransfer} disabled={sending}>
-                                    {sending ? 'Se trimite...' : 'Trimite'}
+                                    {sending ? '...' : 'Dă'}
                                 </button>
                             </div>
                         </div>
@@ -553,7 +589,18 @@ function Dashboard({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsideP
                         <span className="copy-hint"> (Click pentru import Phantom)</span>
                     </div>
 
-                    <Leaderboard currentAddress={publicKey?.toBase58()} hambarValue={(price * 1000000000 * USD_TO_RON).toLocaleString('ro-RO', { maximumFractionDigits: 0 })} />
+                    <Leaderboard 
+                        currentAddress={publicKey?.toBase58()} 
+                        hambarValue={(price * 1000000000 * USD_TO_RON).toLocaleString('ro-RO', { maximumFractionDigits: 0 })} 
+                        onSelectAddress={(addr) => {
+                            if (addr !== publicKey?.toBase58()) {
+                                setDestAddr(addr);
+                                setShowTransfer(true);
+                                setShowReceive(false);
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }
+                        }}
+                    />
 
                     <div className="wallet-footer">
                         {/* Butonul a fost mutat în header */}
