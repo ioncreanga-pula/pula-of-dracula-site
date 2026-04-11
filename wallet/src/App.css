@@ -392,15 +392,26 @@ body {
 .hambar-sub-title { color: #ff9800; font-weight: 900; margin-bottom: 5px; }
 .recolta-header { font-size: 0.6rem; color: #444; font-style: italic; margin-bottom: 15px; }
 
-.leaderboard-name-wrapper {
+.rank-name-row {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.username {
+    font-weight: 700;
+    color: #eee;
+    font-size: 0.9rem;
 }
 
 .leaderboard-percent-under {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: var(--text-dim);
     font-weight: 500;
+    background: rgba(255,255,255,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
 .leaderboard-val-wrapper {

@@ -87,7 +87,7 @@ function Leaderboard({ currentAddress, price, displayCurrency, onSelectAddress }
     return (
         <div className="leaderboard-section">
             <div className="leaderboard-title">🏆 În vârful P.U.L.A.</div>
-            <div className="hambar-sub-title">🔳 1 Hambar: {getHambarValue()}</div>
+            <div className="hambar-sub-title">🔳 MarketCap: {getHambarValue()}</div>
             <div className="recolta-header">Recolta totală, 1 Hambar = 1.000.000.000 P.U.L.A.</div>
             <div className="leaderboard-list">
                 {entries.map((entry, index) => (
@@ -96,12 +96,10 @@ function Leaderboard({ currentAddress, price, displayCurrency, onSelectAddress }
                         className={`leaderboard-item ${entry.address === currentAddress ? 'is-me' : ''} ${onSelectAddress ? 'selectable' : ''}`}
                         onClick={() => onSelectAddress && onSelectAddress(entry.address)}
                     >
-                        <div className="rank-name">
+                        <div className="rank-name-row">
                             <span className="rank">#{index + 1}</span>
-                            <div className="leaderboard-name-wrapper">
-                                <span className="username">{getHardcodedUsername(index, entry.username)}</span>
-                                <span className="leaderboard-percent-under">{getPercent(entry.balance)}</span>
-                            </div>
+                            <span className="username">{getHardcodedUsername(index, entry.username)}</span>
+                            <span className="leaderboard-percent-under">{getPercent(entry.balance)}</span>
                         </div>
                         <div className="leaderboard-val-wrapper">
                             <div className="leaderboard-balance">
