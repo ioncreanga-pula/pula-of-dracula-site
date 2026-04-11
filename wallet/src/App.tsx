@@ -87,7 +87,7 @@ function Leaderboard({ currentAddress, price, displayCurrency, onSelectAddress }
     return (
         <div className="leaderboard-section">
             <div className="leaderboard-title">🏆 În vârful P.U.L.A.</div>
-            <div className="hambar-sub-title">🔳 MarketCap: {getHambarValue()}</div>
+            <div className="hambar-sub-title">1 Hambar MarketCap: {getHambarValue()}</div>
             <div className="recolta-header">Recolta totală, 1 Hambar = 1.000.000.000 P.U.L.A.</div>
             <div className="leaderboard-list">
                 {entries.map((entry, index) => (
@@ -167,10 +167,10 @@ function Dashboard({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsideP
                 if (pumpData.usd_market_cap) {
                     setPrice(pumpData.usd_market_cap / 1000000000);
                 } else {
-                    setPrice(0.00000231);
+                    setPrice(0.00000237);
                 }
             } catch (priceErr) {
-                setPrice(0.00000231);
+                setPrice(0.00000237);
             }
         } catch (e: any) {
             console.error("Error fetching balances", e);

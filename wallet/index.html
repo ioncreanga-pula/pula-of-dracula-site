@@ -15,6 +15,29 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Panic Error Logger -->
+    <script>
+      window.onerror = function(msg, url, line, col, error) {
+        var div = document.createElement('div');
+        div.style.position = 'fixed';
+        div.style.top = '0';
+        div.style.left = '0';
+        div.style.width = '100%';
+        div.style.height = '100%';
+        div.style.backgroundColor = 'rgba(255,0,0,0.9)';
+        div.style.color = 'white';
+        div.style.padding = '20px';
+        div.style.zIndex = '99999';
+        div.style.fontFamily = 'monospace';
+        div.style.overflow = 'auto';
+        div.innerHTML = '<h1>❌ EROARE RUNTIME:</h1>' +
+                        '<p><strong>Mesaj:</strong> ' + msg + '</p>' +
+                        '<p><strong>Fișier:</strong> ' + url + '</p>' +
+                        '<p><strong>Linie:</strong> ' + line + ':' + col + '</p>' +
+                        '<pre>' + (error && error.stack ? error.stack : 'No stack trace available') + '</pre>';
+        document.body.appendChild(div);
+      };
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
