@@ -434,6 +434,71 @@ body {
     margin-left: 28px; /* Alignment with unit icon/name */
 }
 
+.small-btn.username-btn {
+    background: #333;
+    border: 1px dashed #555;
+    margin-top: 10px;
+}
+
+.action-row.single {
+    grid-template-columns: 1fr;
+}
+
+.username-note {
+    font-size: 0.7rem;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.header-wallet-btn.connected {
+    background: #2563eb;
+}
+
+.custom-dropdown {
+    position: relative;
+}
+
+.wallet-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 12px;
+    min-width: 180px;
+    z-index: 10001;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.dropdown-item {
+    padding: 12px 15px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #eee;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-bottom: 1px solid #222;
+}
+
+.dropdown-item:hover {
+    background: #222;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item.disconnect {
+    color: #ff5252;
+}
+
 .copy-toast {
     position: fixed;
     bottom: 40px;

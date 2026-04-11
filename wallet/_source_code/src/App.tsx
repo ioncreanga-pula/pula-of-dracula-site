@@ -3,7 +3,8 @@ import { ConnectionProvider, WalletProvider, useConnection, useWallet } from '@s
 import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
 import {
     WalletModalProvider,
-    WalletMultiButton
+    WalletMultiButton,
+    useWalletModal
 } from '@solana/wallet-adapter-react-ui';
 import { PublicKey, Transaction } from '@solana/web3.js';
 import * as spl from '@solana/spl-token';
@@ -115,7 +116,7 @@ function Leaderboard({ currentAddress, price, displayCurrency, onSelectAddress }
     );
 }
 
-function Dashboard({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsidePhantom: boolean }) {
+function Dashboard({ isMobile, isInsidePhantom, currentUsername, onUsernameChange, forceShowUsernameModal, onCloseUsernameModal }: { isMobile: boolean, isInsidePhantom: boolean, currentUsername?: string, onUsernameChange: (u: string) => void, forceShowUsernameModal?: boolean, onCloseUsernameModal?: () => void }) {
     const { connection } = useConnection();
     const { publicKey, sendTransaction } = useWallet();
     const [balance, setBalance] = useState<number>(0);
@@ -124,6 +125,48 @@ function Dashboard({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsideP
     const [loading, setLoading] = useState<boolean>(false);
     const [displayCurrency, setDisplayCurrency] = useState<'RON' | 'USD' | 'EUR' | 'BWP'>('RON');
     const [copyStatus, setCopyStatus] = useState<string | null>(null);
+
+    const [showUsernameModal, setShowUsernameModal] = useState(false);
+    const [newUsername, setNewUsername] = useState('');
+    const [savingUsername, setSavingUsername] = useState(false);
+
+    useEffect(() => {
+        if (forceShowUsernameModal) {
+            setShowUsernameModal(true);
+        }
+    }, [forceShowUsernameModal]);
+
+    const handleSaveUsername = async () => {
+        if (!publicKey || !newUsername || !supabase) return;
+        setSavingUsername(true);
+        try {
+            const { error } = await supabase
+                .from('leaderboard')
+                .upsert({ 
+                    address: publicKey.toBase58(), 
+                    username: newUsername,
+                    balance: balance 
+                }, { onConflict: 'address' });
+            
+            if (!error) {
+                onUsernameChange(newUsername);
+                setShowUsernameModal(false);
+                if (onCloseUsernameModal) onCloseUsernameModal();
+                alert("Username Actualizat!");
+            } else {
+                alert("Eroare la salvarea numelui.");
+            }
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setSavingUsername(false);
+        }
+    };
+
+    const closeMyUsernameModal = () => {
+        setShowUsernameModal(false);
+        if (onCloseUsernameModal) onCloseUsernameModal();
+    };
 
     const handleCopy = (text: string, label: string) => {
         navigator.clipboard.writeText(text);
@@ -397,7 +440,38 @@ function Dashboard({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsideP
                             <button type="button" className={`small-btn receive ${showReceive ? 'active' : ''}`} onClick={() => setShowReceive(true)}><span className="btn-icon">⬇️</span> <span className="btn-text">Ia</span></button>
                             <button type="button" className={`small-btn send ${showTransfer ? 'active' : ''}`} onClick={() => setShowTransfer(true)}><span className="btn-icon">⬆️</span> <span className="btn-text">Dă</span></button>
                         </div>
+                        <div className="action-row single">
+                            <button type="button" className="small-btn username-btn" onClick={() => setShowUsernameModal(true)}>
+                                <span className="btn-icon">👤</span> <span className="btn-text">{currentUsername ? `Schimbă (@${currentUsername})` : "Setează Username"}</span>
+                            </button>
+                        </div>
                     </div>
+
+                    {showUsernameModal && (
+                        <div className="modal-overlay" onClick={closeMyUsernameModal}>
+                            <div className="modal-content" onClick={e => e.stopPropagation()}>
+                                <button className="modal-close" onClick={closeMyUsernameModal}>✕</button>
+                                <div className="transfer-title">👤 Setează-ți Numele</div>
+                                <div className="transfer-input-wrapper">
+                                    <input 
+                                        type="text" 
+                                        placeholder="Ex: @gogupatraulea" 
+                                        className="transfer-input" 
+                                        value={newUsername} 
+                                        onChange={(e) => setNewUsername(e.target.value)} 
+                                    />
+                                    <p className="username-note">Acest nume va apărea în Leaderboard.</p>
+                                </div>
+                                <button 
+                                    className="transfer-btn w-100" 
+                                    onClick={handleSaveUsername} 
+                                    disabled={savingUsername}
+                                >
+                                    {savingUsername ? 'Se salvează...' : 'Salvează Boierul'}
+                                </button>
+                            </div>
+                        </div>
+                    )}
 
                     {showReceive && (
                         <div className="modal-overlay" onClick={() => setShowReceive(false)}>
@@ -454,12 +528,38 @@ function Dashboard({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsideP
     );
 }
 
-function AppHeader() {
-    const { publicKey } = useWallet();
+function AppHeader({ username, publicKey, onShowUsername }: { username?: string, publicKey?: any, onShowUsername: () => void }) {
+    const { disconnect } = useWallet();
+    const { setVisible } = useWalletModal();
+    const [showMenu, setShowMenu] = useState(false);
+
     const handleCopy = (text: string) => {
         navigator.clipboard.writeText(text);
-        alert("Mint Address Copiat!");
+        alert("Adresă Copiată!");
     };
+
+    const displayLabel = username || (publicKey ? `${publicKey.toBase58().slice(0, 4)}...${publicKey.toBase58().slice(-4)}` : "Conectează Portofel");
+
+    if (!publicKey) {
+        return (
+            <header className="app-header">
+                <div className="logo-section">
+                    <a href="../ro/index.html" className="logo-link-app">
+                        <img src="logo.png" alt="P.U.L.A." className="logo-img-header" />
+                    </a>
+                    <div className="title-mint-stack">
+                        <h1 className="logo-text">C.U.R. Wallet</h1>
+                    </div>
+                </div>
+                <div className="header-wallet-section">
+                    <button className="header-wallet-btn" onClick={() => setVisible(true)}>
+                        Conectează Portofel
+                    </button>
+                </div>
+            </header>
+        );
+    }
+
     return (
         <header className="app-header">
             <div className="logo-section">
@@ -473,8 +573,17 @@ function AppHeader() {
                     </div>
                 </div>
             </div>
-            <div className="header-wallet-section">
-                {publicKey && <WalletMultiButton className="header-wallet-btn" />}
+            <div className="header-wallet-section custom-dropdown">
+                <button className="header-wallet-btn connected" onClick={() => setShowMenu(!showMenu)}>
+                    {username ? `@${username}` : displayLabel}
+                </button>
+                {showMenu && (
+                    <div className="wallet-dropdown-menu">
+                        <div className="dropdown-item" onClick={() => { onShowUsername(); setShowMenu(false); }}>👤 Schimbă Nume</div>
+                        <div className="dropdown-item" onClick={() => { handleCopy(publicKey.toBase58()); setShowMenu(false); }}>📋 Copiază Adresa</div>
+                        <div className="dropdown-item disconnect" onClick={() => { disconnect(); setShowMenu(false); }}>🛑 Deconectare</div>
+                    </div>
+                )}
             </div>
         </header>
     );
@@ -485,6 +594,7 @@ function App() {
     const wallets = useMemo(() => [new PhantomWalletAdapter(), new SolflareWalletAdapter()], []);
     const [isMobile, setIsMobile] = useState(false);
     const [isInsidePhantom, setIsInsidePhantom] = useState(false);
+
     useEffect(() => {
         const ua = navigator.userAgent.toLowerCase();
         setIsMobile(/iphone|ipad|ipod|android|blackberry|windows phone/g.test(ua));
@@ -492,17 +602,50 @@ function App() {
         checkPhantom();
         setTimeout(checkPhantom, 500);
     }, []);
+
     return (
         <ConnectionProvider endpoint={endpoint}>
             <WalletProvider wallets={wallets} autoConnect>
                 <WalletModalProvider>
-                    <div className="mobile-container">
-                        <AppHeader />
-                        <Dashboard isMobile={isMobile} isInsidePhantom={isInsidePhantom} />
-                    </div>
+                    <AppContent isMobile={isMobile} isInsidePhantom={isInsidePhantom} />
                 </WalletModalProvider>
             </WalletProvider>
         </ConnectionProvider>
+    );
+}
+
+function AppContent({ isMobile, isInsidePhantom }: { isMobile: boolean, isInsidePhantom: boolean }) {
+    const { publicKey } = useWallet();
+    const [username, setUsername] = useState<string | undefined>(undefined);
+    const [showUsernameModalInApp, setShowUsernameModalInApp] = useState(false);
+
+    useEffect(() => {
+        const fetchUsername = async () => {
+            if (!publicKey || !supabase) return;
+            const { data, error } = await supabase
+                .from('leaderboard')
+                .select('username')
+                .eq('address', publicKey.toBase58())
+                .single();
+            if (!error && data) {
+                setUsername(data.username);
+            }
+        };
+        fetchUsername();
+    }, [publicKey]);
+
+    return (
+        <div className="mobile-container">
+            <AppHeader username={username} publicKey={publicKey} onShowUsername={() => setShowUsernameModalInApp(true)} />
+            <Dashboard 
+                isMobile={isMobile} 
+                isInsidePhantom={isInsidePhantom} 
+                currentUsername={username} 
+                onUsernameChange={setUsername}
+                forceShowUsernameModal={showUsernameModalInApp}
+                onCloseUsernameModal={() => setShowUsernameModalInApp(false)}
+            />
+        </div>
     );
 }
 
