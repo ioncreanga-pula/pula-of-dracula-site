@@ -1,14 +1,16 @@
-import { Buffer } from 'buffer'
-(window as any).Buffer = Buffer;
+import { Buffer } from 'buffer';
+import process from 'process';
+
+if (typeof (window as any).global === 'undefined') {
+  (window as any).global = window;
+}
+(window as any).Buffer = (window as any).Buffer || Buffer;
+(window as any).process = (window as any).process || process;
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { registerSW } from 'virtual:pwa-register'
-
-// Înregistrare Service Worker pentru PWA
-registerSW({ immediate: true })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
