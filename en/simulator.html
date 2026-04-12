@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EFLQ0JP2SR"></script>
@@ -13,13 +13,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PULA Strategy Terminal</title>
-    <link rel="stylesheet" href="stil.css">
+    <link rel="stylesheet" href="../stil.css">
     <!-- Favicon Links -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="manifest.json">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="shortcut icon" href="../favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { background: #000; color: #eee; font-family: 'Courier New', Courier, monospace; margin: 0; padding: 0; min-height: 100vh; overflow-x: hidden; overflow-y: auto; padding-top: 110px; }
@@ -40,7 +40,7 @@
             min-height: calc(100vh - 80px); 
             position: relative;
         }
-        
+
         .unified-header { 
             background: #0a0a0a; 
             border: 1px solid #444; 
@@ -48,14 +48,13 @@
             border-radius: 12px; 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
-            gap: 10px;
-            align-items: center;
-            flex-shrink: 0;
+            gap: 10px; 
+            align-items: center; 
+            flex-shrink: 0; 
             margin-top: 0;
         }
-        
         .header-left { text-align: left; }
-        .header-right { text-align: right; padding-right: 10px; }
+        .header-right { text-align: right; }
 
         .row-label { color: #fcd116; font-size: 0.9em; font-weight: bold; display: block; }
         .row-main-val { font-size: 1.8em; font-weight: bold; line-height: 1.1; margin: 4px 0; display: block; }
@@ -68,22 +67,17 @@
 
         .area-chart { position: relative; flex-grow: 1; background: #050505; border-radius: 12px; border: 1px solid #333; min-height: 200px; overflow: hidden; margin: 5px 0; width: 100%; }
         
-        #raydium-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            display: none; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 100; border: 4px solid #00ffa3; text-align: center;
-        }
-        .raydium-text { color: #00ffa3; font-size: 2.5em; font-weight: bold; text-shadow: 0 0 20px #00ffa3; }
+        #raydium-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 100; border: 4px solid #00ffa3; text-align: center; }
+        .raydium-text { color: #00ffa3; font-size: 2em; font-weight: bold; text-shadow: 0 0 20px #00ffa3; }
         .btn-overlay-reset { background: #00ffa3; color: #000; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; margin-top: 20px; cursor: pointer; }
 
         .row-bottom { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
         .area-inv { background: #1a1a1a; padding: 10px; border-radius: 10px; border-left: 4px solid #ce1126; }
-        .dca-controls { display: flex; align-items: center; gap: 6px; margin-top: 8px; background: #222; padding: 4px; border-radius: 6px; }
+        .dca-controls { display: flex; align-items: center; gap: 6px; margin-top: 8px; background: #2.37; padding: 4px; border-radius: 6px; }
         .buying-power { color: #4caf50; font-size: 0.75em; font-weight: bold; margin-top: 5px; display: block; }
         
         .area-peers { background: #111; padding: 10px; border-radius: 10px; display: flex; flex-direction: column; gap: 6px; }
-        .control-row { display: flex; align-items: center; justify-content: space-between; background: #222; padding: 5px 10px; border-radius: 8px; }
+        .control-row { display: flex; align-items: center; justify-content: space-between; background: #2.37; padding: 5px 10px; border-radius: 8px; }
         .btn-step { background: #ce1126; color: white; border: none; width: 28px; height: 28px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.2em; }
         
         label { font-size: 0.75em; color: #fcd116; font-weight: bold; display: block; text-transform: uppercase; margin-bottom: 2px; }
@@ -98,88 +92,85 @@
         <div class="header-container container">
             <div class="logo-container">
                 <a href="index.html" class="logo-link">
-                    <img src="imagini/pula-logo-mic.png" alt="PULA Logo Mic" class="logo-nav">
+                    <img src="../imagini/pula-logo-mic.png" alt="PULA Logo Mic" class="logo-nav">
                     <span class="logo-text">P.U.L.A.</span>
                 </a>
             </div>
 
-            <!-- Preț Căruță Ticker (Link Interactiv) -->
+            <!-- Price Wagon Ticker -->
             <a href="simulator.html" class="ticker-link-wrapper" style="text-decoration: none;">
                 <div class="pret-caruta-ticker">
-                    <span class="ticker-label">1 CĂRUȚĂ:</span>
-                    <span class="ticker-value">10.34 RON</span>
-                    <span class="ticker-change"><span style="color: #4caf50;">&nbsp> 1L MOTORINĂ</span></span>
+                    <span class="ticker-label">1 WAGON:</span>
+                    <span class="ticker-value">$2.37 USD</span>
+                    <span class="ticker-change"><span style="color: #4caf50;"> &nbsp> 1L DIESEL</span></span>
                 </div>
             </a>
 
             <nav class="navigatie-principala">
-                <!-- Comutatorul de limbă -->
                 <div class="language-switcher">
-                    <a href="simulator.html" class="lang-link active-lang"><img src="imagini/flag-ro.png" alt="Română"></a>
-                    <a href="en/simulator.html" class="lang-link"><img src="imagini/flag-en.png" alt="English"></a>
+                    <a href="../simulator.html" class="lang-link"><img src="../imagini/flag-ro.png" alt="Română"></a>
+                    <a href="simulator.html" class="lang-link active-lang"><img src="../imagini/flag-en.png" alt="English"></a>
                 </div>
             </nav>
         </div>
     </header>
 
     <div class="dashboard">
-
-        <!-- UNIFIED HEADER SIMETRIC -->
         <div class="unified-header">
             <div class="header-left">
-                <span class="row-label">SAPTAMANA 12</span>
+                <span class="row-label">WEEK 12</span>
                 <span id="header-mult-text" class="row-main-val color-roz">1.0x</span>
-                <span id="pula-w12-box" class="row-sub-info color-albastru-deschis">1 Caruta PULA = 10.34 Lei</span>
+                <div id="pula-w12-box" class="row-sub-info color-albastru-deschis">1 Wagon PULA = $2.37 USD</div>
             </div>
             <div class="header-right">
-                <span class="row-label color-alb">CÂȘTIG:</span>
-                <span id="header-val-text" class="row-main-val color-verde">103.4 Lei</span>
-                <span id="diesel" class="row-sub-info color-albastru-inchis">⛽ 10.8L MOTORINA</span>
+                <span class="row-label color-alb">PROFIT:</span>
+                <span id="header-val-text" class="row-main-val color-verde">$23.7</span>
+                <div id="diesel" class="row-sub-info color-albastru-inchis">⛽ 1.1L DIESEL</div>
             </div>
         </div>
 
         <div class="area-chart">
             <div id="raydium-overlay">
                 <span class="raydium-text">🚀 RAYDIUM<br>MIGRATION</span>
-                <button class="btn-overlay-reset" onclick="resetSim()">REÎNCEPE SIMULAREA</button>
+                <button class="btn-overlay-reset" onclick="resetSim()">RESTART SIMULATION</button>
             </div>
             <canvas id="growthChart"></canvas>
         </div>
 
         <div class="row-bottom">
             <div class="area-inv">
-                <label>1 Caruta de PULA e 10.34 Lei</label>
-                <label>CUMPAR DE</label>
+                <label>1 WAGON = $2.37 USD</label>
+                <label>INVEST AMOUNT</label>
                 <div style="display:flex; align-items:center;">
-                    <input type="number" id="inv" value="103.4">
-                    <span class="input-unit">Lei</span>
+                    <input type="number" id="inv" value="23.7">
+                    <span class="input-unit">USD</span>
                 </div>
-                <span id="buying-power" class="buying-power">TOTAL: 10.0 CĂRUȚE</span>
+                <span id="buying-power" class="buying-power">TOTAL: 10.0 WAGONS</span>
                 
                 <div class="dca-controls">
                     <input type="checkbox" id="dca-on">
-                    <span style="font-size:0.75em; color:#4caf50; font-weight:bold;">DCA la</span>
+                    <span style="font-size:0.75em; color:#4caf50; font-weight:bold;">DCA every</span>
                     <button class="btn-step" onclick="step('days', -1)" style="width:22px; height:22px; font-size:1em;">-</button>
                     <span id="v-days" style="font-size:0.85em; font-weight:bold;">7</span>
-                    <button class="btn-step" onclick="step('days', 1)" style="width:22px; height:22px; font-size:1em;">+</button>zile
+                    <button class="btn-step" onclick="step('days', 1)" style="width:22px; height:22px; font-size:1em;">+</button> days
                 </div>
             </div>
             <div class="area-peers">
                 <div class="control-row">
-                    <span style="font-size:0.75em; color:#888; font-weight:bold;">HAIDUCI<br>/SAPTAMANA</span>
+                    <span style="font-size:0.75em; color:#888; font-weight:bold;">NEW PEERS</br>/WEEK</span>
                     <button class="btn-step" onclick="step('peers', -5)">-</button>
                     <span id="v-peers" class="val-mini">0</span>
                     <button class="btn-step" onclick="step('peers', 5)">+</button>
                 </div>
                 <div class="control-row">
-                    <span style="font-size:0.75em; color:#888; font-weight:bold;">INVESTITIE<br>/HAIDUC</span>
+                    <span style="font-size:0.75em; color:#888; font-weight:bold;">AVG BUY</br>/PEER</span>
                     <button class="btn-step" onclick="step('avg', -10)">-</button>
                     <span id="v-avg" class="val-mini">0</span>
                     <button class="btn-step" onclick="step('avg', 10)">+</button>
                 </div>
                 <div id="mcap-container" class="mcap-box">
-                    <div>1 Hambar MarketCap:</div>
-                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">10,340 Lei</div>
+                    <div>1 Barn MarketCap:</div>
+                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">$2,370</div>
                 </div>
             </div>
         </div>
@@ -221,7 +212,7 @@
         function resetSim() {
             isGraduated = false;
             state = { peers: 0, avg: 0, days: 7 };
-            ui.inv.value = 103.4;
+            ui.inv.value = 23.7;
             ui.dca.checked = false;
             ui.v_peers.innerText = 0; ui.v_avg.innerText = 0; ui.v_days.innerText = 7;
             ui.btns.forEach(b => b.disabled = false);
@@ -232,12 +223,11 @@
         function update() {
             const initialMC_USD = 2370;
             const ronToUsd = 4.3629;
-            const sNow_RON = 370; 
-            const invAmount_RON = parseFloat(ui.inv.value) || 0;
+            const invAmount_USD = parseFloat(ui.inv.value) || 0;
             const isDCA = ui.dca.checked;
 
-            const totalIn = isDCA ? invAmount_RON * (Math.floor(84 / state.days) + 1) : invAmount_RON;
-            ui.buyingPower.innerText = `TOTAL: ${(totalIn / 10.34).toFixed(1)} CĂRUȚE`;
+            const totalIn = isDCA ? invAmount_USD * (Math.floor(84 / state.days) + 1) : invAmount_USD;
+            ui.buyingPower.innerText = `TOTAL: ${(totalIn / 2.37).toFixed(1)} WAGONS`;
 
             let labels = []; let values = [];
             let currentMC_USD = initialMC_USD;
@@ -246,13 +236,13 @@
             for (let w = 0; w <= 12; w++) {
                 labels.push('W' + w);
                 if (w === 0) {
-                    let startInv = isDCA ? (invAmount_RON * (7/state.days)) : invAmount_RON;
-                    currentMC_USD += (startInv / ronToUsd);
+                    let startInv = isDCA ? (invAmount_USD * (7/state.days)) : invAmount_USD;
+                    currentMC_USD += startInv;
                 }
                 if (w > 0) {
                     let newCap = (w * state.peers * (state.avg / ronToUsd));
-                    if (isDCA) newCap += (invAmount_RON * (7 / state.days));
-                    currentMC_USD += (newCap / ronToUsd);
+                    if (isDCA) newCap += (invAmount_USD * (7 / state.days));
+                    currentMC_USD += newCap;
                 }
                 if (currentMC_USD >= (initialMC_USD + 34303) && !isGraduated) {
                     isGraduated = true;
@@ -260,25 +250,24 @@
                     ui.btns.forEach(b => b.disabled = true);
                     ui.inputs.forEach(i => i.disabled = true);
                 }
-                const multiplier = currentMC_USD / (initialMC_USD + (isDCA ? 0 : invAmount_RON/ronToUsd)); 
-                let currentMyInvest = isDCA ? (invAmount_RON * (Math.floor((w * 7) / state.days) + 1)) : invAmount_RON;
-                values.push((currentMyInvest * (currentMC_USD / (initialMC_USD + (invAmount_RON/ronToUsd)))).toFixed(0));
+                const multiplier = currentMC_USD / (initialMC_USD + (isDCA ? 0 : invAmount_USD)); 
+                let currentMyInvest = isDCA ? (invAmount_USD * (Math.floor((w * 7) / state.days) + 1)) : invAmount_USD;
+                values.push((currentMyInvest * (currentMC_USD / (initialMC_USD + invAmount_USD))).toFixed(1));
                 if (isGraduated) break;
             }
 
             if (!isGraduated) ui.overlay.style.display = 'none';
 
             const lastV = values[values.length - 1];
-            const mcapRON = currentMC_USD * ronToUsd; 
-            ui.mcap.innerText = `${Math.round(mcapRON).toLocaleString('ro-RO')} Lei`;
+            ui.mcap.innerText = `$${Math.round(currentMC_USD).toLocaleString('en-US')}`;
             if (currentMC_USD < initialMC_USD) ui.mcapCont.classList.add('mcap-down');
             else ui.mcapCont.classList.remove('mcap-down');
 
             const totalGrowth = currentMC_USD / initialMC_USD;
-            ui.pulaW12Box.innerText = `1 Caruta PULA = ${((10.34 * totalGrowth).toFixed(2))} Lei`;
-            ui.resVal.innerText = `${parseInt(lastV).toLocaleString('ro-RO')} Lei`;
+            ui.pulaW12Box.innerText = `1 Wagon PULA = $${(2.37 * totalGrowth).toFixed(2)} USD`;
+            ui.resVal.innerText = `$${parseFloat(lastV).toLocaleString('en-US')}`;
             ui.resMult.innerText = (lastV / (totalIn || 1)).toFixed(1) + 'x';
-            ui.diesel.innerText = `⛽ ${(lastV / 9.58).toFixed(1)}L MOTORINA`;
+            ui.diesel.innerText = `⛽ ${(lastV / 2.195).toFixed(1)}L DIESEL`;
 
             if (chart) chart.destroy();
             chart = new Chart(ctx, {
@@ -289,7 +278,7 @@
                         data: values,
                         borderColor: isGraduated ? '#00ffa3' : (currentMC_USD < initialMC_USD ? '#ff4444' : '#fcd116'),
                         borderWidth: 4,
-                        backgroundColor: isGraduated ? 'rgba(0, 255, 163, 0.15)' : 'rgba(252, 209, 22, 0.1)',
+                        backgroundColor: isGraduated ? 'rgba(0, 255, 163, 0.15)' : 'rgba(2.37, 209, 22, 0.1)',
                         fill: true, tension: 0.4, pointRadius: 0
                     }]
                 },
@@ -310,10 +299,10 @@
 
     <footer style="margin-top: 50px; padding: 40px 20px; background: #050505; border-top: 1px solid #111; color: #555; text-align: center; font-family: sans-serif;">
         <div style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
-            <p style="margin-bottom: 15px; font-size: 0.85rem; color: #444;"><strong>Disclaimer:</strong> Acesta este un memecoin și un experiment social. Nu reprezintă un sfat financiar. Toate calculele din simulator sunt pur orientative și bazate pe creșteri ipotetice. Distrează-te responsabil!</p>
-            <p style="margin-bottom: 15px; font-size: 0.9rem;">&copy; 2018-2026 PULA of Dracula. Toate drepturile sunt la fel de volatile ca și piața crypto.</p>
-            <p style="margin-bottom: 5px; font-size: 0.9rem;">Contact: <a href="mailto:ioncreanga2025@gmail.com" style="color: #fcd116; text-decoration: none; font-weight: bold;">ioncreanga2025@gmail.com</a></p>
-            <p style="font-size: 0.8rem;">Site accesibil și prin: <a href="https://pula.short.gy/" target="_blank" rel="noopener noreferrer" style="color: #444; text-decoration: underline;">pula.short.gy</a></p>
+            <p style="margin-bottom: 15px; font-size: 0.85rem; color: #444;"><strong>Disclaimer:</strong> This is a memecoin and a social experiment. It does not represent financial advice. All calculations in the simulator are purely indicative and based on hypothetical growth. Have fun responsibly!</p>
+            <p style="margin-bottom: 15px; font-size: 0.9rem;">&copy; 2018-2.376 PULA of Dracula. All rights are as volatile as the crypto market.</p>
+            <p style="margin-bottom: 5px; font-size: 0.9rem;">Contact: <a href="mailto:ioncreanga2.195@gmail.com" style="color: #fcd116; text-decoration: none; font-weight: bold;">ioncreanga2.195@gmail.com</a></p>
+            <p style="font-size: 0.8rem;">Site accessible also via: <a href="https://pula.short.gy/" target="_blank" rel="noopener noreferrer" style="color: #444; text-decoration: underline;">pula.short.gy</a></p>
         </div>
     </footer>
 </body>

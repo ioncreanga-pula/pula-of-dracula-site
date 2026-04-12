@@ -5,7 +5,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>C.U.R. Wallet - PULA of Dracula</title>
     <script src="https://bundle.run/buffer@6.0.3"></script>
@@ -15,8 +15,8 @@
       window.process = window.process || { env: { NODE_ENV: 'production' } };
     </script>
     <script src="https://terminal.jup.ag/main-v2.js" defer></script>
-    <script type="module" crossorigin src="./assets_v75/index-cbJp19NE.js?v=75"></script>
-    <link rel="stylesheet" crossorigin href="./assets_v75/index-BkABBNYp.css?v=75">
+    <script type="module" crossorigin src="../assets_v75/index-en.js?v=75en"></script>
+    <link rel="stylesheet" crossorigin href="../assets_v75/index-BkABBNYp.css?v=75">
 
   </head>
   <body>
@@ -35,8 +35,8 @@
         div.style.zIndex = '99999';
         div.style.fontFamily = 'monospace';
         div.style.overflow = 'auto';
-        div.innerHTML = '<h1>❌ EROARE RUNTIME:</h1>' +
-                        '<p><strong>Mesaj:</strong> ' + msg + '</p>' +
+        div.innerHTML = '<h1>❌ RUNTIME ERROR:</h1>' +
+                        '<p><strong>Message:</strong> ' + msg + '</p>' +
                         '<pre>' + (error && error.stack ? error.stack : 'No stack trace available') + '</pre>';
         document.body.appendChild(div);
       };

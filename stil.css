@@ -265,7 +265,14 @@ main a:hover {
 .jurnal-continut { padding: 20px; background-color: #2a2a2a; position: relative; border-radius: 8px; border: 1px solid #444; }
 .jurnal-intrare.dreapta .jurnal-continut { text-align: left; }
 .jurnal-continut h3 { margin-top: 0; color: #e53935; font-size: 1.4em; }
-.jurnal-imagine { width: 100%; height: auto; border-radius: 5px; margin-top: 15px; }
+.jurnal-imagine { 
+    width: 100%; 
+    max-height: 300px; 
+    object-fit: contain; 
+    border-radius: 5px; 
+    margin-top: 15px; 
+    background-color: #111; 
+}
 
 /* Alte stiluri */
 .porunci-lista { list-style-type: none; padding-left: 0; }
@@ -461,3 +468,6 @@ footer a:hover { text-decoration: underline; }
     color: #CE1126;
 }
 
+
+/* Culoare Verde PULA */
+.text-verde { color: #39ff14 !important; font-weight: bold; }
