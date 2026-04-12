@@ -10,6 +10,15 @@
     <title>C.U.R. Wallet - PULA of Dracula</title>
     <script src="https://bundle.run/buffer@6.0.3"></script>
     <script>
+      // Killer pentru Service Workers vechi care blochează cache-ul
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) {
+            registration.unregister();
+            console.log('Service Worker vechi eliminat.');
+          }
+        });
+      }
       window.global = window;
       window.Buffer = window.Buffer || (typeof buffer !== 'undefined' ? buffer.Buffer : null);
       window.process = window.process || { env: { NODE_ENV: 'production' } };
