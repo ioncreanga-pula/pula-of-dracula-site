@@ -12,10 +12,30 @@
       window.process = window.process || { env: { NODE_ENV: 'production' } };
     </script>
     <script src="https://terminal.jup.ag/main-v2.js" defer></script>
-    <script type="module" crossorigin src="./assets_v4/index-DurWD1oD.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets_v4/index-DfKvgzqN.css">
+    <script type="module" crossorigin src="./assets_v73/index-cbJp19NE.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets_v73/index-BkABBNYp.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      window.onerror = function(msg, url, line, col, error) {
+        var div = document.createElement('div');
+        div.style.position = 'fixed';
+        div.style.top = '0';
+        div.style.left = '0';
+        div.style.width = '100%';
+        div.style.height = '100%';
+        div.style.backgroundColor = 'rgba(255,0,0,0.9)';
+        div.style.color = 'white';
+        div.style.padding = '20px';
+        div.style.zIndex = '99999';
+        div.style.fontFamily = 'monospace';
+        div.style.overflow = 'auto';
+        div.innerHTML = '<h1>❌ EROARE RUNTIME:</h1>' +
+                        '<p><strong>Mesaj:</strong> ' + msg + '</p>' +
+                        '<pre>' + (error && error.stack ? error.stack : 'No stack trace available') + '</pre>';
+        document.body.appendChild(div);
+      };
+    </script>
   </body>
 </html>
