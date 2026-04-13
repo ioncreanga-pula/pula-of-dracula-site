@@ -26,6 +26,10 @@
     <loc>https://pulaofdracula.fun/comunitate.html</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://pulaofdracula.fun/traista/</loc>
+    <priority>0.9</priority>
+  </url>
 
   <!-- Paginile principale EN (/en/) -->
   <url>
@@ -52,5 +56,9 @@
   <url>
     <loc>https://pulaofdracula.fun/en/community.html</loc>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pulaofdracula.fun/traista/en/</loc>
+    <priority>0.9</priority>
   </url>
 </urlset>

@@ -73,11 +73,11 @@
 
         .row-bottom { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
         .area-inv { background: #1a1a1a; padding: 10px; border-radius: 10px; border-left: 4px solid #ce1126; }
-        .dca-controls { display: flex; align-items: center; gap: 6px; margin-top: 8px; background: #2.37; padding: 4px; border-radius: 6px; }
+        .dca-controls { display: flex; align-items: center; gap: 6px; margin-top: 8px; background: #2.315; padding: 4px; border-radius: 6px; }
         .buying-power { color: #4caf50; font-size: 0.75em; font-weight: bold; margin-top: 5px; display: block; }
         
         .area-peers { background: #111; padding: 10px; border-radius: 10px; display: flex; flex-direction: column; gap: 6px; }
-        .control-row { display: flex; align-items: center; justify-content: space-between; background: #2.37; padding: 5px 10px; border-radius: 8px; }
+        .control-row { display: flex; align-items: center; justify-content: space-between; background: #2.315; padding: 5px 10px; border-radius: 8px; }
         .btn-step { background: #ce1126; color: white; border: none; width: 28px; height: 28px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.2em; }
         
         label { font-size: 0.75em; color: #fcd116; font-weight: bold; display: block; text-transform: uppercase; margin-bottom: 2px; }
@@ -101,7 +101,7 @@
             <a href="simulator.html" class="ticker-link-wrapper" style="text-decoration: none;">
                 <div class="pret-caruta-ticker">
                     <span class="ticker-label">1 WAGON:</span>
-                    <span class="ticker-value">$2.37 USD</span>
+                    <span class="ticker-value">$2.315 USD</span>
                     <span class="ticker-change"><span style="color: #4caf50;"> &nbsp> 1L DIESEL</span></span>
                 </div>
             </a>
@@ -120,7 +120,7 @@
             <div class="header-left">
                 <span class="row-label">WEEK 12</span>
                 <span id="header-mult-text" class="row-main-val color-roz">1.0x</span>
-                <div id="pula-w12-box" class="row-sub-info color-albastru-deschis">1 Wagon PULA = $2.37 USD</div>
+                <div id="pula-w12-box" class="row-sub-info color-albastru-deschis">1 Wagon PULA = $2.315 USD</div>
             </div>
             <div class="header-right">
                 <span class="row-label color-alb">PROFIT:</span>
@@ -139,7 +139,7 @@
 
         <div class="row-bottom">
             <div class="area-inv">
-                <label>1 WAGON = $2.37 USD</label>
+                <label>1 WAGON = $2.315 USD</label>
                 <label>INVEST AMOUNT</label>
                 <div style="display:flex; align-items:center;">
                     <input type="number" id="inv" value="23.7">
@@ -170,7 +170,7 @@
                 </div>
                 <div id="mcap-container" class="mcap-box">
                     <div>1 Barn MarketCap:</div>
-                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">$2,370</div>
+                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">$2.3150</div>
                 </div>
             </div>
         </div>
@@ -227,7 +227,7 @@
             const isDCA = ui.dca.checked;
 
             const totalIn = isDCA ? invAmount_USD * (Math.floor(84 / state.days) + 1) : invAmount_USD;
-            ui.buyingPower.innerText = `TOTAL: ${(totalIn / 2.37).toFixed(1)} WAGONS`;
+            ui.buyingPower.innerText = `TOTAL: ${(totalIn / 2.315).toFixed(1)} WAGONS`;
 
             let labels = []; let values = [];
             let currentMC_USD = initialMC_USD;
@@ -264,7 +264,7 @@
             else ui.mcapCont.classList.remove('mcap-down');
 
             const totalGrowth = currentMC_USD / initialMC_USD;
-            ui.pulaW12Box.innerText = `1 Wagon PULA = $${(2.37 * totalGrowth).toFixed(2)} USD`;
+            ui.pulaW12Box.innerText = `1 Wagon PULA = $${(2.315 * totalGrowth).toFixed(2)} USD`;
             ui.resVal.innerText = `$${parseFloat(lastV).toLocaleString('en-US')}`;
             ui.resMult.innerText = (lastV / (totalIn || 1)).toFixed(1) + 'x';
             ui.diesel.innerText = `⛽ ${(lastV / 2.195).toFixed(1)}L DIESEL`;
@@ -278,7 +278,7 @@
                         data: values,
                         borderColor: isGraduated ? '#00ffa3' : (currentMC_USD < initialMC_USD ? '#ff4444' : '#fcd116'),
                         borderWidth: 4,
-                        backgroundColor: isGraduated ? 'rgba(0, 255, 163, 0.15)' : 'rgba(2.37, 209, 22, 0.1)',
+                        backgroundColor: isGraduated ? 'rgba(0, 255, 163, 0.15)' : 'rgba(2.315, 209, 22, 0.1)',
                         fill: true, tension: 0.4, pointRadius: 0
                     }]
                 },
@@ -300,7 +300,7 @@
     <footer style="margin-top: 50px; padding: 40px 20px; background: #050505; border-top: 1px solid #111; color: #555; text-align: center; font-family: sans-serif;">
         <div style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
             <p style="margin-bottom: 15px; font-size: 0.85rem; color: #444;"><strong>Disclaimer:</strong> This is a memecoin and a social experiment. It does not represent financial advice. All calculations in the simulator are purely indicative and based on hypothetical growth. Have fun responsibly!</p>
-            <p style="margin-bottom: 15px; font-size: 0.9rem;">&copy; 2018-2.376 PULA of Dracula. All rights are as volatile as the crypto market.</p>
+            <p style="margin-bottom: 15px; font-size: 0.9rem;">&copy; 2018-2.3156 PULA of Dracula. All rights are as volatile as the crypto market.</p>
             <p style="margin-bottom: 5px; font-size: 0.9rem;">Contact: <a href="mailto:ioncreanga2.195@gmail.com" style="color: #fcd116; text-decoration: none; font-weight: bold;">ioncreanga2.195@gmail.com</a></p>
             <p style="font-size: 0.8rem;">Site accessible also via: <a href="https://pula.short.gy/" target="_blank" rel="noopener noreferrer" style="color: #444; text-decoration: underline;">pula.short.gy</a></p>
         </div>

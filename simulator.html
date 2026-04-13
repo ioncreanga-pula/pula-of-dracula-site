@@ -107,7 +107,7 @@
             <a href="simulator.html" class="ticker-link-wrapper" style="text-decoration: none;">
                 <div class="pret-caruta-ticker">
                     <span class="ticker-label">1 CĂRUȚĂ:</span>
-                    <span class="ticker-value">10.34 RON</span>
+                    <span class="ticker-value">10.10 RON</span>
                     <span class="ticker-change"><span style="color: #4caf50;">&nbsp> 1L MOTORINĂ</span></span>
                 </div>
             </a>
@@ -129,7 +129,7 @@
             <div class="header-left">
                 <span class="row-label">SAPTAMANA 12</span>
                 <span id="header-mult-text" class="row-main-val color-roz">1.0x</span>
-                <span id="pula-w12-box" class="row-sub-info color-albastru-deschis">1 Caruta PULA = 10.34 Lei</span>
+                <span id="pula-w12-box" class="row-sub-info color-albastru-deschis">1 Caruta PULA = 10.10 Lei</span>
             </div>
             <div class="header-right">
                 <span class="row-label color-alb">CÂȘTIG:</span>
@@ -148,7 +148,7 @@
 
         <div class="row-bottom">
             <div class="area-inv">
-                <label>1 Caruta de PULA e 10.34 Lei</label>
+                <label>1 Caruta de PULA e 10.10 Lei</label>
                 <label>CUMPAR DE</label>
                 <div style="display:flex; align-items:center;">
                     <input type="number" id="inv" value="103.4">
@@ -179,7 +179,7 @@
                 </div>
                 <div id="mcap-container" class="mcap-box">
                     <div>1 Hambar MarketCap:</div>
-                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">10,340 Lei</div>
+                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">10.100 Lei</div>
                 </div>
             </div>
         </div>
@@ -237,7 +237,7 @@
             const isDCA = ui.dca.checked;
 
             const totalIn = isDCA ? invAmount_RON * (Math.floor(84 / state.days) + 1) : invAmount_RON;
-            ui.buyingPower.innerText = `TOTAL: ${(totalIn / 10.34).toFixed(1)} CĂRUȚE`;
+            ui.buyingPower.innerText = `TOTAL: ${(totalIn / 10.10).toFixed(1)} CĂRUȚE`;
 
             let labels = []; let values = [];
             let currentMC_USD = initialMC_USD;
@@ -275,7 +275,7 @@
             else ui.mcapCont.classList.remove('mcap-down');
 
             const totalGrowth = currentMC_USD / initialMC_USD;
-            ui.pulaW12Box.innerText = `1 Caruta PULA = ${((10.34 * totalGrowth).toFixed(2))} Lei`;
+            ui.pulaW12Box.innerText = `1 Caruta PULA = ${((10.10 * totalGrowth).toFixed(2))} Lei`;
             ui.resVal.innerText = `${parseInt(lastV).toLocaleString('ro-RO')} Lei`;
             ui.resMult.innerText = (lastV / (totalIn || 1)).toFixed(1) + 'x';
             ui.diesel.innerText = `⛽ ${(lastV / 9.58).toFixed(1)}L MOTORINA`;

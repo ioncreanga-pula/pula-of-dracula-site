@@ -131,14 +131,3 @@
 .price-hambary { color: #f1c40f !important; font-weight: 900 !important; font-size: 0.825rem !important; margin-top: 5px; text-shadow: 1px 1px 2px #000; display: block; text-align: left; }
 .leaderboard-item.is-market { border-color: #2563eb !important; background: rgba(37, 99, 235, 0.1) !important; border-left: 4px solid #2563eb !important; }
 .price-hambary.interactable { cursor: pointer; transition: opacity 0.2s; } .price-hambary.interactable:hover { opacity: 0.7; color: #fff !important; }
-.unit { margin-bottom: 2px !important; }
-
-
-
-.qr-instruction-text { color: #000; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; text-align: center; margin-top: 5px; }
-.qr-arrow-down { font-size: 1.5rem; color: #e53935; line-height: 1; margin-top: -5px; }
-.scanner-instruction-overlay { position: absolute; bottom: 80px; left: 0; width: 100%; text-align: center; pointer-events: none; z-index: 20; }
-.scanner-text { color: #fff; font-size: 1.2rem; font-weight: 900; text-shadow: 0 0 10px #000; text-transform: uppercase; }
-.scanner-arrow-up { font-size: 1.8rem; color: #39ff14; display: block; margin-top: 5px; animation: bounce-up 1s infinite; }
-@keyframes bounce-up { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
