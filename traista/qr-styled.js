@@ -46,8 +46,8 @@
 
   // --- Opțiuni QR ---
   var QR_OPTIONS = {
-    width: 180,
-    height: 180,
+    width: 360,
+    height: 360,
     margin: 2,
     qrOptions: {
       typeNumber: 0,
@@ -117,8 +117,8 @@
     var placeholder = document.createElement('div');
     placeholder.style.cssText = [
       'display:inline-block',
-      'width:180px',
-      'height:180px',
+      'width:360px',
+      'height:360px',
       'border-radius:8px',
       'overflow:hidden'
     ].join(';');
@@ -128,7 +128,7 @@
 
     var canvas = placeholder.querySelector('canvas');
     if (canvas) {
-      canvas.style.cssText = 'display:block;width:180px;height:180px;border-radius:8px;';
+      canvas.style.cssText = 'display:block;width:360px;height:360px;border-radius:8px;';
     }
   }
 
