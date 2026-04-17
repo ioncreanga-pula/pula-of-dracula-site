@@ -1,7 +1,50 @@
-// qr-styled.js - Înlocuiește QR-ul din modalul "Ia" cu qr-code-styling
+// qr-styled.js - QR stilizat + redesign modal Ia (receive)
 (function () {
   'use strict';
 
+  // --- Injectare CSS overrides ---
+  var style = document.createElement('style');
+  style.textContent = [
+    /* Ascunde: luna, textul "IA P.U.L.A." + V-ul de jos */
+    '.qr-moon-corner { display: none !important; }',
+    '.qr-instruction-text { display: none !important; }',
+
+    /* Fundal negru, text alb pentru containerul QR */
+    '.qr-white-container {',
+    '  background: #000 !important;',
+    '  border: 1px solid #333 !important;',
+    '}',
+
+    /* Layout vertical: QR centrat, username jos */
+    '.qr-container-row-minimal {',
+    '  flex-direction: column !important;',
+    '  align-items: center !important;',
+    '  gap: 8px !important;',
+    '}',
+
+    /* Username: orizontal, jos, text alb */
+    '.vertical-username-text {',
+    '  writing-mode: horizontal-tb !important;',
+    '  text-orientation: mixed !important;',
+    '  transform: none !important;',
+    '  color: #fff !important;',
+    '  font-size: 1rem !important;',
+    '  height: auto !important;',
+    '  padding: 0 !important;',
+    '  justify-content: center !important;',
+    '  width: 100% !important;',
+    '  text-align: center !important;',
+    '}',
+
+    /* Titlul modalului - text alb */
+    '.receive-title { color: #fff !important; }',
+
+    /* Adresa Solana de jos - text mai vizibil */
+    '.address-sol-label { color: #aaa !important; }',
+  ].join('\n');
+  document.head.appendChild(style);
+
+  // --- Opțiuni QR ---
   var QR_OPTIONS = {
     width: 180,
     height: 180,
@@ -65,15 +108,12 @@
 
   function injectStyledQR(imgEl, address) {
     if (!imgEl || !address || !window.QRCodeStyling) return;
-
-    // Nu injectăm de două ori
     if (imgEl.dataset.styledQrDone === '1') return;
     imgEl.dataset.styledQrDone = '1';
 
     var options = Object.assign({}, QR_OPTIONS, { data: address });
     var qrCode = new window.QRCodeStyling(options);
 
-    // Creem un div care ia locul img-ului
     var placeholder = document.createElement('div');
     placeholder.style.cssText = [
       'display:inline-block',
@@ -86,7 +126,6 @@
     imgEl.parentNode.replaceChild(placeholder, imgEl);
     qrCode.append(placeholder);
 
-    // Canvas-ul generat - ajustăm stilul
     var canvas = placeholder.querySelector('canvas');
     if (canvas) {
       canvas.style.cssText = 'display:block;width:180px;height:180px;border-radius:8px;';
@@ -94,26 +133,20 @@
   }
 
   function tryInjectQR() {
-    // Găsim imaginea QR originală (de la api.qrserver.com)
     var qrImg = document.querySelector('.qr-img[src*="qrserver.com"]');
     if (!qrImg) return false;
 
-    // Extragem adresa Solana din URL-ul imaginii
     var src = qrImg.getAttribute('src') || '';
     var match = src.match(/[?&]data=([A-Za-z0-9]+)/);
     if (!match || !match[1]) return false;
     var address = match[1];
 
-    if (typeof window.QRCodeStyling === 'undefined') {
-      // Librăria nu e încă încărcată, reîncercăm
-      return false;
-    }
+    if (typeof window.QRCodeStyling === 'undefined') return false;
 
     injectStyledQR(qrImg, address);
     return true;
   }
 
-  // MutationObserver pentru detectarea apariției modalului receive
   var observer = new MutationObserver(function () {
     tryInjectQR();
   });
@@ -123,7 +156,6 @@
     subtree: true
   });
 
-  // Fallback la DOMContentLoaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', tryInjectQR);
   } else {
