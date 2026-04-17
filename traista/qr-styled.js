@@ -41,8 +41,8 @@
 
   // ─── Opțiuni QR ─────────────────────────────────────────────────────────────
   var QR_OPTIONS = {
-    width: 360,
-    height: 360,
+    width: 288,
+    height: 288,
     margin: 2,
     qrOptions: { typeNumber: 0, mode: 'Byte', errorCorrectionLevel: 'H' },
     imageOptions: { saveAsBlob: true, hideBackgroundDots: true, imageSize: 0.4, margin: 4, crossOrigin: 'anonymous' },
@@ -75,12 +75,12 @@
     var qrCode = new window.QRCodeStyling(options);
 
     var placeholder = document.createElement('div');
-    placeholder.style.cssText = 'display:inline-block;width:360px;height:360px;border-radius:8px;overflow:hidden;';
+    placeholder.style.cssText = 'display:block;width:288px;height:288px;border-radius:8px;overflow:hidden;margin:0 auto;';
     imgEl.parentNode.replaceChild(placeholder, imgEl);
     qrCode.append(placeholder);
 
     var canvas = placeholder.querySelector('canvas');
-    if (canvas) canvas.style.cssText = 'display:block;width:360px;height:360px;border-radius:8px;';
+    if (canvas) canvas.style.cssText = 'display:block;width:288px;height:288px;border-radius:8px;';
   }
 
   function tryInjectQR() {
