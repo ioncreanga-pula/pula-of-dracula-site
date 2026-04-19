@@ -109,18 +109,19 @@
         function fmtInt(n) { return Number(n).toLocaleString('ro-RO'); }
         function buildContent(d) {
             var sep = '<span class="banda-sep">◆</span>';
-            var items = [
-                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.ron,2) + '</span> <span class="banda-unit">RON</span>',
-                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.usd,2) + '</span> <span class="banda-unit">USD</span>',
-                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.eur,2) + '</span> <span class="banda-unit">EUR</span>',
-                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.bwp,2) + '</span> <span class="banda-unit">BWP</span>',
-                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>',
-                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.btc,9) + '</span> <span class="banda-unit">BTC</span>',
-                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.eth,8) + '</span> <span class="banda-unit">ETH</span>',
-                '<span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(d.market_cap_usd) + '</span>',
-                '<span class="banda-label">SUPPLY:</span> <span class="banda-val">' + fmtInt(d.supply) + '</span> <span class="banda-unit">PULA</span>'
+            var pipe = ' <span class="banda-unit">|</span> ';
+            var vals = [
+                '<span class="banda-val">' + fmt(d.ron,2) + '</span> <span class="banda-unit">RON</span>',
+                '<span class="banda-val">' + fmt(d.usd,2) + '</span> <span class="banda-unit">USD</span>',
+                '<span class="banda-val">' + fmt(d.eur,2) + '</span> <span class="banda-unit">EUR</span>',
+                '<span class="banda-val">' + fmt(d.bwp,2) + '</span> <span class="banda-unit">BWP</span>',
+                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>',
+                '<span class="banda-val">' + fmt(d.btc,9) + '</span> <span class="banda-unit">BTC</span>',
+                '<span class="banda-val">' + fmt(d.eth,8) + '</span> <span class="banda-unit">ETH</span>'
             ];
-            var html = items.map(function(i){return '<span class="banda-item">'+i+'</span>';}).join(sep);
+            var html = '<span class="banda-item"><span class="banda-label">1 CĂRUȚĂ:</span> ' + vals.join(pipe) + '</span>';
+            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(d.market_cap_usd) + '</span></span>';
+            html += sep + '<span class="banda-item"><span class="banda-label">SUPPLY:</span> <span class="banda-val">' + fmtInt(d.supply) + '</span> <span class="banda-unit">PULA</span></span>';
             return html + sep + html;
         }
         function update(d) {
