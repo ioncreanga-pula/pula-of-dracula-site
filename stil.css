@@ -471,3 +471,57 @@ footer a:hover { text-decoration: underline; }
 
 /* Culoare Verde PULA */
 .text-verde { color: #39ff14 !important; font-weight: bold; }
+
+/* ===== BANDĂ DEFILANTĂ TICKER ===== */
+.banda-defilanta {
+    background: #111;
+    border-top: 2px solid #ce1126;
+    border-bottom: 2px solid #ce1126;
+    overflow: hidden;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.banda-wrap {
+    overflow: hidden;
+    width: 100%;
+}
+.banda-continut {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: bandaDefilare 12s linear infinite;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+}
+.banda-defilanta:hover .banda-continut {
+    animation-play-state: paused;
+}
+@keyframes bandaDefilare {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.banda-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 6px;
+}
+.banda-label {
+    color: #fcd116;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+.banda-val {
+    color: #ffffff;
+    font-weight: bold;
+}
+.banda-unit {
+    color: #888;
+}
+.banda-sep {
+    color: #ce1126;
+    margin: 0 10px;
+    font-size: 10px;
+}

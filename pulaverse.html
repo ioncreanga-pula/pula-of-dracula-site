@@ -62,6 +62,53 @@
             </nav>
         </div>
     </header>
+    <!-- BANDA DEFILANTA TICKER -->
+    <div class="banda-defilanta">
+        <div class="banda-wrap">
+            <div class="banda-continut" id="bandaContinut">
+                <!-- continut incarcat de JS -->
+                <span class="banda-item"><span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">10.10</span> <span class="banda-unit">RON</span></span>
+                <span class="banda-sep">◆</span>
+                <span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$2,210</span></span>
+                <span class="banda-sep">◆</span>
+                <span class="banda-item"><span class="banda-label">SUPPLY:</span> <span class="banda-val">1,000,000,000</span> <span class="banda-unit">PULA</span></span>
+            </div>
+        </div>
+    </div>
+    <script>
+    (function() {
+        var jsonPath = '/admin/pret.json';
+        function fmt(n, dec) { return (n !== null && n !== undefined) ? Number(n).toFixed(dec) : '—'; }
+        function fmtInt(n) { return Number(n).toLocaleString('ro-RO'); }
+        function buildContent(d) {
+            var sep = '<span class="banda-sep">◆</span>';
+            var items = [
+                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.ron,2) + '</span> <span class="banda-unit">RON</span>',
+                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.usd,2) + '</span> <span class="banda-unit">USD</span>',
+                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.eur,2) + '</span> <span class="banda-unit">EUR</span>',
+                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.bwp,2) + '</span> <span class="banda-unit">BWP</span>',
+                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>',
+                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.btc,9) + '</span> <span class="banda-unit">BTC</span>',
+                '<span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">' + fmt(d.eth,8) + '</span> <span class="banda-unit">ETH</span>',
+                '<span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(d.market_cap_usd) + '</span>',
+                '<span class="banda-label">SUPPLY:</span> <span class="banda-val">' + fmtInt(d.supply) + '</span> <span class="banda-unit">PULA</span>'
+            ];
+            var html = items.map(function(i){return '<span class="banda-item">'+i+'</span>';}).join(sep);
+            return html + sep + html;
+        }
+        function update(d) {
+            var el = document.getElementById('bandaContinut');
+            if (el) el.innerHTML = buildContent(d);
+        }
+        fetch(jsonPath + '?v=' + Date.now())
+            .then(function(r){return r.json();})
+            .then(update)
+            .catch(function(){
+                var ls = localStorage.getItem('pula_pret');
+                if (ls) try { update(JSON.parse(ls)); } catch(e){}
+            });
+    })();
+    </script>
 
     <main class="container">
         <section class="sectiune" id="cronica">
