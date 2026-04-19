@@ -202,3 +202,185 @@
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.8; transform: scale(1.06); }
 }
+
+
+/* ── Celebration Animation (dupa trimitere reusita) ─────────── */
+.celebration-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 99999;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.stars-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px);
+  background-size:
+    100px 100px, 87px 113px, 143px 97px, 67px 131px, 113px 79px,
+    93px 107px, 127px 89px, 71px 121px, 109px 83px, 137px 103px,
+    83px 117px, 103px 91px, 119px 73px, 89px 109px, 131px 87px,
+    77px 127px, 107px 77px, 97px 93px, 121px 101px, 73px 137px,
+    91px 113px, 113px 83px, 79px 99px, 127px 73px, 99px 121px,
+    111px 89px, 87px 107px, 103px 79px, 137px 91px, 71px 113px;
+  background-position:
+    23px 17px, 61px 43px, 11px 79px, 87px 31px, 47px 97px,
+    33px 53px, 71px 19px, 19px 67px, 93px 57px, 53px 83px,
+    7px 37px, 79px 71px, 41px 13px, 67px 89px, 29px 47px,
+    97px 23px, 13px 91px, 57px 61px, 83px 37px, 37px 107px,
+    73px 47px, 17px 83px, 91px 67px, 43px 29px, 61px 101px,
+    27px 71px, 89px 13px, 51px 93px, 9px 51px, 77px 107px;
+  opacity: 0.7;
+}
+
+.celebration-moon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  filter: sepia(1) saturate(4) hue-rotate(10deg) brightness(1.2);
+}
+
+.celebration-symbol {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: sepia(1) saturate(8) hue-rotate(-40deg) brightness(1.1);
+  animation: flyToMoon 3s cubic-bezier(0.4, 0, 0.8, 0.6) 0.2s forwards;
+  opacity: 0;
+}
+
+@keyframes flyToMoon {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(calc(100vw - 130px), calc(-100vh + 100px)) scale(0.04);
+    opacity: 0;
+  }
+}
+
+
+/* ── Dropdown unități (fereastra Dă PULA) ──────────────────── */
+.transfer-amt-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.unit-input-group {
+  display: flex;
+  gap: 6px;
+  align-items: stretch;
+}
+
+.unit-input-group .unit-amt {
+  flex: 0 0 90px;
+  min-width: 0;
+}
+
+.unit-select {
+  flex: 1;
+  background: #111;
+  color: #39ff14;
+  border: 1px solid #39ff14;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.unit-select option {
+  background: #111;
+  color: #39ff14;
+  font-family: 'Courier New', monospace;
+}
+
+.transfer-live-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 10px;
+  background: rgba(57,255,20,0.05);
+  border: 1px solid rgba(57,255,20,0.2);
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+}
+
+.live-pula-eq {
+  color: #39ff14;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.live-fiat-eq {
+  color: #aaa;
+  font-size: 0.8rem;
+}
+
+.live-gas-eq {
+  color: #666;
+  font-size: 0.75rem;
+}
+
+.live-gas-eq.gas-critical {
+  color: #ff4444;
+  font-weight: 700;
+  animation: gas-blink 1s infinite;
+}
+
+@keyframes gas-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
