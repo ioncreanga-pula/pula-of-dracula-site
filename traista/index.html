@@ -34,6 +34,23 @@
     <script src="https://terminal.jup.ag/main-v2.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
     <script src="./qr-styled.js" defer></script>
+    <script>
+      // Fetch SOL price pentru afisare gaz in lei
+      (function() {
+        fetch('https://api.dexscreener.com/latest/dex/pairs/solana/4btoeuklvrqycz8r8xugana4czsvopwsmzbfpvghhghr')
+          .then(function(r){ return r.json(); })
+          .then(function(d){
+            var pair = d.pair || (d.pairs && d.pairs[0]);
+            if (!pair || !pair.priceUsd || !pair.priceNative) return;
+            var solUsd = parseFloat(pair.priceUsd) / parseFloat(pair.priceNative);
+            fetch('https://api.frankfurter.app/latest?from=USD&to=RON')
+              .then(function(r){ return r.json(); })
+              .then(function(fx){
+                window.solRonPrice = solUsd * (fx.rates && fx.rates.RON ? fx.rates.RON : 4.7);
+              }).catch(function(){ window.solRonPrice = solUsd * 4.7; });
+          }).catch(function(){});
+      })();
+    </script>
     <script type="module" crossorigin src="./assets_v75/index-cbJp19NE.js?v=110"></script>
     <link rel="stylesheet" crossorigin href="./assets_v75/index-BkABBNYp.css?v=110">
 

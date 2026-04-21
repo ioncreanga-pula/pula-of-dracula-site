@@ -384,3 +384,19 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
+
+/* Fix: QR modal centrat pe mobil */
+.wider-modal { max-width: min(420px, calc(100vw - 30px)) !important; box-sizing: border-box !important; }
+.qr-white-container { max-width: 100% !important; overflow: hidden !important; box-sizing: border-box !important; }
+.qr-container-row-minimal { flex-wrap: wrap !important; justify-content: center !important; max-width: 100% !important; }
+
+/* Fix: butonul Da sub dropdown */
+.transfer-amt-row { flex-direction: column !important; align-items: stretch !important; }
+.unit-input-group { display: flex !important; gap: 10px !important; }
+.unit-select { flex: 1 !important; background: #000 !important; border: 1px solid #333 !important; border-radius: 10px !important; color: #fff !important; padding: 12px !important; font-size: 0.9rem !important; }
+.transfer-btn { width: 100% !important; height: 48px !important; font-size: 1rem !important; border-radius: 10px !important; padding: 0 !important; }
+
+/* Fix: Total pe linie noua, suma dedesubt */
+.total-pula-main { display: flex !important; flex-direction: column !important; align-items: flex-end !important; gap: 2px !important; }
+.total-label { font-size: 0.72rem !important; color: #666 !important; font-weight: 400 !important; text-transform: uppercase !important; letter-spacing: 0.8px !important; line-height: 1 !important; }
+.total-amount-line { display: flex !important; align-items: center !important; gap: 4px !important; justify-content: flex-end !important; }
