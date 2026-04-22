@@ -31,7 +31,8 @@
     <meta property="og:title" content="PULA of Dracula (Oficial) - Profeția din 1988">
     <meta property="og:description" content="1 Mai este despre Abolirea Muncii. Alătură-te renașterii celei mai legendare monede românești.">
     <meta property="og:image" content="https://pulaofdracula.fun/imagini/pula-logo.png">
-</head>
+<script src="/pret-live.js"></script>
+  </head>
 <body>
     <header class="site-header">
         <div class="header-container container">
@@ -128,49 +129,33 @@
         }
 
         function fetchLive(staticData) {
-            // 1. DexScreener pentru preț PULA live
-            fetch('https://api.dexscreener.com/latest/dex/pairs/solana/' + PAIR)
+            var priceUsd = window.pulaPriceUsd || 2.368e-6;
+            var carutaUsd = priceUsd * 1e6;
+            var ron = window.ratesRon || 4.7;
+            var d = Object.assign({}, staticData, {
+                usd: carutaUsd,
+                ron: carutaUsd * ron,
+                eur: carutaUsd * (window.ratesEur || 0.92),
+                bwp: carutaUsd * (window.ratesBwp || 13.7),
+                sol: window.pulaPriceSol || 0,
+                market_cap_usd: Math.round(priceUsd * (staticData.supply || 1e9))
+            });
+            fetch('https://api.metals.live/v1/spot/gold')
                 .then(function(r){ return r.json(); })
-                .then(function(dex) {
-                    var pair = dex.pair || (dex.pairs && dex.pairs[0]);
-                    if (!pair || !pair.priceUsd) throw new Error('no price');
-                    var priceUsd = parseFloat(pair.priceUsd); // 1 PULA in USD
-                    var carutaUsd = priceUsd * 1e6;
-                    var carutaSol = parseFloat(pair.priceNative) * 1e6;
-                    var mcap = pair.marketCap || pair.fdv || 0;
-                    // 2. Frankfurter pentru cursuri valutare
-                    return fetch('https://api.frankfurter.app/latest?from=USD&to=RON,EUR,BWP')
-                        .then(function(r){ return r.json(); })
-                        .then(function(fx) {
-                            var ron = fx.rates.RON || 4.7;
-                            var d = Object.assign({}, staticData, {
-                                usd: carutaUsd,
-                                ron: carutaUsd * ron,
-                                eur: carutaUsd * (fx.rates.EUR || 0.92),
-                                bwp: carutaUsd * (fx.rates.BWP || 13.7),
-                                sol: carutaSol,
-                                market_cap_usd: mcap
-                            });
-                            // 3. metals.live pentru aur
-                            return fetch('https://api.metals.live/v1/spot/gold')
-                                .then(function(r){ return r.json(); })
-                                .then(function(gold) {
-                                    var ozUsd = Array.isArray(gold) ? gold[0].gold : gold.gold;
-                                    if (ozUsd) d.aur_ron_per_gram = (ozUsd / 31.103) * ron;
-                                    update(d);
-                                }).catch(function(){ update(d); });
-                        });
-                })
-                .catch(function() {
-                    // fallback la date statice
-                    update(staticData);
-                });
+                .then(function(gold) {
+                    var ozUsd = Array.isArray(gold) ? gold[0].gold : gold.gold;
+                    if (ozUsd) d.aur_ron_per_gram = (ozUsd / 31.103) * ron;
+                    update(d);
+                }).catch(function(){ update(d); });
         }
 
+        window._pulaStaticData = {};
+        document.addEventListener('pulaReady', function() { fetchLive(window._pulaStaticData); });
         // Citește pret.json pentru motorina/kwh, apoi fetch live
         fetch(jsonPath + '?v=' + Date.now())
             .then(function(r){ return r.json(); })
             .then(function(staticData) {
+                window._pulaStaticData = staticData;
                 update(staticData); // afișează imediat datele statice
                 fetchLive(staticData); // apoi actualizează cu date live
             })

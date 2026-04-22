@@ -88,7 +88,8 @@
     </style>
     <meta property="og:image" content="https://pulaofdracula.fun/imagini/pula-logo.png">
     <meta name="twitter:image" content="https://pulaofdracula.fun/imagini/pula-logo.png">
-</head>
+<script src="/pret-live.js"></script>
+  </head>
 <body>
     <header class="site-header">
         <div class="header-container container">
@@ -155,6 +156,12 @@
                 var ls = localStorage.getItem('pula_pret');
                 if (ls) try { update(JSON.parse(ls)); } catch(e){}
             });
+        document.addEventListener('pulaReady', function() {
+            var p = window.pulaPriceUsd || 2.368e-6;
+            var r = window.ratesRon || 4.65;
+            var cu = p * 1e6;
+            update({usd:cu, ron:cu*r, eur:cu*(window.ratesEur||0.92), bwp:cu*(window.ratesBwp||13.75), sol:window.pulaPriceSol||0, market_cap_usd:Math.round(953800000*p), supply:953800000});
+        });
     })();
     </script>
 
@@ -265,7 +272,7 @@
 
         function update() {
             const initialMC_USD = 2370;
-            const ronToUsd = 4.3629;
+            const ronToUsd = window.ratesRon || 4.3629;
             const invAmount_USD = parseFloat(ui.inv.value) || 0;
             const isDCA = ui.dca.checked;
 
