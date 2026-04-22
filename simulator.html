@@ -166,6 +166,16 @@
             var r = window.ratesRon || 4.65;
             var cu = p * 1e6;
             update({usd:cu, ron:cu*r, eur:cu*(window.ratesEur||0.92), bwp:cu*(window.ratesBwp||13.75), sol:window.pulaPriceSol||0, market_cap_usd:Math.round(953800000*p), supply:953800000});
+            // actualizează elementele statice cu prețul live
+            var carutaRon = (cu * r).toFixed(2);
+            var w12 = document.getElementById('pula-w12-box');
+            if (w12) w12.innerText = '1 Caruta PULA = ' + carutaRon + ' Lei';
+            var mcap = document.getElementById('mcap-val');
+            if (mcap) mcap.innerText = carutaRon + ' Lei';
+            var labels = document.querySelectorAll('label');
+            labels.forEach(function(l) {
+                if (l.textContent.indexOf('10.10') !== -1) l.textContent = '1 Caruta de PULA e ' + carutaRon + ' Lei';
+            });
         });
     })();
     </script>

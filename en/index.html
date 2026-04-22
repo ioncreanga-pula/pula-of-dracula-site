@@ -129,6 +129,19 @@
                 var ls = localStorage.getItem('pula_pret');
                 if (ls) try { update(JSON.parse(ls)); } catch(e){}
             });
+        document.addEventListener('pulaReady', function() {
+            var p = window.pulaPriceUsd || 2.368e-6;
+            var cu = p * 1e6;
+            update({
+                usd: cu,
+                ron: cu * (window.ratesRon || 4.65),
+                eur: cu * (window.ratesEur || 0.92),
+                bwp: cu * (window.ratesBwp || 13.75),
+                sol: window.pulaPriceSol || 0,
+                market_cap_usd: Math.round(953800000 * p),
+                supply: 953800000
+            });
+        });
     })();
     </script>
 
