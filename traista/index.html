@@ -6,6 +6,12 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <link rel="manifest" href="/traista/manifest.json">
+    <meta name="theme-color" content="#ce1126">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="C.U.R.">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>C.U.R. Wallet - PULA of Dracula</title>
     <meta property="og:type" content="website">
@@ -17,15 +23,6 @@
     <meta name="twitter:image" content="https://pulaofdracula.fun/imagini/CUR.png">
     <script src="https://bundle.run/buffer@6.0.3"></script>
     <script>
-      // Killer pentru Service Workers vechi care blochează cache-ul
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-          for(let registration of registrations) {
-            registration.unregister();
-            console.log('Service Worker vechi eliminat.');
-          }
-        });
-      }
       window.global = window;
       window.Buffer = window.Buffer || (typeof buffer !== 'undefined' ? buffer.Buffer : null);
       window.process = window.process || { env: { NODE_ENV: 'production' } };
@@ -51,8 +48,8 @@
           }).catch(function(){});
       })();
     </script>
-    <script type="module" crossorigin src="./assets_v75/index-cbJp19NE.js?v=130"></script>
-    <link rel="stylesheet" crossorigin href="./assets_v75/index-BkABBNYp.css?v=130">
+    <script type="module" crossorigin src="./assets_v75/index-cbJp19NE.js?v=131"></script>
+    <link rel="stylesheet" crossorigin href="./assets_v75/index-BkABBNYp.css?v=131">
 
   <script src="/pret-live.js"></script>
   </head>
@@ -78,5 +75,10 @@
         document.body.appendChild(div);
       };
     </script>
+    <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/traista/service-worker.js');
+}
+</script>
   </body>
 </html>
