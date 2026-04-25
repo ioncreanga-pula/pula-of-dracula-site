@@ -1,5 +1,5 @@
 (function() {
-  var _c = { t: 0, p: 2.368e-6, ron: 4.65, eur: 0.92, bwp: 13.75, sol: 0 };
+  var _c = { t: 0, p: 2.368e-6, ron: 4.35, eur: 0.87, bwp: 13.41, sol: 0 };
   var DEX = 'https://api.dexscreener.com/latest/dex/tokens/B8a7twkUV1fnB317PxihGXsE9XKbyGgfxNUBwicwpump';
   var ER  = 'https://open.er-api.com/v6/latest/USD';
   function apply() {
@@ -22,9 +22,9 @@
       if (pair && pair.priceNative) _c.sol = parseFloat(pair.priceNative) * 1e6;
       var er = res[1];
       if (er && er.rates) {
-        _c.ron = er.rates.RON || 4.65;
-        _c.eur = er.rates.EUR || 0.92;
-        _c.bwp = er.rates.BWP || 13.75;
+        _c.ron = er.rates.RON || 4.35;
+        _c.eur = er.rates.EUR || 0.87;
+        _c.bwp = er.rates.BWP || 13.41;
       }
       _c.t = Date.now();
       apply();
