@@ -14,6 +14,7 @@
 .unit.unit-center { justify-content: center; }
 .unit.unit-right { justify-content: flex-end; }
 .unit .geom { width: auto; text-align: left; }
+.small-btn.swap { width: 100% !important; justify-content: center !important; display: flex !important; align-items: center !important; box-sizing: border-box !important; }
 
 
 .leaderboard-balance { display: flex !important; flex-direction: row !important; align-items: center !important; gap: 6px !important; }
