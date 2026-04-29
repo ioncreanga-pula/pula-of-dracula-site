@@ -37,9 +37,9 @@
   // ─── Unități ────────────────────────────────────────────────────────────────
   var UNITS = [
     { name: 'Căruță',  symbol: '⊕', mult: 1e6   },
-    { name: 'Roabă',   symbol: '♀', mult: 1e3   },
+    { name: 'Legătură', symbol: '⋈', mult: 1e3   },
     { name: 'P.U.L.A.',symbol: '♂', mult: 1     },
-    { name: 'Fleac',   symbol: '○', mult: 1e-3  },
+    { name: 'Stropi',   symbol: '○', mult: 1e-3  },
     { name: 'Nimic',   symbol: '∅', mult: 1e-6  },
   ];
   var FX = { RON: 4.65, USD: 1, EUR: 0.92, BWP: 13.75 };
@@ -120,7 +120,15 @@
 
     // Gaz
     var gasFiat = BASE_GAS_SOL * solPriceUSD * FX[cur];
+    var gasRON  = BASE_GAS_SOL * solPriceUSD * FX['RON'];
     var gasOK = solBal >= BASE_GAS_SOL;
+
+    // Subdiviziuni: fracția din PULA exprimată în Stropi și Nimic
+    var stropiPart = Math.floor(Math.abs(pula * 1000)) % 1000;
+    var nimicPart  = Math.floor(Math.abs(pula * 1e6))  % 1000;
+    var subdivRows =
+      (stropiPart > 0 ? '<div>○ <strong>' + stropiPart + '</strong> Stropi</div>' : '') +
+      (nimicPart  > 0 ? '<div>∅ <strong>' + nimicPart  + '</strong> Nimic</div>'  : '');
 
     var solClass = gasOK ? 'info-ok' : 'info-warn';
     var solWarn  = gasOK ? '' : ' ⚠ INSUFICIENT';
@@ -128,9 +136,11 @@
     panel.innerHTML =
       '<div>⊕ Valoare: <strong>' + fmtNum(pula, 0, cur) + ' PULA</strong>' +
         ' ≈ <strong>' + fmtNum(valTotal, 4, cur) + ' ' + cur + '</strong></div>' +
+      subdivRows +
       '<div>⛽ Gaz: <strong>' + BASE_GAS_SOL.toFixed(6) + ' SOL</strong>' +
         ' ≈ <strong>' + fmtNum(gasFiat, 4, cur) + ' ' + cur + '</strong>' +
         ' <span style="color:#555;font-size:.72rem">(+0.002 SOL dacă cont nou)</span></div>' +
+      '<div style="padding-left:1.3em;color:#888">≈ <strong style="color:#aaa">' + fmtNum(gasRON, 4, 'RON') + ' RON</strong></div>' +
       '<div class="' + solClass + '">◈ SOL disponibil: <strong>' +
         solBal.toFixed(4) + ' SOL</strong>' + solWarn + '</div>';
   }
