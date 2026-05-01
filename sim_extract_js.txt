@@ -1,0 +1,89 @@
+        function update() {
+            const initialMC_USD = 2370;
+            const ronToUsd = window.ratesRon || 4.3629;
+            const sNow_RON = 370; 
+            const invAmount_RON = parseFloat(ui.inv.value) || 0;
+            const isDCA = ui.dca.checked;
+
+            const totalIn = isDCA ? invAmount_RON * (Math.floor(84 / state.days) + 1) : invAmount_RON;
+            ui.buyingPower.innerText = `TOTAL: ${(totalIn / ((window.pulaPriceUsd||2.368e-6)*1e6*(window.ratesRon||4.3629))).toFixed(1)} CĂRUȚE`;
+
+            let labels = []; let values = [];
+            let currentMC_USD = initialMC_USD;
+            isGraduated = false;
+
+            for (let w = 0; w <= 12; w++) {
+                labels.push('W' + w);
+                if (w === 0) {
+                    let startInv = isDCA ? (invAmount_RON * (7/state.days)) : invAmount_RON;
+                    currentMC_USD += (startInv / ronToUsd);
+                }
+                if (w > 0) {
+                    let newCap = (w * state.peers * (state.avg / ronToUsd));
+                    if (isDCA) newCap += (invAmount_RON * (7 / state.days));
+                    currentMC_USD += (newCap / ronToUsd);
+                }
+                if (currentMC_USD >= (initialMC_USD + 34303) && !isGraduated) {
+                    isGraduated = true;
+                    ui.overlay.style.display = 'flex';
+                    ui.btns.forEach(b => b.disabled = true);
+                    ui.inputs.forEach(i => i.disabled = true);
+                }
+                const multiplier = currentMC_USD / (initialMC_USD + (isDCA ? 0 : invAmount_RON/ronToUsd)); 
+                let currentMyInvest = isDCA ? (invAmount_RON * (Math.floor((w * 7) / state.days) + 1)) : invAmount_RON;
+                values.push((currentMyInvest * (currentMC_USD / (initialMC_USD + (invAmount_RON/ronToUsd)))).toFixed(0));
+                if (isGraduated) break;
+            }
+
+            if (!isGraduated) ui.overlay.style.display = 'none';
+
+            const lastV = values[values.length - 1];
+            const mcapRON = currentMC_USD * ronToUsd; 
+            ui.mcap.innerText = `${Math.round(mcapRON).toLocaleString('ro-RO')} Lei`;
+            if (currentMC_USD < initialMC_USD) ui.mcapCont.classList.add('mcap-down');
+            else ui.mcapCont.classList.remove('mcap-down');
+
+            const totalGrowth = currentMC_USD / initialMC_USD;
+            ui.pulaW12Box.innerText = `1 Caruta PULA = ${(((window.pulaPriceUsd||2.368e-6)*1e6*(window.ratesRon||4.3629)*totalGrowth).toFixed(2))} Lei`;
+            ui.resVal.innerText = `${parseInt(lastV).toLocaleString('ro-RO')} Lei`;
+            ui.resMult.innerText = (lastV / (totalIn || 1)).toFixed(1) + 'x';
+            ui.diesel.innerText = `⛽ ${(lastV / 9.58).toFixed(1)}L MOTORINA`;
+
+            if (chart) chart.destroy();
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: values,
+                        borderColor: isGraduated ? '#00ffa3' : (currentMC_USD < initialMC_USD ? '#ff4444' : '#fcd116'),
+                        borderWidth: 4,
+                        backgroundColor: isGraduated ? 'rgba(0, 255, 163, 0.15)' : 'rgba(252, 209, 22, 0.1)',
+                        fill: true, tension: 0.4, pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, animation: false,
+                    scales: {
+                        y: { position: 'right', grid: { color: '#111' }, ticks: { color: isGraduated ? '#00ffa3' : (currentMC_USD < initialMC_USD ? '#ff4444' : '#4caf50'), font: { size: 10, weight: 'bold' } } },
+                        x: { grid: { display: false }, ticks: { color: '#555', font: { size: 10 } } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+        ui.inv.addEventListener('input', update);
+        ui.dca.addEventListener('input', update);
+        window.onload = update;
+    </script>
+
+    <footer style="margin-top: 50px; padding: 40px 20px; background: #050505; border-top: 1px solid #111; color: #555; text-align: center; font-family: sans-serif;">
+        <div style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
+            <p style="margin-bottom: 15px; font-size: 0.85rem; color: #444;"><strong>Disclaimer:</strong> Acesta este un memecoin și un experiment social. Nu reprezintă un sfat financiar. Toate calculele din simulator sunt pur orientative și bazate pe creșteri ipotetice. Distrează-te responsabil!</p>
+            <p style="margin-bottom: 15px; font-size: 0.9rem;">&copy; 2018-2026 PULA of Dracula. Toate drepturile sunt la fel de volatile ca și piața crypto.</p>
+            <p style="margin-bottom: 5px; font-size: 0.9rem;">Contact: <a href="mailto:ioncreanga2025@gmail.com" style="color: #fcd116; text-decoration: none; font-weight: bold;">ioncreanga2025@gmail.com</a></p>
+            <p style="font-size: 0.8rem;">Site accesibil și prin: <a href="https://pula.short.gy/" target="_blank" rel="noopener noreferrer" style="color: #444; text-decoration: underline;">pula.short.gy</a></p>
+        </div>
+    </footer>
+</body>
+</html>

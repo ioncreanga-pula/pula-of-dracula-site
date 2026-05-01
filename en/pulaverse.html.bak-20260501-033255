@@ -45,11 +45,19 @@
 
             <nav class="navigatie-principala">
                 <ul class="nav-lista">
-                    <li><a href="pulaverse.html" class="nav-link active">PULAverse</a></li>
+                    <li><a href="pulaverse.html" class="nav-link">PULAverse</a></li>
                     <li><a href="vision.html" class="nav-link">Vision</a></li>
                     <li><a href="roadmap.html" class="nav-link">Roadmap</a></li>
                     <li><a href="how-to-buy.html" class="nav-link">Buy</a></li>
                     <li><a href="community.html" class="nav-link">Community</a></li>
+                    <li><a href="vulva.html" class="nav-link">V.U.L.V.A.</a></li>
+                    <!-- Language switcher for mobile 
+                    <li class="lang-item-mobile">
+                        <div class="language-switcher">
+                            <a href="../pulaverse.html" class="lang-link"><img src="../imagini/flag-ro.svg" alt="Română"></a>
+                            <a href="pulaverse.html" class="lang-link active-lang"><img src="../imagini/flag-en.svg" alt="English"></a>
+                        </div>
+                    </li>-->
                 </ul>
                 <div class="language-switcher">
                     <a href="../pulaverse.html" class="lang-link"><img src="../imagini/flag-ro.png" alt="Română"></a>
@@ -64,7 +72,7 @@
         <div class="banda-wrap">
             <div class="banda-continut" id="bandaContinut">
                 <!-- continut incarcat de JS -->
-                <span class="banda-item"><span class="banda-label">1 CART:</span> <span class="banda-val">10.10</span> <span class="banda-unit">RON</span></span>
+                <span class="banda-item"><span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">10.10</span> <span class="banda-unit">RON</span></span>
                 <span class="banda-sep">◆</span>
                 <span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$2,210</span></span>
                 <span class="banda-sep">◆</span>
@@ -74,92 +82,50 @@
     </div>
     <script>
     (function() {
-        var PAIR = '4btoeuklvrqycz8r8xugana4czsvopwsmzbfpvghhghr';
         var jsonPath = '/admin/pret.json';
-
-        function fmt(n, dec) { return (n !== null && n !== undefined && !isNaN(n)) ? Number(n).toFixed(dec) : '—'; }
-        function fmtPula(n) {
-            if (!n || isNaN(n)) return '—';
-            if (n >= 1e9) return (n/1e9).toFixed(2) + ' Barns of PULA';
-            if (n >= 1e6) return (n/1e6).toFixed(2) + ' Carts of PULA';
-            if (n >= 1e3) return (n/1e3).toFixed(2) + ' Bundles of PULA';
-            if (n >= 1) {
-                var rounded = Math.round(n);
-                return rounded.toLocaleString('en-US') + ' PULA';
-            }
-            if (n >= 1e-3) return (n*1e3).toFixed(2) + ' Drops of PULA';
-            return (n*1e6).toFixed(2) + ' Nothing';
-        }
-        function fmtInt(n) { return Number(n).toLocaleString('en-US'); }
-
+        function fmt(n, dec) { return (n !== null && n !== undefined) ? Number(n).toFixed(dec) : '—'; }
+        function fmtInt(n) { return Number(n).toLocaleString('ro-RO'); }
         function buildContent(d) {
             var sep = '<span class="banda-sep">◆</span>';
             var pipe = ' <span class="banda-unit">|</span> ';
             var vals = [
                 '<span class="banda-val">' + fmt(d.ron,2) + '</span> <span class="banda-unit">RON</span>',
-                '<span class="banda-val">' + fmt(d.usd,4) + '</span> <span class="banda-unit">USD</span>',
-                '<span class="banda-val">' + fmt(d.eur,4) + '</span> <span class="banda-unit">EUR</span>',
-                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>'
+                '<span class="banda-val">' + fmt(d.usd,2) + '</span> <span class="banda-unit">USD</span>',
+                '<span class="banda-val">' + fmt(d.eur,2) + '</span> <span class="banda-unit">EUR</span>',
+                '<span class="banda-val">' + fmt(d.bwp,2) + '</span> <span class="banda-unit">BWP</span>',
+                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>',
+                '<span class="banda-val">' + fmt(d.btc,9) + '</span> <span class="banda-unit">BTC</span>',
+                '<span class="banda-val">' + fmt(d.eth,8) + '</span> <span class="banda-unit">ETH</span>'
             ];
-            var html = '<span class="banda-item"><span class="banda-label">1 CART:</span> ' + vals.join(pipe) + '</span>';
-            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(Math.round(d.market_cap_usd)) + '</span></span>';
-            if (d.motorina_ron && d.ron) {
-                var pula_per_litru = (d.motorina_ron / d.ron) * 1e6;
-                html += sep + '<span class="banda-item"><span class="banda-label">1L Diesel:</span> <span class="banda-val">' + fmtPula(pula_per_litru) + '</span></span>';
-            }
-            if (d.kwh_ron && d.ron) {
-                var pula_per_kwh = (d.kwh_ron / d.ron) * 1e6;
-                html += sep + '<span class="banda-item"><span class="banda-label">1 kWh:</span> <span class="banda-val">' + fmtPula(pula_per_kwh) + '</span></span>';
-            }
-            if (d.aur_ron_per_gram && d.ron) {
-                var pula_per_gram_aur = (d.aur_ron_per_gram / d.ron) * 1e6;
-                html += sep + '<span class="banda-item"><span class="banda-label">1g Gold:</span> <span class="banda-val">' + fmtPula(pula_per_gram_aur) + '</span></span>';
-            }
+            var html = '<span class="banda-item"><span class="banda-label">1 CĂRUȚĂ:</span> ' + vals.join(pipe) + '</span>';
+            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(d.market_cap_usd) + '</span></span>';
             html += sep + '<span class="banda-item"><span class="banda-label">SUPPLY:</span> <span class="banda-val">' + fmtInt(d.supply) + '</span> <span class="banda-unit">PULA</span></span>';
             return html + sep + html;
         }
-
         function update(d) {
             var el = document.getElementById('bandaContinut');
             if (el) el.innerHTML = buildContent(d);
-            localStorage.setItem('pula_pret', JSON.stringify(d));
         }
-
-        function fetchLive(staticData) {
-            var priceUsd = window.pulaPriceUsd || 2.368e-6;
-            var carutaUsd = priceUsd * 1e6;
-            var ron = window.ratesRon || 4.7;
-            var d = Object.assign({}, staticData, {
-                usd: carutaUsd,
-                ron: carutaUsd * ron,
-                eur: carutaUsd * (window.ratesEur || 0.92),
-                sol: window.pulaPriceSol || 0,
-                market_cap_usd: Math.round(priceUsd * (staticData.supply || 1e9))
-            });
-            fetch('https://api.metals.live/v1/spot/gold')
-                .then(function(r){ return r.json(); })
-                .then(function(gold) {
-                    var ozUsd = Array.isArray(gold) ? gold[0].gold : gold.gold;
-                    if (ozUsd) d.aur_ron_per_gram = (ozUsd / 31.103) * ron;
-                    update(d);
-                }).catch(function(){ update(d); });
-        }
-
-        window._pulaStaticData = {};
-        document.addEventListener('pulaReady', function() { fetchLive(window._pulaStaticData); });
         fetch(jsonPath + '?v=' + Date.now())
-            .then(function(r){ return r.json(); })
-            .then(function(staticData) {
-                window._pulaStaticData = staticData;
-                update(staticData);
-                fetchLive(staticData);
-            })
-            .catch(function() {
+            .then(function(r){return r.json();})
+            .then(update)
+            .catch(function(){
                 var ls = localStorage.getItem('pula_pret');
-                var fallback = ls ? JSON.parse(ls) : {};
-                update(fallback);
-                fetchLive(fallback);
+                if (ls) try { update(JSON.parse(ls)); } catch(e){}
             });
+        document.addEventListener('pulaReady', function() {
+            var p = window.pulaPriceUsd || 2.368e-6;
+            var cu = p * 1e6;
+            update({
+                usd: cu,
+                ron: cu * (window.ratesRon || 4.65),
+                eur: cu * (window.ratesEur || 0.92),
+                bwp: cu * (window.ratesBwp || 13.75),
+                sol: window.pulaPriceSol || 0,
+                market_cap_usd: Math.round(953800000 * p),
+                supply: 953800000
+            });
+        });
     })();
     </script>
 
@@ -168,21 +134,21 @@
             <h2>The Modern PULA Chronicle:</br>A Saga of Resilience</h2>
             <p>The story of PULA of Dracula is not just the history of a memecoin. It is an odyssey, a chronicle of humor and the Romanian spirit that refuses to surrender. Here's how the modern adventure began...</p>
             
-            <h3>Chapter I: The Prophecy (Anno Domini 2018)</h3>
-            <p>On the Bitcointalk forum, an idea was born: **Payment Unit for Labor Absolution - P.U.L.A.** (now: Abolishment). A cheeky name, yet it hid a vision. There was talk of units like "Nothing," "Drop," and "Barn of P.U.L.A." Slogans like "Don't sell your P.U.L.A. while it's small!" came to life.</p>
+            <h3><tab>Chapter I: The Prophecy (Anno Domini 2018)</h3>
+            <p>On the Bitcointalk forum, an idea was born: **Payment Unit for Labor Abolishment - P.U.L.A.** A cheeky name, yet it hid a vision. There was talk of units like "nothing," "trifle," and "barn of P.U.L.A." Slogans like "Don't sell your P.U.L.A. while it's small!" came to life.</p>
             <p class="interpretare-text" style="background-color: rgba(229, 57, 53, 0.1); border-left-color: #e53935;">
                 <strong>The PULA Units of Measurement:</strong>
-                <br> 1 PULA = 1,000,000 Nothing | 1 PULA = 1,000 Drops
-                <br> 1 Bundle = 1,000 PULA | 1 Cart = 1,000,000 PULA | 1 Barn = 1,000,000,000 PULA
+                <br> 1 PULA = 1,000,000 `nimic` (nothing) | 1 PULA = 1,000 `fleacuri` (trifles)
+                <br> 1 `roabă` (wheelbarrow) = 1,000 PULA | 1 `căruță` (cart) = 1,000,000 PULA |<br> 1 `hambar` (barn) = 1,000,000,000 PULA
                 <br> The final target supply: 8,250,000,000 PULA (One for everybody)
-                <br> Or more precisely, 8 quadrillion and 250 trillion of Nothing.
+				<br> Or more precisely, 8 quadrillion and 250 trillion of nothing.
             </p>
 
             <h3>Chapter II: The Wilderness Years (2019 - 2023)</h3>
             <p>The creator of PULA went through trials worthy of fairy tales: from smashed phones (with private keys on them!) to psychotic episodes and living on the streets. A period when PULA seemed like a lost dream.</p>
 
             <h3>Chapter III: The AI Renaissance (2024)</h3>
-            <p>Like a digital Phoenix, the PULA idea was reborn with the help of Artificial Intelligence. Claude, Gemini, ChatGPT, and Grok — an army of algorithms helped refine the concept for a spectacular comeback.</p>
+            <p>Like a digital Phoenix, the PULA idea was reborn with the help of Artificial Intelligence. Gemini, ChatGPT, and Grok helped refine the concept for a spectacular comeback.</p>
 
             <h3>Chapter IV: Little PULA Awakens on Solana (Present)</h3>
             <p>On the famous Pump.fun platform, **PULA of Dracula (PULA)** saw the light of the blockchain once more! "Little PULA" started making its presence felt.</p>
@@ -210,12 +176,12 @@
 
         <section class="sectiune" id="conspiracy">
             <h2>The Great PULA Conspiracy</h2>
-            <p>What if all of this is not a coincidence? From the prophecies on The Economist covers to the hidden messages in the works of Romanian literary classics Creangă and Eminescu, PULA seems to be the missing link in a cosmic plan.</p>
+            <p>What if all of this is not a coincidence? From the prophecies on The Economist covers to the hidden messages in the works of Romanian literary classics, PULA seems to be the missing link in a cosmic plan.</p>
             <div class="imagini-container-conspiratie" style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:20px;">
                 <img src="../imagini/economist-1988.jpg" alt="The Economist 1988 Cover" style="max-width:45%; height:auto; border:1px solid #555;">
                 <img src="../imagini/economist-2019.jpg" alt="The Economist 2019 Cover Modified" style="max-width:45%; height:auto; border:1px solid #555;">
             </div>
-            <p class="interpretare-text"><strong>Shockingly Honest Disclaimer:</strong> All information in this section is presented for humorous purposes. We are not responsible for any sleepless nights spent looking for PULA symbols in Grigorescu paintings. Laugh your PULA off!</p>
+            <p class="interpretare-text"><strong>Shockingly Honest Disclaimer:</strong> All information in this section is presented for humorous purposes. We are not responsible for any sleepless nights spent looking for PULA symbols in famous paintings. Laugh your PULA off!</p>
         </section>
     </main>
 

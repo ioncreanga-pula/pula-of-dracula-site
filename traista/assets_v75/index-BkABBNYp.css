@@ -456,3 +456,7 @@
 .total-pula-main { display: flex !important; flex-direction: column !important; align-items: flex-end !important; gap: 2px !important; }
 .total-label { font-size: 0.72rem !important; color: #666 !important; font-weight: 400 !important; text-transform: uppercase !important; letter-spacing: 0.8px !important; line-height: 1 !important; }
 .total-amount-line { display: flex !important; align-items: center !important; gap: 4px !important; justify-content: flex-end !important; }
+.agoniseala-section .unit .edu-note { display: none; }
+.agoniseala-grid { display: grid; grid-template-columns: 30px 40px 30px 40px 30px 40px 30px auto; align-items: center; row-gap: 6px; }
+.agoniseala-grid .edu-note { display: none; }
+.agoniseala-grid strong { color: #fff; font-family: Courier New,monospace; font-size: 1rem; }

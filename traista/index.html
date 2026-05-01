@@ -1,6 +1,17 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      function fetchSolPrice() {
+        fetch('https://api.binance.com/api/v3/ticker/price?symbol=SOLUSDT')
+          .then(r => r.json())
+          .then(d => { window.solPriceUsd = parseFloat(d.price) || 150; })
+          .catch(() => { window.solPriceUsd = window.solPriceUsd || 150; });
+      }
+      fetchSolPrice();
+      setTimeout(fetchSolPrice, 3000);
+      setTimeout(fetchSolPrice, 8000);
+    </script>
     <meta charset="UTF-8" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
@@ -48,37 +59,159 @@
           }).catch(function(){});
       })();
     </script>
-    <script type="module" crossorigin src="./assets_v75/index-cbJp19NE.js?v=131"></script>
-    <link rel="stylesheet" crossorigin href="./assets_v75/index-BkABBNYp.css?v=131">
+    <script type="module" crossorigin src="/traista/assets_v75/index-cbJp19NE.js?v=131"></script>
+    <link rel="stylesheet" crossorigin href="/traista/assets_v75/index-BkABBNYp.css?v=131">
 
   <script src="/pret-live.js"></script>
   </head>
   <body>
     <div id="root"></div>
     <script>
+      // Production: log errors to console only, no UI overlay
       window.onerror = function(msg, url, line, col, error) {
-        var div = document.createElement('div');
-        div.style.position = 'fixed';
-        div.style.top = '0';
-        div.style.left = '0';
-        div.style.width = '100%';
-        div.style.height = '100%';
-        div.style.backgroundColor = 'rgba(255,0,0,0.9)';
-        div.style.color = 'white';
-        div.style.padding = '20px';
-        div.style.zIndex = '99999';
-        div.style.fontFamily = 'monospace';
-        div.style.overflow = 'auto';
-        div.innerHTML = '<h1>❌ EROARE RUNTIME:</h1>' +
-                        '<p><strong>Mesaj:</strong> ' + msg + '</p>' +
-                        '<pre>' + (error && error.stack ? error.stack : 'No stack trace available') + '</pre>';
-        document.body.appendChild(div);
+        console.error('[C.U.R. Runtime Error]', { msg: msg, url: url, line: line, col: col, stack: error && error.stack });
+        return false;
       };
+      window.addEventListener('unhandledrejection', function(e) {
+        console.error('[C.U.R. Promise Rejection]', e.reason);
+      });
     </script>
     <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/traista/service-worker.js');
 }
 </script>
-  </body>
+  <script>
+(function() {
+  'use strict';
+  
+  // Regula gramaticală: numărul ≥ 20 primește prepoziția "de"
+  function needsDe(numStr) {
+    var n = parseInt(numStr.replace(/[.,]/g, ''), 10);
+    if (isNaN(n)) return false;
+    // Pentru numere zecimale (ex: "1.50"), partea întreagă decide
+    var intPart = Math.floor(parseFloat(numStr.replace(',', '.')));
+    return intPart >= 20;
+  }
+  
+  // Unitățile la care aplicăm regula "de" (singular și plural)
+  var UNITS = {
+    'Hambar': true, 'Hambare': true,
+    'Căruță': true, 'Căruțe': true,
+    'Legătură': true, 'Legături': true,
+    'P.U.L.A.': true, 'PULA': true,
+    'Strop': true, 'Stropi': true
+    // "Nimic" exclus intenționat
+  };
+  
+  function processTextNode(textNode) {
+    var text = textNode.nodeValue;
+    if (!text || text.length < 3) return;
+    
+    var modified = text;
+    
+    // 1) Stropi singular: "1 Stropi" → "1 Strop", "0,001 Stropi" → "0,001 Strop"
+    modified = modified.replace(/(\b(?:1|0[,.]00\d+)\s+)Stropi\b/g, '$1Strop');
+    
+    // 2) Adaugă "de" la numere ≥ 20 urmate de unitate (dacă lipsește deja)
+    Object.keys(UNITS).forEach(function(unit) {
+      var unitEsc = unit.replace(/\./g, '\\.');
+      // Match: număr (cu , sau . sau spații ca separator mii) + spațiu + unitate (fără "de" deja prezent)
+      var re = new RegExp('(\\b\\d[\\d.,]*)\\s+(' + unitEsc + ')\\b(?!\\s*de)', 'g');
+      modified = modified.replace(re, function(match, num, u) {
+        if (needsDe(num)) {
+          return num + ' de ' + u;
+        }
+        return match;
+      });
+    });
+    
+    if (modified !== text) {
+      textNode.nodeValue = modified;
+    }
+  }
+  
+  function walkAndProcess(root) {
+    if (!root) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var node;
+    var batch = [];
+    while ((node = walker.nextNode())) {
+      // Skip script/style content
+      var parent = node.parentNode;
+      if (parent && (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE')) continue;
+      batch.push(node);
+    }
+    batch.forEach(processTextNode);
+  }
+  
+  // Ascunde linia "0 ♂ P.U.L.A." din balanță
+  function hideZeroPula() {
+    // Caută elemente cu text "0" urmat de ♂ și P.U.L.A. în descendenți
+    var allElements = document.querySelectorAll('div, li, p, span');
+    for (var i = 0; i < allElements.length; i++) {
+      var el = allElements[i];
+      var txt = el.textContent || '';
+      // Detectează exact pattern-ul "0 ♂ P.U.L.A." sau "0,00 P.U.L.A." cu doar zerouri
+      if (/^\s*0([,.]0+)?\s*(♂\s*)?P\.U\.L\.A\.\s*$/.test(txt.trim()) && el.children.length <= 5) {
+        // Ascunde elementul părinte care e probabil "linia" întreagă
+        // Verificăm dacă e o linie de balanță (are ♂ în descendenți)
+        if (el.querySelector && el.querySelector('img, svg, [class*="symbol"], [class*="icon"]')) {
+          el.style.display = 'none';
+        } else if (txt.indexOf('♂') !== -1 || txt.indexOf('P.U.L.A.') !== -1) {
+          // ascunde fallback dacă pattern-ul de balanță e prezent
+          var possibleRow = el.closest('[class*="row"], [class*="line"], [class*="item"], li, div');
+          if (possibleRow && possibleRow !== el) {
+            possibleRow.style.display = 'none';
+          } else {
+            el.style.display = 'none';
+          }
+        }
+      }
+    }
+  }
+  
+  function runAllPatches() {
+    walkAndProcess(document.body);
+    hideZeroPula();
+  }
+  
+  // Run after initial render
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(runAllPatches, 500);
+    });
+  } else {
+    setTimeout(runAllPatches, 500);
+  }
+  
+  // Watch for dynamic changes (React re-renders)
+  var observerTimeout = null;
+  var observer = new MutationObserver(function(mutations) {
+    clearTimeout(observerTimeout);
+    observerTimeout = setTimeout(runAllPatches, 100);
+  });
+  
+  // Start observing once body exists
+  function startObserver() {
+    if (document.body) {
+      observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+    } else {
+      setTimeout(startObserver, 100);
+    }
+  }
+  startObserver();
+  
+  console.log('[C.U.R. Patch v1] Active: hide zero PULA, Stropi→Strop, prepozitia "de" >=20');
+})();
+</script>
+<script>
+  setTimeout(function() {
+    var root = document.getElementById('root');
+    if (root && root.innerHTML.trim() === '') {
+      root.innerHTML = '<div style="color:#ff4444;padding:20px;font-family:monospace;background:#111;">⚠️ C.U.R. Wallet nu s-a încărcat. Deschide DevTools (F12) → Console pentru detalii.</div>';
+    }
+  }, 6000);
+</script>
+</body>
 </html>

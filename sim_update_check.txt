@@ -1,0 +1,116 @@
+        function update() {
+            // === MODEL BONDING CURVE ===
+            // Preț = MarketCap / 1000 (pentru o Căruță = 1M PULA din 1B supply)
+            // Fiecare cumpărare urcă MC, deci urcă prețul pentru următoarea
+            
+            const SUPPLY = 1e9; // 1 miliard PULA
+            const CARUTA = 1e6; // 1 milion PULA
+            const ronToUsd = window.ratesRon || 4.3629;
+            const priceUsdInit = window.pulaPriceUsd || 2.37e-6;
+            
+            // MC inițial în RON (din prețul curent live)
+            let mcRON = priceUsdInit * SUPPLY * ronToUsd;
+            const mcInitRON = mcRON;
+            
+            const invAmount = parseFloat(ui.inv.value) || 0;
+            const isDCA = ui.dca.checked;
+            const totalWeeks = state.weeks;
+            const daysTotal = totalWeeks * 7;
+            
+            // Numărul de cumpărări DCA până la săptămâna w
+            function buysUntilWeek(w) {
+                if (!isDCA) return (w >= 0 ? 1 : 0);
+                return Math.floor((w * 7) / state.days) + 1; // +1 pentru cumpărarea inițială la zi 0
+            }
+            
+            let labels = [], values = [];
+            let myCarute = 0;
+            let myRonSpent = 0;
+            let lastBuyCount = 0;
+            isGraduated = false;
+            
+            for (let w = 0; w <= totalWeeks; w++) {
+                labels.push('S' + w);
+                
+                // 1. Cumpărările mele DCA în săptămâna asta
+                const targetBuys = isDCA ? buysUntilWeek(w) : (w === 0 ? 1 : 0);
+                const newBuys = targetBuys - lastBuyCount;
+                for (let b = 0; b < newBuys; b++) {
+                    const pricePerCaruta = mcRON / 1000; // 1 Căruță = 1/1000 din supply
+                    const carute = invAmount / pricePerCaruta;
+                    myCarute += carute;
+                    myRonSpent += invAmount;
+                    mcRON += invAmount;
+                }
+                lastBuyCount = targetBuys;
+                
+                // 2. Haiducii intră săptămânal (nu la w=0)
+                if (w > 0) {
+                    const peerInflow = state.peers * state.avg; // RON
+                    mcRON += peerInflow;
+                }
+                
+                // 3. Verificare gradare (Raydium la 80 SOL ≈ 36.673 USD ≈ 159.973 RON la 4,36)
+                const gradThreshRON = 36673 * ronToUsd;
+                if (mcRON >= gradThreshRON && !isGraduated) {
+                    isGraduated = true;
+                    ui.overlay.style.display = 'flex';
+                    ui.btns.forEach(b => b.disabled = true);
+                    ui.inputs.forEach(i => i.disabled = true);
+                }
+                
+                // 4. Valoarea curentă a portofoliului meu
+                const pricePerCaruta = mcRON / 1000;
+                const myValue = myCarute * pricePerCaruta;
+                values.push(myValue.toFixed(0));
+                
+                if (isGraduated) break;
+            }
+            
+            if (!isGraduated) ui.overlay.style.display = 'none';
+            
+            const finalValue = parseFloat(values[values.length - 1]);
+            const gain = finalValue - myRonSpent;
+            const multiplier = myRonSpent > 0 ? finalValue / myRonSpent : 1;
+            
+            // === FORMATARE RO ===
+            function fmtRON(n) {
+                return Math.round(n).toLocaleString('ro-RO');
+            }
+            function fmtRONdec(n, dec) {
+                return n.toLocaleString('ro-RO', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+            }
+            function deRule(num, unit) {
+                const n = Math.floor(num);
+                return (n >= 20 ? ' de ' : ' ') + unit;
+            }
+            
+            // Total Căruțe acumulate (pentru afișare TOTAL)
+            const carutaCount = myCarute;
+            const carutaCountStr = fmtRONdec(carutaCount, 2) + deRule(carutaCount, 'Căruțe de PULA');
+            const ronSpentStr = fmtRON(myRonSpent) + deRule(myRonSpent, 'RON');
+            
+            ui.buyingPower.innerText = `Total săptămâna ${totalWeeks}: ${ronSpentStr} sau ${carutaCountStr}`;
+            
+            // Capul Pieței 1 Hambar (= 1B PULA = supply total)
+            const hambarRON = mcRON; // 1 Hambar = supply întreg
+            ui.mcap.innerText = fmtRON(hambarRON) + ' RON';
+            
+            if (mcRON < mcInitRON) ui.mcapCont.classList.add('mcap-down');
+            else ui.mcapCont.classList.remove('mcap-down');
+            
+            // Preț curent O Căruță
+            const pretCarutaFinal = mcRON / 1000;
+            const pretLabel = document.getElementById('pret-caruta-label');
+            if (pretLabel) pretLabel.innerText = `O Căruță de PULA e ${fmtRONdec(pretCarutaFinal, 2)} RON`;
+            ui.pulaW12Box.innerText = `O Căruță de PULA = ${fmtRONdec(pretCarutaFinal, 2)} RON`;
+            
+            // Câștig + multiplier
+            ui.resVal.innerText = fmtRON(finalValue) + ' RON';
+            ui.resMult.innerText = fmtRONdec(multiplier, 1) + 'x';
+            ui.diesel.innerText = `⛽ ${fmtRONdec(finalValue / 9.58, 1)}L Motorină`;
+            
+            // === CHART ===
+            if (chart) chart.destroy();
+            chart = new Chart(ctx, {
+                type: 'line',

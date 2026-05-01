@@ -168,10 +168,14 @@
             update({usd:cu, ron:cu*r, eur:cu*(window.ratesEur||0.92), bwp:cu*(window.ratesBwp||13.75), sol:window.pulaPriceSol||0, market_cap_usd:Math.round(953800000*p), supply:953800000});
             // actualizează elementele statice cu prețul live
             var carutaRon = (cu * r).toFixed(2);
-            var carutaRonFmt = parseFloat(carutaRon).toLocaleString('ro-RO', {minimumFractionDigits:2, maximumFractionDigits:2});
-            var pretLabel = document.getElementById('pret-caruta-label');
-            if (pretLabel) pretLabel.innerText = 'O Căruță de PULA e ' + carutaRonFmt + ' RON';
-            if (typeof update === 'function') update();
+            var w12 = document.getElementById('pula-w12-box');
+            if (w12) w12.innerText = '1 Caruta PULA = ' + carutaRon + ' Lei';
+            var mcap = document.getElementById('mcap-val');
+            if (mcap) mcap.innerText = carutaRon + ' Lei';
+            var labels = document.querySelectorAll('label');
+            labels.forEach(function(l) {
+                if (l.textContent.indexOf('10.10') !== -1) l.textContent = '1 Caruta de PULA e ' + carutaRon + ' Lei';
+            });
         });
     })();
     </script>
@@ -181,14 +185,14 @@
         <!-- UNIFIED HEADER SIMETRIC -->
         <div class="unified-header">
             <div class="header-left">
-                <span class="row-label">SĂPTĂMÂNA <button class="btn-step" onclick="step('weeks', -1)" style="width:22px; height:22px; font-size:1em; vertical-align:middle;">-</button> <span id="v-weeks" style="font-weight:bold;">12</span> <button class="btn-step" onclick="step('weeks', 1)" style="width:22px; height:22px; font-size:1em; vertical-align:middle;">+</button></span>
-                <span id="header-mult-text" class="row-main-val color-roz">1,0x</span>
-                <span id="pula-w12-box" class="row-sub-info color-albastru-deschis">O Căruță de PULA = 10,34 RON</span>
+                <span class="row-label">SAPTAMANA 12</span>
+                <span id="header-mult-text" class="row-main-val color-roz">1.0x</span>
+                <span id="pula-w12-box" class="row-sub-info color-albastru-deschis">1 Caruta PULA = 10.10 Lei</span>
             </div>
             <div class="header-right">
                 <span class="row-label color-alb">CÂȘTIG:</span>
-                <span id="header-val-text" class="row-main-val color-verde">103,40 RON</span>
-                <span id="diesel" class="row-sub-info color-albastru-inchis">⛽ 10,8L Motorină</span>
+                <span id="header-val-text" class="row-main-val color-verde">103.4 Lei</span>
+                <span id="diesel" class="row-sub-info color-albastru-inchis">⛽ 10.8L MOTORINA</span>
             </div>
         </div>
 
@@ -202,37 +206,38 @@
 
         <div class="row-bottom">
             <div class="area-inv">
-                <label id="pret-caruta-label">O Căruță de PULA e 10,34 RON</label>
-                <div style="display:flex; align-items:center; gap:8px; margin-top:8px;">
-                    <label style="margin:0;">Cumpăr de</label>
-                    <input type="number" id="inv" value="50" style="width:80px; text-align:center;">
-                    <span class="input-unit">RON</span>
+                <label>1 Caruta de PULA e 10.10 Lei</label>
+                <label>CUMPAR DE</label>
+                <div style="display:flex; align-items:center;">
+                    <input type="number" id="inv" value="103.4">
+                    <span class="input-unit">Lei</span>
                 </div>
-                <div class="dca-controls" style="margin-top:8px;">
-                    <input type="checkbox" id="dca-on" checked>
-                    <span style="font-size:0.85em; color:#4caf50; font-weight:bold;">O dată la</span>
+                <span id="buying-power" class="buying-power">TOTAL: 10.0 CĂRUȚE</span>
+                
+                <div class="dca-controls">
+                    <input type="checkbox" id="dca-on">
+                    <span style="font-size:0.75em; color:#4caf50; font-weight:bold;">DCA la</span>
                     <button class="btn-step" onclick="step('days', -1)" style="width:22px; height:22px; font-size:1em;">-</button>
                     <span id="v-days" style="font-size:0.85em; font-weight:bold;">7</span>
                     <button class="btn-step" onclick="step('days', 1)" style="width:22px; height:22px; font-size:1em;">+</button>zile
                 </div>
-                <span id="buying-power" class="buying-power" style="display:block; margin-top:10px;">Total săptămâna 12: 600 de RON sau 53,19 Căruțe de PULA</span>
             </div>
             <div class="area-peers">
                 <div class="control-row">
-                    <span style="font-size:0.75em; color:#888; font-weight:bold;">HAIDUCI<br>/SĂPTĂMÂNĂ</span>
+                    <span style="font-size:0.75em; color:#888; font-weight:bold;">HAIDUCI<br>/SAPTAMANA</span>
                     <button class="btn-step" onclick="step('peers', -5)">-</button>
                     <span id="v-peers" class="val-mini">0</span>
                     <button class="btn-step" onclick="step('peers', 5)">+</button>
                 </div>
                 <div class="control-row">
-                    <span style="font-size:0.75em; color:#888; font-weight:bold;">INVESTIȚIE<br>/HAIDUC</span>
+                    <span style="font-size:0.75em; color:#888; font-weight:bold;">INVESTITIE<br>/HAIDUC</span>
                     <button class="btn-step" onclick="step('avg', -10)">-</button>
                     <span id="v-avg" class="val-mini">0</span>
                     <button class="btn-step" onclick="step('avg', 10)">+</button>
                 </div>
                 <div id="mcap-container" class="mcap-box">
-                    <div>Capul Pieței 1 Hambar:</div>
-                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">10.340 RON</div>
+                    <div>1 Hambar MarketCap:</div>
+                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">10.100 Lei</div>
                 </div>
             </div>
         </div>
@@ -241,7 +246,7 @@
     <script>
         const ctx = document.getElementById('growthChart').getContext('2d');
         let chart;
-        let state = { peers: 100, avg: 80, days: 7, weeks: 12 };
+        let state = { peers: 0, avg: 0, days: 7 };
         let isGraduated = false;
 
         const ui = {
@@ -263,11 +268,11 @@
         };
 
         function step(key, delta) {
-            state[key] = Math.max(0, (state[key] || 0) + delta);
-            if (key === 'days') state[key] = Math.max(1, state[key]);
-            if (key === 'weeks') state[key] = Math.min(52, Math.max(1, state[key]));
-            const el = document.getElementById('v-' + key);
-            if (el) el.innerText = state[key];
+            if (isGraduated) return;
+            state[key] = Math.max(key === 'days' ? 1 : 0, state[key] + delta);
+            ui.v_peers.innerText = state.peers;
+            ui.v_avg.innerText = state.avg;
+            ui.v_days.innerText = state.days;
             update();
         }
 
@@ -283,119 +288,56 @@
         }
 
         function update() {
-            // === MODEL BONDING CURVE ===
-            // Preț = MarketCap / 1000 (pentru o Căruță = 1M PULA din 1B supply)
-            // Fiecare cumpărare urcă MC, deci urcă prețul pentru următoarea
-            
-            const SUPPLY = 1e9; // 1 miliard PULA
-            const CARUTA = 1e6; // 1 milion PULA
+            const initialMC_USD = 2370;
             const ronToUsd = window.ratesRon || 4.3629;
-            const priceUsdInit = window.pulaPriceUsd || 2.37e-6;
-            
-            // MC inițial în RON (din prețul curent live)
-            let mcRON = priceUsdInit * SUPPLY * ronToUsd;
-            const mcInitRON = mcRON;
-            
-            const invAmount = parseFloat(ui.inv.value) || 0;
+            const sNow_RON = 370; 
+            const invAmount_RON = parseFloat(ui.inv.value) || 0;
             const isDCA = ui.dca.checked;
-            const totalWeeks = state.weeks;
-            const daysTotal = totalWeeks * 7;
-            
-            // Numărul de cumpărări DCA până la săptămâna w
-            function buysUntilWeek(w) {
-                if (!isDCA) return (w >= 0 ? 1 : 0);
-                return Math.floor((w * 7) / state.days) + 1; // +1 pentru cumpărarea inițială la zi 0
-            }
-            
-            let labels = [], values = [];
-            let myCarute = 0;
-            let myRonSpent = 0;
-            let lastBuyCount = 0;
+
+            const totalIn = isDCA ? invAmount_RON * (Math.floor(84 / state.days) + 1) : invAmount_RON;
+            ui.buyingPower.innerText = `TOTAL: ${(totalIn / ((window.pulaPriceUsd||2.368e-6)*1e6*(window.ratesRon||4.3629))).toFixed(1)} CĂRUȚE`;
+
+            let labels = []; let values = [];
+            let currentMC_USD = initialMC_USD;
             isGraduated = false;
-            
-            for (let w = 0; w <= totalWeeks; w++) {
-                labels.push('S' + w);
-                
-                // 1. Cumpărările mele DCA în săptămâna asta
-                const targetBuys = isDCA ? buysUntilWeek(w) : (w === 0 ? 1 : 0);
-                const newBuys = targetBuys - lastBuyCount;
-                for (let b = 0; b < newBuys; b++) {
-                    const pricePerCaruta = mcRON / 1000; // 1 Căruță = 1/1000 din supply
-                    const carute = invAmount / pricePerCaruta;
-                    myCarute += carute;
-                    myRonSpent += invAmount;
-                    mcRON += invAmount;
+
+            for (let w = 0; w <= 12; w++) {
+                labels.push('W' + w);
+                if (w === 0) {
+                    let startInv = isDCA ? (invAmount_RON * (7/state.days)) : invAmount_RON;
+                    currentMC_USD += (startInv / ronToUsd);
                 }
-                lastBuyCount = targetBuys;
-                
-                // 2. Haiducii intră săptămânal (nu la w=0)
                 if (w > 0) {
-                    const peerInflow = state.peers * state.avg; // RON
-                    mcRON += peerInflow;
+                    let newCap = (w * state.peers * (state.avg / ronToUsd));
+                    if (isDCA) newCap += (invAmount_RON * (7 / state.days));
+                    currentMC_USD += (newCap / ronToUsd);
                 }
-                
-                // 3. Verificare gradare (Raydium la 80 SOL ≈ 36.673 USD ≈ 159.973 RON la 4,36)
-                const gradThreshRON = 36673 * ronToUsd;
-                if (mcRON >= gradThreshRON && !isGraduated) {
+                if (currentMC_USD >= (initialMC_USD + 34303) && !isGraduated) {
                     isGraduated = true;
                     ui.overlay.style.display = 'flex';
                     ui.btns.forEach(b => b.disabled = true);
                     ui.inputs.forEach(i => i.disabled = true);
                 }
-                
-                // 4. Valoarea curentă a portofoliului meu
-                const pricePerCaruta = mcRON / 1000;
-                const myValue = myCarute * pricePerCaruta;
-                values.push(myValue.toFixed(0));
-                
+                const multiplier = currentMC_USD / (initialMC_USD + (isDCA ? 0 : invAmount_RON/ronToUsd)); 
+                let currentMyInvest = isDCA ? (invAmount_RON * (Math.floor((w * 7) / state.days) + 1)) : invAmount_RON;
+                values.push((currentMyInvest * (currentMC_USD / (initialMC_USD + (invAmount_RON/ronToUsd)))).toFixed(0));
                 if (isGraduated) break;
             }
-            
+
             if (!isGraduated) ui.overlay.style.display = 'none';
-            
-            const finalValue = parseFloat(values[values.length - 1]);
-            const gain = finalValue - myRonSpent;
-            const multiplier = myRonSpent > 0 ? finalValue / myRonSpent : 1;
-            
-            // === FORMATARE RO ===
-            function fmtRON(n) {
-                return Math.round(n).toLocaleString('ro-RO');
-            }
-            function fmtRONdec(n, dec) {
-                return n.toLocaleString('ro-RO', {minimumFractionDigits: dec, maximumFractionDigits: dec});
-            }
-            function deRule(num, unit) {
-                const n = Math.floor(num);
-                return (n >= 20 ? ' de ' : ' ') + unit;
-            }
-            
-            // Total Căruțe acumulate (pentru afișare TOTAL)
-            const carutaCount = myCarute;
-            const carutaCountStr = fmtRONdec(carutaCount, 2) + deRule(carutaCount, 'Căruțe de PULA');
-            const ronSpentStr = fmtRON(myRonSpent) + deRule(myRonSpent, 'RON');
-            
-            ui.buyingPower.innerText = `Total săptămâna ${totalWeeks}: ${ronSpentStr} sau ${carutaCountStr}`;
-            
-            // Capul Pieței 1 Hambar (= 1B PULA = supply total)
-            const hambarRON = mcRON; // 1 Hambar = supply întreg
-            ui.mcap.innerText = fmtRON(hambarRON) + ' RON';
-            
-            if (mcRON < mcInitRON) ui.mcapCont.classList.add('mcap-down');
+
+            const lastV = values[values.length - 1];
+            const mcapRON = currentMC_USD * ronToUsd; 
+            ui.mcap.innerText = `${Math.round(mcapRON).toLocaleString('ro-RO')} Lei`;
+            if (currentMC_USD < initialMC_USD) ui.mcapCont.classList.add('mcap-down');
             else ui.mcapCont.classList.remove('mcap-down');
-            
-            // Preț Căruță: zona input arată prețul ACUM, header arată prețul în săptămâna finală
-            const pretCarutaInit = mcInitRON / 1000;
-            const pretCarutaFinal = mcRON / 1000;
-            const pretLabel = document.getElementById('pret-caruta-label');
-            if (pretLabel) pretLabel.innerText = `O Căruță acum = ${fmtRONdec(pretCarutaInit, 2)} RON`;
-            ui.pulaW12Box.innerText = `O Căruță în S${totalWeeks} = ${fmtRONdec(pretCarutaFinal, 2)} RON`;
-            
-            // Câștig + multiplier
-            ui.resVal.innerText = fmtRON(finalValue) + ' RON';
-            ui.resMult.innerText = fmtRONdec(multiplier, 1) + 'x';
-            ui.diesel.innerText = `⛽ ${fmtRONdec(finalValue / 9.58, 1)}L Motorină`;
-            
-            // === CHART ===
+
+            const totalGrowth = currentMC_USD / initialMC_USD;
+            ui.pulaW12Box.innerText = `1 Caruta PULA = ${(((window.pulaPriceUsd||2.368e-6)*1e6*(window.ratesRon||4.3629)*totalGrowth).toFixed(2))} Lei`;
+            ui.resVal.innerText = `${parseInt(lastV).toLocaleString('ro-RO')} Lei`;
+            ui.resMult.innerText = (lastV / (totalIn || 1)).toFixed(1) + 'x';
+            ui.diesel.innerText = `⛽ ${(lastV / 9.58).toFixed(1)}L MOTORINA`;
+
             if (chart) chart.destroy();
             chart = new Chart(ctx, {
                 type: 'line',
@@ -403,7 +345,7 @@
                     labels: labels,
                     datasets: [{
                         data: values,
-                        borderColor: isGraduated ? '#00ffa3' : (mcRON < mcInitRON ? '#ff4444' : '#fcd116'),
+                        borderColor: isGraduated ? '#00ffa3' : (currentMC_USD < initialMC_USD ? '#ff4444' : '#fcd116'),
                         borderWidth: 4,
                         backgroundColor: isGraduated ? 'rgba(0, 255, 163, 0.15)' : 'rgba(252, 209, 22, 0.1)',
                         fill: true, tension: 0.4, pointRadius: 0
@@ -412,7 +354,7 @@
                 options: {
                     responsive: true, maintainAspectRatio: false, animation: false,
                     scales: {
-                        y: { position: 'right', grid: { color: '#111' }, ticks: { color: isGraduated ? '#00ffa3' : (mcRON < mcInitRON ? '#ff4444' : '#4caf50'), font: { size: 10, weight: 'bold' } } },
+                        y: { position: 'right', grid: { color: '#111' }, ticks: { color: isGraduated ? '#00ffa3' : (currentMC_USD < initialMC_USD ? '#ff4444' : '#4caf50'), font: { size: 10, weight: 'bold' } } },
                         x: { grid: { display: false }, ticks: { color: '#555', font: { size: 10 } } }
                     },
                     plugins: { legend: { display: false } }

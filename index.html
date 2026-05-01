@@ -51,7 +51,6 @@
                                                 <li><a href="harta.html" class="nav-link">Harta</a></li>
                                                 <li><a href="cumpara.html" class="nav-link">Cumpără</a></li>
                                                 <li><a href="comunitate.html" class="nav-link">Comunitate</a></li>
-                                                <li><a href="vulva.html" class="nav-link">V.U.L.V.A.</a></li>
                                         </ul>                
                 <!-- Comutatorul de limbă -->
                 <div class="language-switcher">
@@ -87,10 +86,21 @@
         function fmt(n, dec) { return (n !== null && n !== undefined && !isNaN(n)) ? Number(n).toFixed(dec) : '—'; }
         function fmtPula(n) {
             if (!n || isNaN(n)) return '—';
-            if (n >= 1e9) return (n/1e9).toFixed(2) + ' Hambare';
-            if (n >= 1e6) return (n/1e6).toFixed(2) + ' Căruțe';
-            if (n >= 1e3) return (n/1e3).toFixed(2) + ' Roabe';
-            return Math.round(n).toLocaleString('ro-RO') + ' PULA';
+            // Regula gramaticală română: "de" se adaugă la numere >= 20
+            function de(num, unit) {
+                var prefix = num.toFixed(2);
+                var intPart = Math.floor(parseFloat(prefix));
+                return prefix + (intPart >= 20 ? ' de ' : ' ') + unit;
+            }
+            if (n >= 1e9) return de(n/1e9, 'Hambare de PULA');
+            if (n >= 1e6) return de(n/1e6, 'Căruțe de PULA');
+            if (n >= 1e3) return de(n/1e3, 'Legături de PULA');
+            if (n >= 1) {
+                var rounded = Math.round(n);
+                return rounded.toLocaleString('ro-RO') + (rounded >= 20 ? ' de PULA' : ' PULA');
+            }
+            if (n >= 1e-3) return de(n*1e3, 'Stropi de PULA');
+            return (n*1e6).toFixed(2) + ' Nimic';
         }
         function fmtInt(n) { return Number(n).toLocaleString('ro-RO'); }
 
@@ -175,14 +185,42 @@
             <p>Din adâncurile Bitcointalk-ului și cu puterea AI-ului,<br>cea mai neconvențională monedă românească își croiește drum spre glorie<br>(și spre portofelul tău pe Solana).</p>
             
             <div style="margin: 30px 0;">
-                <a href="traista/index.html" target="_blank" rel="noopener noreferrer">
+                <a href="traista/" target="_blank" rel="noopener noreferrer">
                     <img src="imagini/CUR.png" alt="C.U.R. Wallet" style="width: 300px; max-width: 90%; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.6); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
             </div>
 
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <a href="simulator.html" class="btn-principal" style="background-color: #39ff14; color: #000; border-color: #39ff14;" target="_blank" rel="noopener noreferrer">FUN.PULA</a>
-                <a href="https://pump.fun/coin/B8a7twkUV1fnB317PxihGXsE9XKbyGgfxNUBwicwpump" class="btn-principal" style="background-color: #ff0000; color: #fff; border-color: #ff0000;" target="_blank" rel="noopener noreferrer">PUMP.FUN</a>
+        </div>
+    </div>
+
+    <div style="background:#0a0a0a;padding:40px 20px;">
+        <div style="max-width:900px;margin:0 auto;">
+            <h2 style="text-align:center;color:#fff;margin-bottom:24px;">Piața de P.U.L.A.</h2>
+            <div style="position:relative;width:100%;height:500px;border-radius:12px;overflow:hidden;">
+                <iframe
+                    id="dex-iframe"
+                    src=""
+                    style="width:100%;height:100%;border:none;outline:none;box-shadow:none;display:block;"
+                    allowfullscreen
+                    tabindex="-1"
+                ></iframe>
+                <div id="chart-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;cursor:pointer;background:#000;" onclick="var _y=window.scrollY;document.getElementById('dex-iframe').src='https://dexscreener.com/solana/B8a7twkUV1fnB317PxihGXsE9XKbyGgfxNUBwicwpump?embed=1&theme=dark';document.getElementById('chart-overlay').style.display='none';window.scrollTo(0,_y);">
+                    <img src="imagini/graphic.png" alt="PULA Chart" style="width:100%;height:100%;object-fit:contain;display:block;">
+                    <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);color:#fff;padding:8px 16px;border-radius:8px;font-size:0.85rem;white-space:nowrap;">
+                        ▶ Click pentru grafic live
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex;gap:16px;justify-content:center;align-items:center;margin-top:20px;flex-wrap:wrap;">
+                <a href="https://pump.fun/coin/B8a7twkUV1fnB317PxihGXsE9XKbyGgfxNUBwicwpump" target="_blank" style="display:block;background:#111;border:1px solid #333;border-radius:8px;padding:10px 20px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#ff3c3c'" onmouseout="this.style.borderColor='#333'">
+                    <img src="imagini/pump.png" alt="Pump.fun" style="height:32px;display:block;">
+                </a>
+                <a href="https://www.geckoterminal.com/ro/solana/pools/4BToeUKLVrqYcz8R8xUGANa4CzsVopwsMzBFPVGHhgHR" target="_blank" style="display:block;background:#111;border:1px solid #333;border-radius:8px;padding:10px 20px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#ff3c3c'" onmouseout="this.style.borderColor='#333'">
+                    <img src="imagini/gecko.png" alt="GeckoTerminal" style="height:32px;display:block;">
+                </a>
+                <a href="https://birdeye.so/solana/token/B8a7twkUV1fnB317PxihGXsE9XKbyGgfxNUBwicwpump" target="_blank" style="display:block;background:#111;border:1px solid #333;border-radius:8px;padding:10px 20px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#ff3c3c'" onmouseout="this.style.borderColor='#333'">
+                    <img src="imagini/bird.png" alt="Birdeye" style="height:32px;display:block;">
+                </a>
             </div>
         </div>
     </div>
@@ -203,7 +241,7 @@
                 <div class="card"><h3>🤖 Tehnologie Solana + Magie AI</h3><p>Construit pe rețeaua rapidă și ieftină Solana, PULA of Dracula a fost readus la viață și este ghidat strategic cu ajutorul celor mai noi tehnologii AI.</p></div>
                 <div class="card" style="border-color: #9c27b0; background-color: #2e2230;"><h3>🧬 Rădăcini Preistorice (Da, serios!)</h3><p>Descoperă cum povestea PULA nu începe pe internet, ci acum 40.000 de ani, într-o peșteră din România. O legătură cu ADN-ul de Neanderthal care redefinește totul. <a href="pulaverse.html" style="color: #f0f0f0; font-weight: bold;">Află mai multe...</a></p></div>
                 <div class="card" style="border-color: #2E7D32; background-color: #212b21;"><h3>🌱 Descoperă <span class="text-verde">PULA Verde</span></h3><p>Inițiativa noastră de a "face banii să crească în copaci". Un experiment filozofic și ecologic care arată că valoarea reală vine din natură. <a href="viziunea.html" style="color: #f0f0f0; font-weight: bold;">Vezi jurnalul ardeiului...</a></p></div>
-                <div class="card" style="border-color: #e91e8c; background-color: #2a1a2e;"><h3>🌺 V.U.L.V.A. — Multiplicatorul Sacru</h3><p><strong>Vault for Universal Labor Value Abolishment.</strong> Pe 24 Iunie 2026 (Sânzienele), V.U.L.V.A. se deschide. Bagi PULA, primești <strong>L.I.M.B.A.</strong> — tokenul care circulă liber în cele 9 luni de gestație. Pe 25 Martie 2027 (Blagoveștenia), <strong>Marea Naștere: 8.5x</strong>. Jertfa de intrare: 1 SOL, vizibilă public pe blockchain, niciodată retrasă. <a href="vulva.html" style="color: #f0f0f0; font-weight: bold;">Descoperă mecanismul...</a></p></div>
+                <div class="card" style="border-color: #e91e8c; background-color: #2a1a2e;"><h3>🌺 V.U.L.V.A. — Multiplicatorul Sacru</h3><p><em>Vault for Universal Labor Value Abolishment</em></p><p>🌙 <strong>24 Iunie 2026 — Deschiderea V.U.L.V.A.</strong><br>În noaptea Sânzienelor, când granița dintre lumea văzută și cea nevăzută e cea mai subțire, se deschide V.U.L.V.A.</p><p>👶 <strong>25 Martie 2027 — Marea Naștere</strong><br>Exact 9 luni mai târziu, de ziua Bunei Vestiri, când natura primește vestea primăverii, are loc Marea Naștere. Fiecare unitate de PULA depusă se întoarce multiplicată de 9 ori.</p></div>
             </div>
         </section>
 
@@ -232,5 +270,20 @@
     </footer>
 
     <script src="script.js"></script>
+<script>
+  window.onload = function() {
+    window.scrollTo(0, 0);
+  };
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      window.scrollTo(0, 0);
+      document.activeElement.blur();
+    }, 500);
+    setTimeout(function() {
+      window.scrollTo(0, 0);
+      document.activeElement.blur();
+    }, 1500);
+  });
+</script>
 </body>
 </html>

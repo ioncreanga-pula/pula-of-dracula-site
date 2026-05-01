@@ -1,0 +1,81 @@
+            var carutaRon = (cu * r).toFixed(2);
+            var w12 = document.getElementById('pula-w12-box');
+            if (w12) w12.innerText = '1 Caruta PULA = ' + carutaRon + ' Lei';
+            var mcap = document.getElementById('mcap-val');
+            if (mcap) mcap.innerText = carutaRon + ' Lei';
+            var labels = document.querySelectorAll('label');
+            labels.forEach(function(l) {
+                if (l.textContent.indexOf('10.10') !== -1) l.textContent = '1 Caruta de PULA e ' + carutaRon + ' Lei';
+            });
+        });
+    })();
+    </script>
+
+    <div class="dashboard">
+
+        <!-- UNIFIED HEADER SIMETRIC -->
+        <div class="unified-header">
+            <div class="header-left">
+                <span class="row-label">SAPTAMANA 12</span>
+                <span id="header-mult-text" class="row-main-val color-roz">1.0x</span>
+                <span id="pula-w12-box" class="row-sub-info color-albastru-deschis">1 Caruta PULA = 10.10 Lei</span>
+            </div>
+            <div class="header-right">
+                <span class="row-label color-alb">CÂȘTIG:</span>
+                <span id="header-val-text" class="row-main-val color-verde">103.4 Lei</span>
+                <span id="diesel" class="row-sub-info color-albastru-inchis">⛽ 10.8L MOTORINA</span>
+            </div>
+        </div>
+
+        <div class="area-chart">
+            <div id="raydium-overlay">
+                <span class="raydium-text">🚀 RAYDIUM<br>MIGRATION</span>
+                <button class="btn-overlay-reset" onclick="resetSim()">REÎNCEPE SIMULAREA</button>
+            </div>
+            <canvas id="growthChart"></canvas>
+        </div>
+
+        <div class="row-bottom">
+            <div class="area-inv">
+                <label>1 Caruta de PULA e 10.10 Lei</label>
+                <label>CUMPAR DE</label>
+                <div style="display:flex; align-items:center;">
+                    <input type="number" id="inv" value="103.4">
+                    <span class="input-unit">Lei</span>
+                </div>
+                <span id="buying-power" class="buying-power">TOTAL: 10.0 CĂRUȚE</span>
+                
+                <div class="dca-controls">
+                    <input type="checkbox" id="dca-on">
+                    <span style="font-size:0.75em; color:#4caf50; font-weight:bold;">DCA la</span>
+                    <button class="btn-step" onclick="step('days', -1)" style="width:22px; height:22px; font-size:1em;">-</button>
+                    <span id="v-days" style="font-size:0.85em; font-weight:bold;">7</span>
+                    <button class="btn-step" onclick="step('days', 1)" style="width:22px; height:22px; font-size:1em;">+</button>zile
+                </div>
+            </div>
+            <div class="area-peers">
+                <div class="control-row">
+                    <span style="font-size:0.75em; color:#888; font-weight:bold;">HAIDUCI<br>/SAPTAMANA</span>
+                    <button class="btn-step" onclick="step('peers', -5)">-</button>
+                    <span id="v-peers" class="val-mini">0</span>
+                    <button class="btn-step" onclick="step('peers', 5)">+</button>
+                </div>
+                <div class="control-row">
+                    <span style="font-size:0.75em; color:#888; font-weight:bold;">INVESTITIE<br>/HAIDUC</span>
+                    <button class="btn-step" onclick="step('avg', -10)">-</button>
+                    <span id="v-avg" class="val-mini">0</span>
+                    <button class="btn-step" onclick="step('avg', 10)">+</button>
+                </div>
+                <div id="mcap-container" class="mcap-box">
+                    <div>1 Hambar MarketCap:</div>
+                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">10.100 Lei</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('growthChart').getContext('2d');
+        let chart;
+        let state = { peers: 0, avg: 0, days: 7 };
+        let isGraduated = false;

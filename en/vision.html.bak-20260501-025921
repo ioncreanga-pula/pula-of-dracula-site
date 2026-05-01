@@ -14,10 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The PULA Vision - A World Without Money & Money That Grows on Trees</title>
     <meta name="description" content="Explore the philosophical vision of PULA of Dracula: a world without money, the MIND principle, and the Green PULA initiative to create sustainable value.">
-    <link rel="canonical" href="https://pulaofdracula.fun/vision.html" />
-    <link rel="alternate" hreflang="ro" href="https://pulaofdracula.fun/viziunea.html" />
-    <link rel="alternate" hreflang="en" href="https://pulaofdracula.fun/vision.html" />
-    <link rel="alternate" hreflang="x-default" href="https://pulaofdracula.fun/vision.html" />
     <link rel="stylesheet" href="../stil.css">
     <!-- Favicon Links -->
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -46,10 +42,11 @@
             <nav class="navigatie-principala">
                 <ul class="nav-lista">
                     <li><a href="pulaverse.html" class="nav-link">PULAverse</a></li>
-                    <li><a href="vision.html" class="nav-link active">Vision</a></li>
+                    <li><a href="vision.html" class="nav-link">Vision</a></li>
                     <li><a href="roadmap.html" class="nav-link">Roadmap</a></li>
                     <li><a href="how-to-buy.html" class="nav-link">Buy</a></li>
                     <li><a href="community.html" class="nav-link">Community</a></li>
+                    <li><a href="vulva.html" class="nav-link">V.U.L.V.A.</a></li>
                 </ul>
                 <div class="language-switcher">
                     <a href="../viziunea.html" class="lang-link"><img src="../imagini/flag-ro.png" alt="Română"></a>
@@ -64,7 +61,7 @@
         <div class="banda-wrap">
             <div class="banda-continut" id="bandaContinut">
                 <!-- continut incarcat de JS -->
-                <span class="banda-item"><span class="banda-label">1 CART:</span> <span class="banda-val">10.10</span> <span class="banda-unit">RON</span></span>
+                <span class="banda-item"><span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">10.10</span> <span class="banda-unit">RON</span></span>
                 <span class="banda-sep">◆</span>
                 <span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$2,210</span></span>
                 <span class="banda-sep">◆</span>
@@ -74,92 +71,50 @@
     </div>
     <script>
     (function() {
-        var PAIR = '4btoeuklvrqycz8r8xugana4czsvopwsmzbfpvghhghr';
         var jsonPath = '/admin/pret.json';
-
-        function fmt(n, dec) { return (n !== null && n !== undefined && !isNaN(n)) ? Number(n).toFixed(dec) : '—'; }
-        function fmtPula(n) {
-            if (!n || isNaN(n)) return '—';
-            if (n >= 1e9) return (n/1e9).toFixed(2) + ' Barns of PULA';
-            if (n >= 1e6) return (n/1e6).toFixed(2) + ' Carts of PULA';
-            if (n >= 1e3) return (n/1e3).toFixed(2) + ' Bundles of PULA';
-            if (n >= 1) {
-                var rounded = Math.round(n);
-                return rounded.toLocaleString('en-US') + ' PULA';
-            }
-            if (n >= 1e-3) return (n*1e3).toFixed(2) + ' Drops of PULA';
-            return (n*1e6).toFixed(2) + ' Nothing';
-        }
-        function fmtInt(n) { return Number(n).toLocaleString('en-US'); }
-
+        function fmt(n, dec) { return (n !== null && n !== undefined) ? Number(n).toFixed(dec) : '—'; }
+        function fmtInt(n) { return Number(n).toLocaleString('ro-RO'); }
         function buildContent(d) {
             var sep = '<span class="banda-sep">◆</span>';
             var pipe = ' <span class="banda-unit">|</span> ';
             var vals = [
                 '<span class="banda-val">' + fmt(d.ron,2) + '</span> <span class="banda-unit">RON</span>',
-                '<span class="banda-val">' + fmt(d.usd,4) + '</span> <span class="banda-unit">USD</span>',
-                '<span class="banda-val">' + fmt(d.eur,4) + '</span> <span class="banda-unit">EUR</span>',
-                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>'
+                '<span class="banda-val">' + fmt(d.usd,2) + '</span> <span class="banda-unit">USD</span>',
+                '<span class="banda-val">' + fmt(d.eur,2) + '</span> <span class="banda-unit">EUR</span>',
+                '<span class="banda-val">' + fmt(d.bwp,2) + '</span> <span class="banda-unit">BWP</span>',
+                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>',
+                '<span class="banda-val">' + fmt(d.btc,9) + '</span> <span class="banda-unit">BTC</span>',
+                '<span class="banda-val">' + fmt(d.eth,8) + '</span> <span class="banda-unit">ETH</span>'
             ];
-            var html = '<span class="banda-item"><span class="banda-label">1 CART:</span> ' + vals.join(pipe) + '</span>';
-            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(Math.round(d.market_cap_usd)) + '</span></span>';
-            if (d.motorina_ron && d.ron) {
-                var pula_per_litru = (d.motorina_ron / d.ron) * 1e6;
-                html += sep + '<span class="banda-item"><span class="banda-label">1L Diesel:</span> <span class="banda-val">' + fmtPula(pula_per_litru) + '</span></span>';
-            }
-            if (d.kwh_ron && d.ron) {
-                var pula_per_kwh = (d.kwh_ron / d.ron) * 1e6;
-                html += sep + '<span class="banda-item"><span class="banda-label">1 kWh:</span> <span class="banda-val">' + fmtPula(pula_per_kwh) + '</span></span>';
-            }
-            if (d.aur_ron_per_gram && d.ron) {
-                var pula_per_gram_aur = (d.aur_ron_per_gram / d.ron) * 1e6;
-                html += sep + '<span class="banda-item"><span class="banda-label">1g Gold:</span> <span class="banda-val">' + fmtPula(pula_per_gram_aur) + '</span></span>';
-            }
+            var html = '<span class="banda-item"><span class="banda-label">1 CĂRUȚĂ:</span> ' + vals.join(pipe) + '</span>';
+            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(d.market_cap_usd) + '</span></span>';
             html += sep + '<span class="banda-item"><span class="banda-label">SUPPLY:</span> <span class="banda-val">' + fmtInt(d.supply) + '</span> <span class="banda-unit">PULA</span></span>';
             return html + sep + html;
         }
-
         function update(d) {
             var el = document.getElementById('bandaContinut');
             if (el) el.innerHTML = buildContent(d);
-            localStorage.setItem('pula_pret', JSON.stringify(d));
         }
-
-        function fetchLive(staticData) {
-            var priceUsd = window.pulaPriceUsd || 2.368e-6;
-            var carutaUsd = priceUsd * 1e6;
-            var ron = window.ratesRon || 4.7;
-            var d = Object.assign({}, staticData, {
-                usd: carutaUsd,
-                ron: carutaUsd * ron,
-                eur: carutaUsd * (window.ratesEur || 0.92),
-                sol: window.pulaPriceSol || 0,
-                market_cap_usd: Math.round(priceUsd * (staticData.supply || 1e9))
-            });
-            fetch('https://api.metals.live/v1/spot/gold')
-                .then(function(r){ return r.json(); })
-                .then(function(gold) {
-                    var ozUsd = Array.isArray(gold) ? gold[0].gold : gold.gold;
-                    if (ozUsd) d.aur_ron_per_gram = (ozUsd / 31.103) * ron;
-                    update(d);
-                }).catch(function(){ update(d); });
-        }
-
-        window._pulaStaticData = {};
-        document.addEventListener('pulaReady', function() { fetchLive(window._pulaStaticData); });
         fetch(jsonPath + '?v=' + Date.now())
-            .then(function(r){ return r.json(); })
-            .then(function(staticData) {
-                window._pulaStaticData = staticData;
-                update(staticData);
-                fetchLive(staticData);
-            })
-            .catch(function() {
+            .then(function(r){return r.json();})
+            .then(update)
+            .catch(function(){
                 var ls = localStorage.getItem('pula_pret');
-                var fallback = ls ? JSON.parse(ls) : {};
-                update(fallback);
-                fetchLive(fallback);
+                if (ls) try { update(JSON.parse(ls)); } catch(e){}
             });
+        document.addEventListener('pulaReady', function() {
+            var p = window.pulaPriceUsd || 2.368e-6;
+            var cu = p * 1e6;
+            update({
+                usd: cu,
+                ron: cu * (window.ratesRon || 4.65),
+                eur: cu * (window.ratesEur || 0.92),
+                bwp: cu * (window.ratesBwp || 13.75),
+                sol: window.pulaPriceSol || 0,
+                market_cap_usd: Math.round(953800000 * p),
+                supply: 953800000
+            });
+        });
     })();
     </script>
 
@@ -170,18 +125,18 @@
             
             <div class="carduri-container">
                 <div class="card">
-                    <h3><span style="color:#e53935">Critique of the Symbol</span><br><span class="text-verde">Money vs. Wealth</span></h3>
+                    <h3>The Critique of the Symbol: Money vs. Wealth</h3>
                     <p>Inspired by Alan Watts, we recognize modern man's fundamental error: <strong>we confuse the symbol (money) with reality (wealth)</strong>. We chase numbers on a screen, forgetting true wealth: free time, community, ecosystem health. PULA, as a "payment unit," is a symbol ironically used to remind us of this confusion.</p>
                 </div>
                 <div class="card">
-                    <h3><span style="color:#e53935">The MIND Principle</span><br><span class="text-verde">A New Measure of Success</span></h3>
+                    <h3>The MIND Principle: A New Measure of Success</h3>
                     <p>Instead of measuring success by Market Cap alone, the PULAverse is guided by the MIND principle, proposed by Emad Mostaque: a balance between <strong>Material, Intelligence, Network, and Diversity</strong>. This is the true indicator of a thriving society.</p>
                 </div>
             </div>
         </section>
 
         <section class="sectiune" id="green-pula">
-            <h2>🟢 <span class="text-verde">Green P.U.L.A.</span><br><span style="font-size:0.6em;font-weight:normal;color:#e53935;font-family:Arial,sans-serif">Perpetual Universal motion with Light and Water</span></h2>
+            <h2>🟢 <span class="text-verde">Green P.U.L.A.</span>: The Universal Perpetual Motion of Light and Water</h2>
             <p>The <span class="text-verde">Green PULA</span> initiative is our ecological manifesto. It is our vision to "make money grow on trees," redefining value in a sustainable way, in the spirit of Alan Watts' "leaving nature alone." We started with a simple experiment, the "Journal of the Immortal Pepper," to prove that real value is generated by the simplest forces of nature.</p>
             
             <div class="jurnal-ardei-container">
@@ -243,7 +198,7 @@
                 </div>
                 <div class="jurnal-intrare stanga">
                     <div class="jurnal-continut">
-                        <h3>Final Harvest<br><span class="text-verde">P.U.L.A. at its Zenith</span></h3><p style="color:#aaa;font-style:italic;margin-top:4px">Perpetual Universal motion with Light and Water</p>
+                        <h3>Final Harvest: P.U.L.A. at its Zenith</h3>
                         <p>Full cycle complete. We have proven that if you let nature work and provide it with the necessary conditions, abundance is inevitable. Our pepper is ready to spice up life.</p>
                         <img src="../imagini/ultima.jpg" alt="Final PULA harvest" class="jurnal-imagine">
                     </div>
@@ -252,29 +207,45 @@
         </section>
 
         <section class="sectiune" id="vulva-timeline">
-            <h2>🌺 The Timeline of Birth</h2>
+            <h2>🌺 The Timeline of Birth: PULA → V.U.L.V.A. → L.I.M.B.A.</h2>
             <p>There are events the folk calendar has always known, but modern man has forgotten. PULA of Dracula brings them back to center stage. Three dates. Three cosmic moments. One unbroken chain of causality.</p>
 
             <div class="jurnal-ardei-container">
                 <div class="jurnal-intrare stanga">
                     <div class="jurnal-continut">
-                        <h3>⚒️ <span style="color:#4caf50">May 1, 2026</span><br><span style="color:#e53935">Labor Abolition Day</span></h3>
+                        <h3>⚒️ May 1, 2026 — Labor Abolition Day</h3>
                         <p>The international launch of PULA of Dracula. Labor Day becomes the day we solemnly and with Dacian humor declare that <strong>labor is to be abolished</strong>. Not tomorrow. But the process has begun. PULA goes out into the world.</p>
                     </div>
                 </div>
                 <div class="jurnal-intrare dreapta">
                     <div class="jurnal-continut">
-                        <h3>🌺 <span style="color:#4caf50">June 24, 2026</span><br><span style="color:#e53935">V.U.L.V.A. Opens</span></h3>
-                        <p>On the night of Sânziene (Midsummer), when the boundary between the seen and unseen worlds is at its thinnest, <strong>V.U.L.V.A.</strong> opens — <em>Vault for Universal Labor Value Abolishment</em>.</p>
+                        <h3>🌺 June 24, 2026 — Midsummer: The Birth of V.U.L.V.A.</h3>
+                        <p>On Midsummer's Night, when the boundary between the seen and unseen worlds is thinnest, <strong>V.U.L.V.A.</strong> opens — <em>Vault for Universal Labor Value Abolishment</em>. Those who deposit PULA into the Vault receive <strong>L.I.M.B.A.</strong> — <em>Living Instrument for Multiplied Birth Assets</em> — a certified token that circulates freely during the 9 months of gestation. Entry sacrifice: <strong>1 SOL per transaction</strong>, paid into a dedicated public wallet, visible live on-site, which never allows withdrawals. The sacrifice remains. The proof remains.</p>
                     </div>
                 </div>
                 <div class="jurnal-intrare stanga">
                     <div class="jurnal-continut">
-                        <h3>👶 <span style="color:#4caf50">March 25, 2027</span><br><span style="color:#e53935">The Great Birth</span></h3>
-                        <p>Exactly 9 months later, on the Feast of the Annunciation, when nature receives the news of spring, the Great Birth takes place. Every unit of PULA deposited returns multiplied 9 times.</p>
+                        <h3>👶 March 25, 2027 — Annunciation: The Great Birth</h3>
+                        <p>Exactly 9 months later, on the Feast of the Annunciation — the day nature receives the news of spring — the <strong>Great Birth</strong> occurs. Every unit of PULA deposited returns <strong>multiplied 8.5x</strong>. It's not magic. It's temporal geography: you planted on Midsummer's Night, you harvest on the Annunciation. Nature knows what it's doing.</p>
                     </div>
                 </div>
             </div>
+
+            <div class="carduri-container" style="margin-top: 30px;">
+                <div class="card" style="border-color: #e91e8c; background-color: #2a1a2e;">
+                    <h3>🌺 What is V.U.L.V.A.?</h3>
+                    <p><strong>Vault for Universal Labor Value Abolishment.</strong> A smart contract on Solana that accepts PULA, tracks the gestation, and distributes the multiplication at term. Transparent, public, immutable. Exactly as it should be.</p>
+                </div>
+                <div class="card" style="border-color: #9c27b0; background-color: #2e2230;">
+                    <h3>👅 What is L.I.M.B.A.?</h3>
+                    <p><strong>Living Instrument for Multiplied Birth Assets.</strong> The token issued through <strong>G.U.R.A.</strong> (Gateway for Universal Reproductive Asset) when you insert PULA into V.U.L.V.A. It circulates freely on the market for 9 months. You can hold it, you can trade it. At the Great Birth, L.I.M.B.A. transforms into PULA × 8.5.</p>
+                </div>
+                <div class="card" style="border-color: #ffd700; background-color: #2a2600;">
+                    <h3>🔥 The Sacred Sacrifice</h3>
+                    <p>Entry into V.U.L.V.A. costs <strong>1 SOL per transaction</strong>. This SOL goes automatically into a <strong>dedicated public wallet</strong>, displayed live on-site. It never leaves. It cannot be withdrawn. It is the Sacrifice that sanctifies the mechanism and proves the sincerity of intent.</p>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:20px;"><a href="vulva.html" class="btn-download">🌺 Discover V.U.L.V.A. in detail</a></p>
         </section>
 
         <section class="sectiune" id="whitepaper-link">

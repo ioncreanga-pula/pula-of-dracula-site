@@ -92,9 +92,9 @@ main a:hover {
 }
 
 .comunitate-linkuri a:hover {
-    background-color: #e53935; /* Roșu PULA la hover */
-    color: white;
-    border-color: #c62828;
+    background-color: #ffd700;
+    color: #111;
+    border-color: #e6c200;
     transform: translateY(-2px); /* Efect de ridicare la hover */
 }
 

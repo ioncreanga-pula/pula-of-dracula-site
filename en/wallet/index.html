@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="icon" type="image/x-icon" href="/traista/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>C.U.R. Wallet - PULA of Dracula</title>
+    <script src="https://bundle.run/buffer@6.0.3"></script>
+    <script>
+      window.global = window;
+      window.Buffer = window.Buffer || (typeof buffer !== 'undefined' ? buffer.Buffer : null);
+      window.process = window.process || { env: { NODE_ENV: 'production' } };
+    </script>
+    <script src="https://terminal.jup.ag/main-v2.js" defer></script>
+    <script type="module" crossorigin src="/traista/assets_v75/index-en.js?v=102en"></script>
+    <link rel="stylesheet" crossorigin href="/traista/assets_v75/index-BkABBNYp.css?v=102">
+
+  <script src="https://unpkg.com/html5-qrcode"></script><script src="/pret-live.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      window.onerror = function(msg, url, line, col, error) {
+        var div = document.createElement('div');
+        div.style.position = 'fixed';
+        div.style.top = '0';
+        div.style.left = '0';
+        div.style.width = '100%';
+        div.style.height = '100%';
+        div.style.backgroundColor = 'rgba(255,0,0,0.9)';
+        div.style.color = 'white';
+        div.style.padding = '20px';
+        div.style.zIndex = '99999';
+        div.style.fontFamily = 'monospace';
+        div.style.overflow = 'auto';
+        div.innerHTML = '<h1>❌ RUNTIME ERROR:</h1>' +
+                        '<p><strong>Message:</strong> ' + msg + '</p>' +
+                        '<pre>' + (error && error.stack ? error.stack : 'No stack trace available') + '</pre>';
+        document.body.appendChild(div);
+      };
+    </script>
+  <script>
+    setTimeout(function() {
+      var root = document.getElementById('root');
+      if (root && root.innerHTML.trim() === '') {
+        root.innerHTML = '<div style="color:#ff4444;padding:20px;font-family:monospace;background:#111;">⚠️ C.U.R. Wallet failed to load. Open DevTools (F12) → Console for details.</div>';
+      }
+    }, 6000);
+  </script>
+</body>
+</html>

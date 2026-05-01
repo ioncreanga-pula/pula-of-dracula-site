@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EFLQ0JP2SR"></script>
@@ -13,13 +13,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PULA Strategy Terminal</title>
-    <link rel="stylesheet" href="stil.css">
+    <link rel="stylesheet" href="../stil.css">
     <!-- Favicon Links -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="manifest.json">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="shortcut icon" href="../favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { background: #000; color: #eee; font-family: 'Courier New', Courier, monospace; margin: 0; padding: 0; min-height: 100vh; overflow-x: hidden; overflow-y: auto; padding-top: 110px; }
@@ -40,7 +40,7 @@
             min-height: calc(100vh - 80px); 
             position: relative;
         }
-        
+
         .unified-header { 
             background: #0a0a0a; 
             border: 1px solid #444; 
@@ -48,14 +48,13 @@
             border-radius: 12px; 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
-            gap: 10px;
-            align-items: center;
-            flex-shrink: 0;
+            gap: 10px; 
+            align-items: center; 
+            flex-shrink: 0; 
             margin-top: 0;
         }
-        
         .header-left { text-align: left; }
-        .header-right { text-align: right; padding-right: 10px; }
+        .header-right { text-align: right; }
 
         .row-label { color: #fcd116; font-size: 0.9em; font-weight: bold; display: block; }
         .row-main-val { font-size: 1.8em; font-weight: bold; line-height: 1.1; margin: 4px 0; display: block; }
@@ -68,22 +67,17 @@
 
         .area-chart { position: relative; flex-grow: 1; background: #050505; border-radius: 12px; border: 1px solid #333; min-height: 200px; overflow: hidden; margin: 5px 0; width: 100%; }
         
-        #raydium-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            display: none; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 100; border: 4px solid #00ffa3; text-align: center;
-        }
-        .raydium-text { color: #00ffa3; font-size: 2.5em; font-weight: bold; text-shadow: 0 0 20px #00ffa3; }
+        #raydium-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 100; border: 4px solid #00ffa3; text-align: center; }
+        .raydium-text { color: #00ffa3; font-size: 2em; font-weight: bold; text-shadow: 0 0 20px #00ffa3; }
         .btn-overlay-reset { background: #00ffa3; color: #000; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; margin-top: 20px; cursor: pointer; }
 
         .row-bottom { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
         .area-inv { background: #1a1a1a; padding: 10px; border-radius: 10px; border-left: 4px solid #ce1126; }
-        .dca-controls { display: flex; align-items: center; gap: 6px; margin-top: 8px; background: #222; padding: 4px; border-radius: 6px; }
+        .dca-controls { display: flex; align-items: center; gap: 6px; margin-top: 8px; background: #2.315; padding: 4px; border-radius: 6px; }
         .buying-power { color: #4caf50; font-size: 0.75em; font-weight: bold; margin-top: 5px; display: block; }
         
         .area-peers { background: #111; padding: 10px; border-radius: 10px; display: flex; flex-direction: column; gap: 6px; }
-        .control-row { display: flex; align-items: center; justify-content: space-between; background: #222; padding: 5px 10px; border-radius: 8px; }
+        .control-row { display: flex; align-items: center; justify-content: space-between; background: #2.315; padding: 5px 10px; border-radius: 8px; }
         .btn-step { background: #ce1126; color: white; border: none; width: 28px; height: 28px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.2em; }
         
         label { font-size: 0.75em; color: #fcd116; font-weight: bold; display: block; text-transform: uppercase; margin-bottom: 2px; }
@@ -101,16 +95,17 @@
         <div class="header-container container">
             <div class="logo-container">
                 <a href="index.html" class="logo-link">
-                    <img src="imagini/pula-logo-mic.png" alt="PULA Logo Mic" class="logo-nav">
+                    <img src="../imagini/pula-logo-mic.png" alt="PULA Logo Mic" class="logo-nav">
                     <span class="logo-text">P.U.L.A.</span>
                 </a>
             </div>
 
+            <!-- Price Wagon Ticker -->
+
             <nav class="navigatie-principala">
-                <!-- Comutatorul de limbă -->
                 <div class="language-switcher">
-                    <a href="simulator.html" class="lang-link active-lang"><img src="imagini/flag-ro.png" alt="Română"></a>
-                    <a href="en/simulator.html" class="lang-link"><img src="imagini/flag-en.png" alt="English"></a>
+                    <a href="../simulator.html" class="lang-link"><img src="../imagini/flag-ro.png" alt="Română"></a>
+                    <a href="simulator.html" class="lang-link active-lang"><img src="../imagini/flag-en.png" alt="English"></a>
                 </div>
             </nav>
         </div>
@@ -166,73 +161,66 @@
             var r = window.ratesRon || 4.65;
             var cu = p * 1e6;
             update({usd:cu, ron:cu*r, eur:cu*(window.ratesEur||0.92), bwp:cu*(window.ratesBwp||13.75), sol:window.pulaPriceSol||0, market_cap_usd:Math.round(953800000*p), supply:953800000});
-            // actualizează elementele statice cu prețul live
-            var carutaRon = (cu * r).toFixed(2);
-            var carutaRonFmt = parseFloat(carutaRon).toLocaleString('ro-RO', {minimumFractionDigits:2, maximumFractionDigits:2});
-            var pretLabel = document.getElementById('pret-caruta-label');
-            if (pretLabel) pretLabel.innerText = 'O Căruță de PULA e ' + carutaRonFmt + ' RON';
-            if (typeof update === 'function') update();
         });
     })();
     </script>
 
     <div class="dashboard">
-
-        <!-- UNIFIED HEADER SIMETRIC -->
         <div class="unified-header">
             <div class="header-left">
-                <span class="row-label">SĂPTĂMÂNA <button class="btn-step" onclick="step('weeks', -1)" style="width:22px; height:22px; font-size:1em; vertical-align:middle;">-</button> <span id="v-weeks" style="font-weight:bold;">12</span> <button class="btn-step" onclick="step('weeks', 1)" style="width:22px; height:22px; font-size:1em; vertical-align:middle;">+</button></span>
-                <span id="header-mult-text" class="row-main-val color-roz">1,0x</span>
-                <span id="pula-w12-box" class="row-sub-info color-albastru-deschis">O Căruță de PULA = 10,34 RON</span>
+                <span class="row-label">WEEK 12</span>
+                <span id="header-mult-text" class="row-main-val color-roz">1.0x</span>
+                <div id="pula-w12-box" class="row-sub-info color-albastru-deschis">1 Wagon PULA = $2.315 USD</div>
             </div>
             <div class="header-right">
-                <span class="row-label color-alb">CÂȘTIG:</span>
-                <span id="header-val-text" class="row-main-val color-verde">103,40 RON</span>
-                <span id="diesel" class="row-sub-info color-albastru-inchis">⛽ 10,8L Motorină</span>
+                <span class="row-label color-alb">PROFIT:</span>
+                <span id="header-val-text" class="row-main-val color-verde">$23.7</span>
+                <div id="diesel" class="row-sub-info color-albastru-inchis">⛽ 1.1L DIESEL</div>
             </div>
         </div>
 
         <div class="area-chart">
             <div id="raydium-overlay">
                 <span class="raydium-text">🚀 RAYDIUM<br>MIGRATION</span>
-                <button class="btn-overlay-reset" onclick="resetSim()">REÎNCEPE SIMULAREA</button>
+                <button class="btn-overlay-reset" onclick="resetSim()">RESTART SIMULATION</button>
             </div>
             <canvas id="growthChart"></canvas>
         </div>
 
         <div class="row-bottom">
             <div class="area-inv">
-                <label id="pret-caruta-label">O Căruță de PULA e 10,34 RON</label>
-                <div style="display:flex; align-items:center; gap:8px; margin-top:8px;">
-                    <label style="margin:0;">Cumpăr de</label>
-                    <input type="number" id="inv" value="50" style="width:80px; text-align:center;">
-                    <span class="input-unit">RON</span>
+                <label>1 WAGON = $2.315 USD</label>
+                <label>INVEST AMOUNT</label>
+                <div style="display:flex; align-items:center;">
+                    <input type="number" id="inv" value="23.7">
+                    <span class="input-unit">USD</span>
                 </div>
-                <div class="dca-controls" style="margin-top:8px;">
-                    <input type="checkbox" id="dca-on" checked>
-                    <span style="font-size:0.85em; color:#4caf50; font-weight:bold;">O dată la</span>
+                <span id="buying-power" class="buying-power">TOTAL: 10.0 WAGONS</span>
+                
+                <div class="dca-controls">
+                    <input type="checkbox" id="dca-on">
+                    <span style="font-size:0.75em; color:#4caf50; font-weight:bold;">DCA every</span>
                     <button class="btn-step" onclick="step('days', -1)" style="width:22px; height:22px; font-size:1em;">-</button>
                     <span id="v-days" style="font-size:0.85em; font-weight:bold;">7</span>
-                    <button class="btn-step" onclick="step('days', 1)" style="width:22px; height:22px; font-size:1em;">+</button>zile
+                    <button class="btn-step" onclick="step('days', 1)" style="width:22px; height:22px; font-size:1em;">+</button> days
                 </div>
-                <span id="buying-power" class="buying-power" style="display:block; margin-top:10px;">Total săptămâna 12: 600 de RON sau 53,19 Căruțe de PULA</span>
             </div>
             <div class="area-peers">
                 <div class="control-row">
-                    <span style="font-size:0.75em; color:#888; font-weight:bold;">HAIDUCI<br>/SĂPTĂMÂNĂ</span>
+                    <span style="font-size:0.75em; color:#888; font-weight:bold;">NEW PEERS</br>/WEEK</span>
                     <button class="btn-step" onclick="step('peers', -5)">-</button>
                     <span id="v-peers" class="val-mini">0</span>
                     <button class="btn-step" onclick="step('peers', 5)">+</button>
                 </div>
                 <div class="control-row">
-                    <span style="font-size:0.75em; color:#888; font-weight:bold;">INVESTIȚIE<br>/HAIDUC</span>
+                    <span style="font-size:0.75em; color:#888; font-weight:bold;">AVG BUY</br>/PEER</span>
                     <button class="btn-step" onclick="step('avg', -10)">-</button>
                     <span id="v-avg" class="val-mini">0</span>
                     <button class="btn-step" onclick="step('avg', 10)">+</button>
                 </div>
                 <div id="mcap-container" class="mcap-box">
-                    <div>Capul Pieței 1 Hambar:</div>
-                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">10.340 RON</div>
+                    <div>1 Barn MarketCap:</div>
+                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">$2.3150</div>
                 </div>
             </div>
         </div>
@@ -241,7 +229,7 @@
     <script>
         const ctx = document.getElementById('growthChart').getContext('2d');
         let chart;
-        let state = { peers: 100, avg: 80, days: 7, weeks: 12 };
+        let state = { peers: 0, avg: 0, days: 7 };
         let isGraduated = false;
 
         const ui = {
@@ -263,18 +251,18 @@
         };
 
         function step(key, delta) {
-            state[key] = Math.max(0, (state[key] || 0) + delta);
-            if (key === 'days') state[key] = Math.max(1, state[key]);
-            if (key === 'weeks') state[key] = Math.min(52, Math.max(1, state[key]));
-            const el = document.getElementById('v-' + key);
-            if (el) el.innerText = state[key];
+            if (isGraduated) return;
+            state[key] = Math.max(key === 'days' ? 1 : 0, state[key] + delta);
+            ui.v_peers.innerText = state.peers;
+            ui.v_avg.innerText = state.avg;
+            ui.v_days.innerText = state.days;
             update();
         }
 
         function resetSim() {
             isGraduated = false;
             state = { peers: 0, avg: 0, days: 7 };
-            ui.inv.value = 103.4;
+            ui.inv.value = 23.7;
             ui.dca.checked = false;
             ui.v_peers.innerText = 0; ui.v_avg.innerText = 0; ui.v_days.innerText = 7;
             ui.btns.forEach(b => b.disabled = false);
@@ -283,119 +271,54 @@
         }
 
         function update() {
-            // === MODEL BONDING CURVE ===
-            // Preț = MarketCap / 1000 (pentru o Căruță = 1M PULA din 1B supply)
-            // Fiecare cumpărare urcă MC, deci urcă prețul pentru următoarea
-            
-            const SUPPLY = 1e9; // 1 miliard PULA
-            const CARUTA = 1e6; // 1 milion PULA
+            const initialMC_USD = 2370;
             const ronToUsd = window.ratesRon || 4.3629;
-            const priceUsdInit = window.pulaPriceUsd || 2.37e-6;
-            
-            // MC inițial în RON (din prețul curent live)
-            let mcRON = priceUsdInit * SUPPLY * ronToUsd;
-            const mcInitRON = mcRON;
-            
-            const invAmount = parseFloat(ui.inv.value) || 0;
+            const invAmount_USD = parseFloat(ui.inv.value) || 0;
             const isDCA = ui.dca.checked;
-            const totalWeeks = state.weeks;
-            const daysTotal = totalWeeks * 7;
-            
-            // Numărul de cumpărări DCA până la săptămâna w
-            function buysUntilWeek(w) {
-                if (!isDCA) return (w >= 0 ? 1 : 0);
-                return Math.floor((w * 7) / state.days) + 1; // +1 pentru cumpărarea inițială la zi 0
-            }
-            
-            let labels = [], values = [];
-            let myCarute = 0;
-            let myRonSpent = 0;
-            let lastBuyCount = 0;
+
+            const totalIn = isDCA ? invAmount_USD * (Math.floor(84 / state.days) + 1) : invAmount_USD;
+            ui.buyingPower.innerText = `TOTAL: ${(totalIn / 2.315).toFixed(1)} WAGONS`;
+
+            let labels = []; let values = [];
+            let currentMC_USD = initialMC_USD;
             isGraduated = false;
-            
-            for (let w = 0; w <= totalWeeks; w++) {
-                labels.push('S' + w);
-                
-                // 1. Cumpărările mele DCA în săptămâna asta
-                const targetBuys = isDCA ? buysUntilWeek(w) : (w === 0 ? 1 : 0);
-                const newBuys = targetBuys - lastBuyCount;
-                for (let b = 0; b < newBuys; b++) {
-                    const pricePerCaruta = mcRON / 1000; // 1 Căruță = 1/1000 din supply
-                    const carute = invAmount / pricePerCaruta;
-                    myCarute += carute;
-                    myRonSpent += invAmount;
-                    mcRON += invAmount;
+
+            for (let w = 0; w <= 12; w++) {
+                labels.push('W' + w);
+                if (w === 0) {
+                    let startInv = isDCA ? (invAmount_USD * (7/state.days)) : invAmount_USD;
+                    currentMC_USD += startInv;
                 }
-                lastBuyCount = targetBuys;
-                
-                // 2. Haiducii intră săptămânal (nu la w=0)
                 if (w > 0) {
-                    const peerInflow = state.peers * state.avg; // RON
-                    mcRON += peerInflow;
+                    let newCap = (w * state.peers * (state.avg / ronToUsd));
+                    if (isDCA) newCap += (invAmount_USD * (7 / state.days));
+                    currentMC_USD += newCap;
                 }
-                
-                // 3. Verificare gradare (Raydium la 80 SOL ≈ 36.673 USD ≈ 159.973 RON la 4,36)
-                const gradThreshRON = 36673 * ronToUsd;
-                if (mcRON >= gradThreshRON && !isGraduated) {
+                if (currentMC_USD >= (initialMC_USD + 34303) && !isGraduated) {
                     isGraduated = true;
                     ui.overlay.style.display = 'flex';
                     ui.btns.forEach(b => b.disabled = true);
                     ui.inputs.forEach(i => i.disabled = true);
                 }
-                
-                // 4. Valoarea curentă a portofoliului meu
-                const pricePerCaruta = mcRON / 1000;
-                const myValue = myCarute * pricePerCaruta;
-                values.push(myValue.toFixed(0));
-                
+                const multiplier = currentMC_USD / (initialMC_USD + (isDCA ? 0 : invAmount_USD)); 
+                let currentMyInvest = isDCA ? (invAmount_USD * (Math.floor((w * 7) / state.days) + 1)) : invAmount_USD;
+                values.push((currentMyInvest * (currentMC_USD / (initialMC_USD + invAmount_USD))).toFixed(1));
                 if (isGraduated) break;
             }
-            
+
             if (!isGraduated) ui.overlay.style.display = 'none';
-            
-            const finalValue = parseFloat(values[values.length - 1]);
-            const gain = finalValue - myRonSpent;
-            const multiplier = myRonSpent > 0 ? finalValue / myRonSpent : 1;
-            
-            // === FORMATARE RO ===
-            function fmtRON(n) {
-                return Math.round(n).toLocaleString('ro-RO');
-            }
-            function fmtRONdec(n, dec) {
-                return n.toLocaleString('ro-RO', {minimumFractionDigits: dec, maximumFractionDigits: dec});
-            }
-            function deRule(num, unit) {
-                const n = Math.floor(num);
-                return (n >= 20 ? ' de ' : ' ') + unit;
-            }
-            
-            // Total Căruțe acumulate (pentru afișare TOTAL)
-            const carutaCount = myCarute;
-            const carutaCountStr = fmtRONdec(carutaCount, 2) + deRule(carutaCount, 'Căruțe de PULA');
-            const ronSpentStr = fmtRON(myRonSpent) + deRule(myRonSpent, 'RON');
-            
-            ui.buyingPower.innerText = `Total săptămâna ${totalWeeks}: ${ronSpentStr} sau ${carutaCountStr}`;
-            
-            // Capul Pieței 1 Hambar (= 1B PULA = supply total)
-            const hambarRON = mcRON; // 1 Hambar = supply întreg
-            ui.mcap.innerText = fmtRON(hambarRON) + ' RON';
-            
-            if (mcRON < mcInitRON) ui.mcapCont.classList.add('mcap-down');
+
+            const lastV = values[values.length - 1];
+            ui.mcap.innerText = `$${Math.round(currentMC_USD).toLocaleString('en-US')}`;
+            if (currentMC_USD < initialMC_USD) ui.mcapCont.classList.add('mcap-down');
             else ui.mcapCont.classList.remove('mcap-down');
-            
-            // Preț Căruță: zona input arată prețul ACUM, header arată prețul în săptămâna finală
-            const pretCarutaInit = mcInitRON / 1000;
-            const pretCarutaFinal = mcRON / 1000;
-            const pretLabel = document.getElementById('pret-caruta-label');
-            if (pretLabel) pretLabel.innerText = `O Căruță acum = ${fmtRONdec(pretCarutaInit, 2)} RON`;
-            ui.pulaW12Box.innerText = `O Căruță în S${totalWeeks} = ${fmtRONdec(pretCarutaFinal, 2)} RON`;
-            
-            // Câștig + multiplier
-            ui.resVal.innerText = fmtRON(finalValue) + ' RON';
-            ui.resMult.innerText = fmtRONdec(multiplier, 1) + 'x';
-            ui.diesel.innerText = `⛽ ${fmtRONdec(finalValue / 9.58, 1)}L Motorină`;
-            
-            // === CHART ===
+
+            const totalGrowth = currentMC_USD / initialMC_USD;
+            ui.pulaW12Box.innerText = `1 Wagon PULA = $${(2.315 * totalGrowth).toFixed(2)} USD`;
+            ui.resVal.innerText = `$${parseFloat(lastV).toLocaleString('en-US')}`;
+            ui.resMult.innerText = (lastV / (totalIn || 1)).toFixed(1) + 'x';
+            ui.diesel.innerText = `⛽ ${(lastV / 2.195).toFixed(1)}L DIESEL`;
+
             if (chart) chart.destroy();
             chart = new Chart(ctx, {
                 type: 'line',
@@ -403,16 +326,16 @@
                     labels: labels,
                     datasets: [{
                         data: values,
-                        borderColor: isGraduated ? '#00ffa3' : (mcRON < mcInitRON ? '#ff4444' : '#fcd116'),
+                        borderColor: isGraduated ? '#00ffa3' : (currentMC_USD < initialMC_USD ? '#ff4444' : '#fcd116'),
                         borderWidth: 4,
-                        backgroundColor: isGraduated ? 'rgba(0, 255, 163, 0.15)' : 'rgba(252, 209, 22, 0.1)',
+                        backgroundColor: isGraduated ? 'rgba(0, 255, 163, 0.15)' : 'rgba(2.315, 209, 22, 0.1)',
                         fill: true, tension: 0.4, pointRadius: 0
                     }]
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false, animation: false,
                     scales: {
-                        y: { position: 'right', grid: { color: '#111' }, ticks: { color: isGraduated ? '#00ffa3' : (mcRON < mcInitRON ? '#ff4444' : '#4caf50'), font: { size: 10, weight: 'bold' } } },
+                        y: { position: 'right', grid: { color: '#111' }, ticks: { color: isGraduated ? '#00ffa3' : (currentMC_USD < initialMC_USD ? '#ff4444' : '#4caf50'), font: { size: 10, weight: 'bold' } } },
                         x: { grid: { display: false }, ticks: { color: '#555', font: { size: 10 } } }
                     },
                     plugins: { legend: { display: false } }
@@ -426,10 +349,10 @@
 
     <footer style="margin-top: 50px; padding: 40px 20px; background: #050505; border-top: 1px solid #111; color: #555; text-align: center; font-family: sans-serif;">
         <div style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
-            <p style="margin-bottom: 15px; font-size: 0.85rem; color: #444;"><strong>Disclaimer:</strong> Acesta este un memecoin și un experiment social. Nu reprezintă un sfat financiar. Toate calculele din simulator sunt pur orientative și bazate pe creșteri ipotetice. Distrează-te responsabil!</p>
-            <p style="margin-bottom: 15px; font-size: 0.9rem;">&copy; 2018-2026 PULA of Dracula. Toate drepturile sunt la fel de volatile ca și piața crypto.</p>
-            <p style="margin-bottom: 5px; font-size: 0.9rem;">Contact: <a href="mailto:ioncreanga2025@gmail.com" style="color: #fcd116; text-decoration: none; font-weight: bold;">ioncreanga2025@gmail.com</a></p>
-            <p style="font-size: 0.8rem;">Site accesibil și prin: <a href="https://pula.short.gy/" target="_blank" rel="noopener noreferrer" style="color: #444; text-decoration: underline;">pula.short.gy</a></p>
+            <p style="margin-bottom: 15px; font-size: 0.85rem; color: #444;"><strong>Disclaimer:</strong> This is a memecoin and a social experiment. It does not represent financial advice. All calculations in the simulator are purely indicative and based on hypothetical growth. Have fun responsibly!</p>
+            <p style="margin-bottom: 15px; font-size: 0.9rem;">&copy; 2018-2.3156 PULA of Dracula. All rights are as volatile as the crypto market.</p>
+            <p style="margin-bottom: 5px; font-size: 0.9rem;">Contact: <a href="mailto:ioncreanga2.195@gmail.com" style="color: #fcd116; text-decoration: none; font-weight: bold;">ioncreanga2.195@gmail.com</a></p>
+            <p style="font-size: 0.8rem;">Site accessible also via: <a href="https://pula.short.gy/" target="_blank" rel="noopener noreferrer" style="color: #444; text-decoration: underline;">pula.short.gy</a></p>
         </div>
     </footer>
 </body>

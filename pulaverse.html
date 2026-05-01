@@ -41,12 +41,11 @@
 
             <nav class="navigatie-principala">
                 <ul class="nav-lista">
-                    <li><a href="pulaverse.html" class="nav-link">PULAverse</a></li>
+                    <li><a href="pulaverse.html" class="nav-link active">PULAverse</a></li>
                     <li><a href="viziunea.html" class="nav-link">Viziunea</a></li>
                     <li><a href="harta.html" class="nav-link">Harta</a></li>
                     <li><a href="cumpara.html" class="nav-link">Cumpără</a></li>
                     <li><a href="comunitate.html" class="nav-link">Comunitate</a></li>
-                    <li><a href="vulva.html" class="nav-link">V.U.L.V.A.</a></li>
                 </ul>
                 <div class="language-switcher">
                     <a href="pulaverse.html" class="lang-link active-lang"><img src="imagini/flag-ro.png" alt="Română"></a>
@@ -71,64 +70,115 @@
     </div>
     <script>
     (function() {
+        var PAIR = '4btoeuklvrqycz8r8xugana4czsvopwsmzbfpvghhghr';
         var jsonPath = '/admin/pret.json';
-        function fmt(n, dec) { return (n !== null && n !== undefined) ? Number(n).toFixed(dec) : '—'; }
+
+        function fmt(n, dec) { return (n !== null && n !== undefined && !isNaN(n)) ? Number(n).toFixed(dec) : '—'; }
+        function fmtPula(n) {
+            if (!n || isNaN(n)) return '—';
+            // Regula gramaticală română: "de" se adaugă la numere >= 20
+            function de(num, unit) {
+                var prefix = num.toFixed(2);
+                var intPart = Math.floor(parseFloat(prefix));
+                return prefix + (intPart >= 20 ? ' de ' : ' ') + unit;
+            }
+            if (n >= 1e9) return de(n/1e9, 'Hambare de PULA');
+            if (n >= 1e6) return de(n/1e6, 'Căruțe de PULA');
+            if (n >= 1e3) return de(n/1e3, 'Legături de PULA');
+            if (n >= 1) {
+                var rounded = Math.round(n);
+                return rounded.toLocaleString('ro-RO') + (rounded >= 20 ? ' de PULA' : ' PULA');
+            }
+            if (n >= 1e-3) return de(n*1e3, 'Stropi de PULA');
+            return (n*1e6).toFixed(2) + ' Nimic';
+        }
         function fmtInt(n) { return Number(n).toLocaleString('ro-RO'); }
+
         function buildContent(d) {
             var sep = '<span class="banda-sep">◆</span>';
             var pipe = ' <span class="banda-unit">|</span> ';
             var vals = [
                 '<span class="banda-val">' + fmt(d.ron,2) + '</span> <span class="banda-unit">RON</span>',
-                '<span class="banda-val">' + fmt(d.usd,2) + '</span> <span class="banda-unit">USD</span>',
-                '<span class="banda-val">' + fmt(d.eur,2) + '</span> <span class="banda-unit">EUR</span>',
-                '<span class="banda-val">' + fmt(d.bwp,2) + '</span> <span class="banda-unit">BWP</span>',
-                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>',
-                '<span class="banda-val">' + fmt(d.btc,9) + '</span> <span class="banda-unit">BTC</span>',
-                '<span class="banda-val">' + fmt(d.eth,8) + '</span> <span class="banda-unit">ETH</span>'
+                '<span class="banda-val">' + fmt(d.usd,4) + '</span> <span class="banda-unit">USD</span>',
+                '<span class="banda-val">' + fmt(d.eur,4) + '</span> <span class="banda-unit">EUR</span>',
+                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>'
             ];
             var html = '<span class="banda-item"><span class="banda-label">1 CĂRUȚĂ:</span> ' + vals.join(pipe) + '</span>';
-            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(d.market_cap_usd) + '</span></span>';
+            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(Math.round(d.market_cap_usd)) + '</span></span>';
+            // Paritate mărfuri (1 unitate = X PULA)
+            if (d.motorina_ron && d.ron) {
+                var pula_per_litru = (d.motorina_ron / d.ron) * 1e6;
+                html += sep + '<span class="banda-item"><span class="banda-label">1L Motorină:</span> <span class="banda-val">' + fmtPula(pula_per_litru) + '</span></span>';
+            }
+            if (d.kwh_ron && d.ron) {
+                var pula_per_kwh = (d.kwh_ron / d.ron) * 1e6;
+                html += sep + '<span class="banda-item"><span class="banda-label">1 kWh:</span> <span class="banda-val">' + fmtPula(pula_per_kwh) + '</span></span>';
+            }
+            if (d.aur_ron_per_gram && d.ron) {
+                var pula_per_gram_aur = (d.aur_ron_per_gram / d.ron) * 1e6;
+                html += sep + '<span class="banda-item"><span class="banda-label">1g Aur:</span> <span class="banda-val">' + fmtPula(pula_per_gram_aur) + '</span></span>';
+            }
             html += sep + '<span class="banda-item"><span class="banda-label">SUPPLY:</span> <span class="banda-val">' + fmtInt(d.supply) + '</span> <span class="banda-unit">PULA</span></span>';
             return html + sep + html;
         }
+
         function update(d) {
             var el = document.getElementById('bandaContinut');
             if (el) el.innerHTML = buildContent(d);
+            localStorage.setItem('pula_pret', JSON.stringify(d));
         }
-        fetch(jsonPath + '?v=' + Date.now())
-            .then(function(r){return r.json();})
-            .then(update)
-            .catch(function(){
-                var ls = localStorage.getItem('pula_pret');
-                if (ls) try { update(JSON.parse(ls)); } catch(e){}
-            });
-        document.addEventListener('pulaReady', function() {
-            var p = window.pulaPriceUsd || 2.368e-6;
-            var cu = p * 1e6;
-            update({
-                usd: cu,
-                ron: cu * (window.ratesRon || 4.65),
-                eur: cu * (window.ratesEur || 0.92),
-                bwp: cu * (window.ratesBwp || 13.75),
+
+        function fetchLive(staticData) {
+            var priceUsd = window.pulaPriceUsd || 2.368e-6;
+            var carutaUsd = priceUsd * 1e6;
+            var ron = window.ratesRon || 4.7;
+            var d = Object.assign({}, staticData, {
+                usd: carutaUsd,
+                ron: carutaUsd * ron,
+                eur: carutaUsd * (window.ratesEur || 0.92),
+                bwp: carutaUsd * (window.ratesBwp || 13.7),
                 sol: window.pulaPriceSol || 0,
-                market_cap_usd: Math.round(953800000 * p),
-                supply: 953800000
+                market_cap_usd: Math.round(priceUsd * (staticData.supply || 1e9))
             });
-        });
+            fetch('https://api.metals.live/v1/spot/gold')
+                .then(function(r){ return r.json(); })
+                .then(function(gold) {
+                    var ozUsd = Array.isArray(gold) ? gold[0].gold : gold.gold;
+                    if (ozUsd) d.aur_ron_per_gram = (ozUsd / 31.103) * ron;
+                    update(d);
+                }).catch(function(){ update(d); });
+        }
+
+        window._pulaStaticData = {};
+        document.addEventListener('pulaReady', function() { fetchLive(window._pulaStaticData); });
+        // Citește pret.json pentru motorina/kwh, apoi fetch live
+        fetch(jsonPath + '?v=' + Date.now())
+            .then(function(r){ return r.json(); })
+            .then(function(staticData) {
+                window._pulaStaticData = staticData;
+                update(staticData); // afișează imediat datele statice
+                fetchLive(staticData); // apoi actualizează cu date live
+            })
+            .catch(function() {
+                var ls = localStorage.getItem('pula_pret');
+                var fallback = ls ? JSON.parse(ls) : {};
+                update(fallback);
+                fetchLive(fallback);
+            });
     })();
     </script>
 
     <main class="container">
         <section class="sectiune" id="cronica">
-            <h2>Cronica Modernă a PULEI:</br>O Saga a Rezilienței</h2>
+            <h2>Cronica Modernă a PULA:</br>O Saga a Rezilienței</h2>
             <p>Povestea PULA of Dracula nu este o simplă istorie a unui memecoin. Este o odisee, o cronică a umorului și a spiritului românesc care refuză să se predea. Iată cum a început aventura modernă...</p>
 
             <h3>Capitolul I: Profeția (Anul Domnului 2018)</h3>
-            <p>Pe forumul Bitcointalk, a apărut o idee: **Payment Unit for Labor Abolishment - P.U.L.A.** Un nume șugubăț, dar care ascundea o viziune. Se vorbea de unități precum "nimic", "fleac" și "hambar de P.U.L.A.". Sloganuri precum "Nu vinde P.U.L.A. cât e mică!" prindeau viață.</p>
+            <p>Pe forumul Bitcointalk, a apărut o idee: **Payment Unit for Labor Absolution - P.U.L.A.** (azi: Abolishment) Un nume șugubăț, dar care ascundea o viziune. Se vorbea de unități precum "nimic", "fleac" (azi strop) și "hambar de P.U.L.A.". Sloganuri precum "Nu vinde P.U.L.A. cât e mică!" prindeau viață.</p>
             <p class="interpretare-text" style="background-color: rgba(229, 57, 53, 0.1); border-left-color: #e53935;">
                 <strong>Unitățile de Măsură PULA:</strong>
-                <br> 1 PULA = 1.000.000 `nimic` | 1 PULA = 1.000 `fleacuri`
-                <br> 1 `roabă` = 1.000 PULA | 1 `căruță` = 1.000.000 PULA | 1 `hambar` = 1.000.000.000 PULA
+                <br> 1 PULA = 1.000.000 `nimic` | 1 PULA = 1.000 `fleacuri` (azi stropi)
+                <br> 1 `roabă` (azi legătură) = 1.000 PULA | 1 `căruță` = 1.000.000 PULA | 1 `hambar` = 1.000.000.000 PULA
                 <br> Supply-ul final vizat: 8.250.000.000 de PULA (câte una pentru fiecare)
 				<br> Mai exact, 8 cvadrilioane și 250 de trilioane de `nimic`.
             </p>
@@ -137,7 +187,7 @@
             <p>Creatorul PULA a trecut prin încercări demne de basmele cu zmei: de la telefoane sparte (cu chei private în ele!), la episoade psihotice și traiul pe străzi. O perioadă în care PULA părea un vis pierdut.</p>
 
             <h3>Capitolul III: Renașterea cu AI (2024)</h3>
-            <p>Ca un Phoenix digital, ideea PULA a renăscut cu ajutorul Inteligenței Artificiale. Gemini, ChatGPT, Grok – o armată de algoritmi au ajutat la rafinarea conceptului pentru o revenire spectaculoasă.</p>
+            <p>Ca un Phoenix digital, ideea PULA a renăscut cu ajutorul Inteligenței Artificiale. Claude, Gemini, ChatGPT, Grok – o armată de algoritmi au ajutat la rafinarea conceptului pentru o revenire spectaculoasă.</p>
 
             <h3>Capitolul IV: PULA Mică se Trezește pe Solana (Prezent)</h3>
             <p>Pe celebra platformă Pump.fun, **PULA of Dracula (PULA)** a văzut din nou lumina blockchain-ului! "PULA Mică" a început să-și facă simțită prezența.</p>
@@ -154,11 +204,11 @@
         </section>
 
         <section class="sectiune" id="simbol">
-            <h2>Filozofia Simbolului (♂)</h2>
+            <h2>Filozofia Simbolului <span style="font-weight:bold;font-size:1.2em;color:#87ceeb">♂</span></h2>
             <p>Logo-ul PULA unește două forțe opuse, creând o sinteză dinamică:</p>
             <ul>
-                <li><strong>Cercul (♀): Forța Conservatoare.</strong> Reprezintă stabilitatea, tradiția, rădăcinile noastre adânci (cultura românească, istoria ADN). Este fundația solidă pe care construim.</li>
-                <li><strong>Săgeata (♂): Forța Progresistă.</strong> Reprezintă disrupția, inovația, mișcarea spre un viitor radical (viziunea "lumii fără bani", tehnologia AI). Este vectorul schimbării.</li>
+                <li><strong>Cercul <span style="color:#e53935">-</span> <span style="font-size:1.625em;color:#87ceeb">○</span>: Forța Conservatoare.</strong> Reprezintă stabilitatea, tradiția, rădăcinile noastre adânci (cultura românească, istoria ADN). Este fundația solidă pe care construim.</li>
+                <li><strong>Săgeata <span style="color:#e53935">-</span> <span style="font-size:1.3em;color:#87ceeb">↗</span>: Forța Progresistă.</strong> Reprezintă disrupția, inovația, mișcarea spre un viitor radical (viziunea "lumii fără bani", tehnologia AI). Este vectorul schimbării.</li>
             </ul>
             <p>PULA folosește stabilitatea rădăcinilor "conservatoare" (cercul) ca fundație de pe care lansează vectorul "progresist" de schimbare (săgeata).</p>
         </section>
@@ -167,7 +217,7 @@
             <h2>Marea Conspirație PULA</h2>
             <p>Și dacă toate acestea nu sunt coincidențe? De la profețiile de pe coperțile The Economist la mesajele ascunse în operele lui Creangă și Eminescu, PULA pare a fi veriga lipsă dintr-un plan cosmic.</p>
             <div class="imagini-container-conspiratie" style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:20px;">
-                <img src="imagini/economist-1988.jpg" alt="The Economist 1988 Cover" style="max-width:45%; height:auto; border:1px solid #555;">
+                <img src="imagini/economist-1988.jpg" alt="The Economist 1988 Cover" style="max-width:calc(45% + 50px); height:auto; border:1px solid #555;">
                 <img src="imagini/economist-2019.jpg" alt="The Economist 2019 Cover Modificat" style="max-width:45%; height:auto; border:1px solid #555;">
             </div>
             <p class="interpretare-text"><strong>Disclaimer Șocant de Onest:</strong> Toate informațiile din această secțiune sunt prezentate cu scop umoristic. Nu ne asumăm răspunderea pentru eventualele nopți albe petrecute căutând simboluri PULA în tablourile lui Grigorescu. Râdeți din toată PULA!</p>

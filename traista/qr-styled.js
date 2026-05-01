@@ -31,6 +31,12 @@
     '#transfer-info-panel strong { color:#fff; }',
     '#transfer-info-panel .info-warn { color:#e53935; }',
     '#transfer-info-panel .info-ok { color:#27ae60; }',
+
+    '.unit.unit-center { display:block !important; text-align:center !important; }',
+    '.unit.unit-right  { display:block !important; text-align:right  !important; }',
+    '.unit.unit-center .geom, .unit.unit-right .geom { width:22px !important; position:static !important; display:inline-block !important; text-align:center !important; }',
+    '.small-btn.buy { color:#e53935 !important; }',
+
   ].join('\n');
   document.head.appendChild(style);
 

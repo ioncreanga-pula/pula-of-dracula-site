@@ -61,18 +61,19 @@
             <div class="logo-container">
                 <a href="index.html" class="logo-link">
                     <img src="../imagini/pula-logo-mic.png" alt="PULA Logo Mic" class="logo-nav">
-                    <span class="logo-text active">P.U.L.A.</span>
+                    <span class="logo-text">P.U.L.A.</span>
                 </a>
             </div>
 
             <!-- Price Wagon Ticker (Clickable Link to Simulator) -->
             <nav class="navigatie-principala">
 				<ul class="nav-lista">
-					<li><a href="/en/pulaverse.html" class="nav-link">PULAverse</a></li>
-					<li><a href="/en/vision.html" class="nav-link">Vision</a></li>
-					<li><a href="/en/roadmap.html" class="nav-link">Roadmap</a></li>
-					<li><a href="/en/how-to-buy.html" class="nav-link">Buy</a></li>
-					<li><a href="/en/community.html" class="nav-link">Community</a></li>
+					<li><a href="pulaverse.html" class="nav-link">PULAverse</a></li>
+					<li><a href="../viziunea.html" class="nav-link">Vision</a></li>
+					<li><a href="../harta.html" class="nav-link">Roadmap</a></li>
+					<li><a href="../cumpara.html" class="nav-link">Buy</a></li>
+					<li><a href="../comunitate.html" class="nav-link">Community</a></li>
+					<li><a href="vulva.html" class="nav-link">V.U.L.V.A.</a></li>
 				</ul>
                 <div class="language-switcher">
                     <a href="../index.html" class="lang-link"><img src="../imagini/flag-ro.png" alt="Română"></a>
@@ -97,92 +98,50 @@
     </div>
     <script>
     (function() {
-        var PAIR = '4btoeuklvrqycz8r8xugana4czsvopwsmzbfpvghhghr';
         var jsonPath = '/admin/pret.json';
-
-        function fmt(n, dec) { return (n !== null && n !== undefined && !isNaN(n)) ? Number(n).toFixed(dec) : '—'; }
-        function fmtPula(n) {
-            if (!n || isNaN(n)) return '—';
-            if (n >= 1e9) return (n/1e9).toFixed(2) + ' Barns of PULA';
-            if (n >= 1e6) return (n/1e6).toFixed(2) + ' Carts of PULA';
-            if (n >= 1e3) return (n/1e3).toFixed(2) + ' Bundles of PULA';
-            if (n >= 1) {
-                var rounded = Math.round(n);
-                return rounded.toLocaleString('en-US') + ' PULA';
-            }
-            if (n >= 1e-3) return (n*1e3).toFixed(2) + ' Drops of PULA';
-            return (n*1e6).toFixed(2) + ' Nothing';
-        }
-        function fmtInt(n) { return Number(n).toLocaleString('en-US'); }
-
+        function fmt(n, dec) { return (n !== null && n !== undefined) ? Number(n).toFixed(dec) : '—'; }
+        function fmtInt(n) { return Number(n).toLocaleString('ro-RO'); }
         function buildContent(d) {
             var sep = '<span class="banda-sep">◆</span>';
             var pipe = ' <span class="banda-unit">|</span> ';
             var vals = [
                 '<span class="banda-val">' + fmt(d.ron,2) + '</span> <span class="banda-unit">RON</span>',
-                '<span class="banda-val">' + fmt(d.usd,4) + '</span> <span class="banda-unit">USD</span>',
-                '<span class="banda-val">' + fmt(d.eur,4) + '</span> <span class="banda-unit">EUR</span>',
-                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>'
+                '<span class="banda-val">' + fmt(d.usd,2) + '</span> <span class="banda-unit">USD</span>',
+                '<span class="banda-val">' + fmt(d.eur,2) + '</span> <span class="banda-unit">EUR</span>',
+                '<span class="banda-val">' + fmt(d.bwp,2) + '</span> <span class="banda-unit">BWP</span>',
+                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>',
+                '<span class="banda-val">' + fmt(d.btc,9) + '</span> <span class="banda-unit">BTC</span>',
+                '<span class="banda-val">' + fmt(d.eth,8) + '</span> <span class="banda-unit">ETH</span>'
             ];
             var html = '<span class="banda-item"><span class="banda-label">1 CART:</span> ' + vals.join(pipe) + '</span>';
-            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(Math.round(d.market_cap_usd)) + '</span></span>';
-            if (d.motorina_ron && d.ron) {
-                var pula_per_litru = (d.motorina_ron / d.ron) * 1e6;
-                html += sep + '<span class="banda-item"><span class="banda-label">1L Diesel:</span> <span class="banda-val">' + fmtPula(pula_per_litru) + '</span></span>';
-            }
-            if (d.kwh_ron && d.ron) {
-                var pula_per_kwh = (d.kwh_ron / d.ron) * 1e6;
-                html += sep + '<span class="banda-item"><span class="banda-label">1 kWh:</span> <span class="banda-val">' + fmtPula(pula_per_kwh) + '</span></span>';
-            }
-            if (d.aur_ron_per_gram && d.ron) {
-                var pula_per_gram_aur = (d.aur_ron_per_gram / d.ron) * 1e6;
-                html += sep + '<span class="banda-item"><span class="banda-label">1g Gold:</span> <span class="banda-val">' + fmtPula(pula_per_gram_aur) + '</span></span>';
-            }
+            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(d.market_cap_usd) + '</span></span>';
             html += sep + '<span class="banda-item"><span class="banda-label">SUPPLY:</span> <span class="banda-val">' + fmtInt(d.supply) + '</span> <span class="banda-unit">PULA</span></span>';
             return html + sep + html;
         }
-
         function update(d) {
             var el = document.getElementById('bandaContinut');
             if (el) el.innerHTML = buildContent(d);
-            localStorage.setItem('pula_pret', JSON.stringify(d));
         }
-
-        function fetchLive(staticData) {
-            var priceUsd = window.pulaPriceUsd || 2.368e-6;
-            var carutaUsd = priceUsd * 1e6;
-            var ron = window.ratesRon || 4.7;
-            var d = Object.assign({}, staticData, {
-                usd: carutaUsd,
-                ron: carutaUsd * ron,
-                eur: carutaUsd * (window.ratesEur || 0.92),
-                sol: window.pulaPriceSol || 0,
-                market_cap_usd: Math.round(priceUsd * (staticData.supply || 1e9))
-            });
-            fetch('https://api.metals.live/v1/spot/gold')
-                .then(function(r){ return r.json(); })
-                .then(function(gold) {
-                    var ozUsd = Array.isArray(gold) ? gold[0].gold : gold.gold;
-                    if (ozUsd) d.aur_ron_per_gram = (ozUsd / 31.103) * ron;
-                    update(d);
-                }).catch(function(){ update(d); });
-        }
-
-        window._pulaStaticData = {};
-        document.addEventListener('pulaReady', function() { fetchLive(window._pulaStaticData); });
         fetch(jsonPath + '?v=' + Date.now())
-            .then(function(r){ return r.json(); })
-            .then(function(staticData) {
-                window._pulaStaticData = staticData;
-                update(staticData);
-                fetchLive(staticData);
-            })
-            .catch(function() {
+            .then(function(r){return r.json();})
+            .then(update)
+            .catch(function(){
                 var ls = localStorage.getItem('pula_pret');
-                var fallback = ls ? JSON.parse(ls) : {};
-                update(fallback);
-                fetchLive(fallback);
+                if (ls) try { update(JSON.parse(ls)); } catch(e){}
             });
+        document.addEventListener('pulaReady', function() {
+            var p = window.pulaPriceUsd || 2.368e-6;
+            var cu = p * 1e6;
+            update({
+                usd: cu,
+                ron: cu * (window.ratesRon || 4.65),
+                eur: cu * (window.ratesEur || 0.92),
+                bwp: cu * (window.ratesBwp || 13.75),
+                sol: window.pulaPriceSol || 0,
+                market_cap_usd: Math.round(1000000000 * p),
+                supply: 1000000000
+            });
+        });
     })();
     </script>
 
@@ -193,44 +152,14 @@
             <p>From the depths of Bitcointalk and with the power of AI,<br>the most unconventional Romanian coin carves its path to glory<br>(and into your Solana wallet).</p>
 
             <div style="margin: 30px 0;">
-                <a href="/en/wallet/" target="_blank" rel="noopener noreferrer">
-                    <img src="../imagini/cur-en.png" alt="C.U.R. Wallet" style="width: 300px; max-width: 90%; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.6); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <a href="../traista/en/index.html" target="_blank" rel="noopener noreferrer">
+                    <img src="../imagini/CUR.png" alt="C.U.R. Wallet" style="width: 300px; max-width: 90%; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.6); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
             </div>
 
-
-        </div>
-    </div>
-
-
-    <div style="background:#0a0a0a;padding:40px 20px;">
-        <div style="max-width:900px;margin:0 auto;">
-            <h2 style="text-align:center;color:#fff;margin-bottom:24px;">PULA Market</h2>
-            <div style="position:relative;width:100%;height:500px;border-radius:12px;overflow:hidden;">
-                <iframe
-                    id="dex-iframe"
-                    src=""
-                    style="width:100%;height:100%;border:none;outline:none;box-shadow:none;display:block;"
-                    allowfullscreen
-                    tabindex="-1"
-                ></iframe>
-                <div id="chart-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;cursor:pointer;background:#000;" onclick="var _y=window.scrollY;document.getElementById('dex-iframe').src='https://dexscreener.com/solana/B8a7twkUV1fnB317PxihGXsE9XKbyGgfxNUBwicwpump?embed=1&theme=dark';document.getElementById('chart-overlay').style.display='none';window.scrollTo(0,_y);">
-                    <img src="../imagini/graphic.png" alt="PULA Chart" style="width:100%;height:100%;object-fit:contain;display:block;">
-                    <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);color:#fff;padding:8px 16px;border-radius:8px;font-size:0.85rem;white-space:nowrap;">
-                        ▶ Click for live chart
-                    </div>
-                </div>
-            </div>
-            <div style="display:flex;gap:16px;justify-content:center;align-items:center;margin-top:20px;flex-wrap:wrap;">
-                <a href="https://pump.fun/coin/B8a7twkUV1fnB317PxihGXsE9XKbyGgfxNUBwicwpump" target="_blank" style="display:block;background:#111;border:1px solid #333;border-radius:8px;padding:10px 20px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#ff3c3c'" onmouseout="this.style.borderColor='#333'">
-                    <img src="../imagini/pump.png" alt="Pump.fun" style="height:32px;display:block;">
-                </a>
-                <a href="https://www.geckoterminal.com/en/solana/pools/4BToeUKLVrqYcz8R8xUGANa4CzsVopwsMzBFPVGHhgHR" target="_blank" style="display:block;background:#111;border:1px solid #333;border-radius:8px;padding:10px 20px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#ff3c3c'" onmouseout="this.style.borderColor='#333'">
-                    <img src="../imagini/gecko.png" alt="GeckoTerminal" style="height:32px;display:block;">
-                </a>
-                <a href="https://birdeye.so/solana/token/B8a7twkUV1fnB317PxihGXsE9XKbyGgfxNUBwicwpump" target="_blank" style="display:block;background:#111;border:1px solid #333;border-radius:8px;padding:10px 20px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#ff3c3c'" onmouseout="this.style.borderColor='#333'">
-                    <img src="../imagini/bird.png" alt="Birdeye" style="height:32px;display:block;">
-                </a>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="../simulator.html" class="btn-principal" style="background-color: #39ff14; color: #000; border-color: #39ff14;" target="_blank" rel="noopener noreferrer">FUN.PULA</a>
+                <a href="https://pump.fun/coin/B8a7twkUV1fnB317PxihGXsE9XKbyGgfxNUBwicwpump" class="btn-principal" style="background-color: #ff0000; color: #fff; border-color: #ff0000;" target="_blank" rel="noopener noreferrer">PUMP.FUN</a>
             </div>
         </div>
     </div>
@@ -251,7 +180,7 @@
                 <div class="card"><h3>🤖 Solana Tech + AI Magic</h3><p>Built on the fast and cheap Solana network, PULA of Dracula was brought back to life and is strategically guided with the help of the latest AI technologies.</p></div>
                 <div class="card" style="border-color: #9c27b0; background-color: #2e2230;"><h3>🧬 Prehistoric Roots (Yes, seriously!)</h3><p>Discover how the PULA story begins not on the internet, but 40,000 years ago in a Romanian cave. An unexpected link to Neanderthal DNA that redefines everything. <a href="pulaverse.html" style="color: #f0f0f0; font-weight: bold;">Learn more...</a></p></div>
                 <div class="card" style="border-color: #2E7D32; background-color: #212b21;"><h3>🌱 Discover <span class="text-verde">Green PULA</span></h3><p>Our initiative to "make money grow on trees." A philosophical and ecological experiment that shows real value comes from nature. <a href="vision.html" style="color: #f0f0f0; font-weight: bold;">See the pepper's journal...</a></p></div>
-                <div class="card" style="border-color: #e91e8c; background-color: #2a1a2e;"><h3>🌺 V.U.L.V.A. — The Sacred Multiplier</h3><p><em>Vault for Universal Labor Value Abolishment</em></p><p>🌙 <strong>June 24, 2026 — V.U.L.V.A. Opens</strong><br>On the night of Sânziene (Midsummer), when the boundary between the seen and unseen worlds is at its thinnest, V.U.L.V.A. opens.</p><p>👶 <strong>March 25, 2027 — The Great Birth</strong><br>Exactly 9 months later, on the Annunciation, when nature receives the news of spring, the Great Birth takes place. Every unit of PULA deposited returns multiplied 9 times.</p></div>
+                <div class="card" style="border-color: #e91e8c; background-color: #2a1a2e;"><h3>🌺 V.U.L.V.A. — The Sacred Multiplier</h3><p><strong>Vault for Universal Labor Value Abolishment.</strong> On June 24, 2026 (Midsummer), V.U.L.V.A. opens. Insert PULA, receive <strong>L.I.M.B.A.</strong> — the token that circulates freely during the 9 months of gestation. On March 25, 2027 (Annunciation), <strong>The Great Birth: 8.5x</strong>. Entry sacrifice: 1 SOL, publicly visible on-chain, never withdrawn. <a href="vulva.html" style="color: #f0f0f0; font-weight: bold;">Discover the mechanism...</a></p></div>
             </div>
         </section>
 

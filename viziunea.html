@@ -46,11 +46,10 @@
             <nav class="navigatie-principala">
                 <ul class="nav-lista">
                     <li><a href="pulaverse.html" class="nav-link">PULAverse</a></li>
-                    <li><a href="viziunea.html" class="nav-link">Viziunea</a></li>
+                    <li><a href="viziunea.html" class="nav-link active">Viziunea</a></li>
                     <li><a href="harta.html" class="nav-link">Harta</a></li>
                     <li><a href="cumpara.html" class="nav-link">Cumpără</a></li>
                     <li><a href="comunitate.html" class="nav-link">Comunitate</a></li>
-                    <li><a href="vulva.html" class="nav-link">V.U.L.V.A.</a></li>
                 </ul>
                 <div class="language-switcher">
                     <a href="viziunea.html" class="lang-link active-lang"><img src="imagini/flag-ro.png" alt="Română"></a>
@@ -75,50 +74,101 @@
     </div>
     <script>
     (function() {
+        var PAIR = '4btoeuklvrqycz8r8xugana4czsvopwsmzbfpvghhghr';
         var jsonPath = '/admin/pret.json';
-        function fmt(n, dec) { return (n !== null && n !== undefined) ? Number(n).toFixed(dec) : '—'; }
+
+        function fmt(n, dec) { return (n !== null && n !== undefined && !isNaN(n)) ? Number(n).toFixed(dec) : '—'; }
+        function fmtPula(n) {
+            if (!n || isNaN(n)) return '—';
+            // Regula gramaticală română: "de" se adaugă la numere >= 20
+            function de(num, unit) {
+                var prefix = num.toFixed(2);
+                var intPart = Math.floor(parseFloat(prefix));
+                return prefix + (intPart >= 20 ? ' de ' : ' ') + unit;
+            }
+            if (n >= 1e9) return de(n/1e9, 'Hambare de PULA');
+            if (n >= 1e6) return de(n/1e6, 'Căruțe de PULA');
+            if (n >= 1e3) return de(n/1e3, 'Legături de PULA');
+            if (n >= 1) {
+                var rounded = Math.round(n);
+                return rounded.toLocaleString('ro-RO') + (rounded >= 20 ? ' de PULA' : ' PULA');
+            }
+            if (n >= 1e-3) return de(n*1e3, 'Stropi de PULA');
+            return (n*1e6).toFixed(2) + ' Nimic';
+        }
         function fmtInt(n) { return Number(n).toLocaleString('ro-RO'); }
+
         function buildContent(d) {
             var sep = '<span class="banda-sep">◆</span>';
             var pipe = ' <span class="banda-unit">|</span> ';
             var vals = [
                 '<span class="banda-val">' + fmt(d.ron,2) + '</span> <span class="banda-unit">RON</span>',
-                '<span class="banda-val">' + fmt(d.usd,2) + '</span> <span class="banda-unit">USD</span>',
-                '<span class="banda-val">' + fmt(d.eur,2) + '</span> <span class="banda-unit">EUR</span>',
-                '<span class="banda-val">' + fmt(d.bwp,2) + '</span> <span class="banda-unit">BWP</span>',
-                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>',
-                '<span class="banda-val">' + fmt(d.btc,9) + '</span> <span class="banda-unit">BTC</span>',
-                '<span class="banda-val">' + fmt(d.eth,8) + '</span> <span class="banda-unit">ETH</span>'
+                '<span class="banda-val">' + fmt(d.usd,4) + '</span> <span class="banda-unit">USD</span>',
+                '<span class="banda-val">' + fmt(d.eur,4) + '</span> <span class="banda-unit">EUR</span>',
+                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>'
             ];
             var html = '<span class="banda-item"><span class="banda-label">1 CĂRUȚĂ:</span> ' + vals.join(pipe) + '</span>';
-            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(d.market_cap_usd) + '</span></span>';
+            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(Math.round(d.market_cap_usd)) + '</span></span>';
+            // Paritate mărfuri (1 unitate = X PULA)
+            if (d.motorina_ron && d.ron) {
+                var pula_per_litru = (d.motorina_ron / d.ron) * 1e6;
+                html += sep + '<span class="banda-item"><span class="banda-label">1L Motorină:</span> <span class="banda-val">' + fmtPula(pula_per_litru) + '</span></span>';
+            }
+            if (d.kwh_ron && d.ron) {
+                var pula_per_kwh = (d.kwh_ron / d.ron) * 1e6;
+                html += sep + '<span class="banda-item"><span class="banda-label">1 kWh:</span> <span class="banda-val">' + fmtPula(pula_per_kwh) + '</span></span>';
+            }
+            if (d.aur_ron_per_gram && d.ron) {
+                var pula_per_gram_aur = (d.aur_ron_per_gram / d.ron) * 1e6;
+                html += sep + '<span class="banda-item"><span class="banda-label">1g Aur:</span> <span class="banda-val">' + fmtPula(pula_per_gram_aur) + '</span></span>';
+            }
             html += sep + '<span class="banda-item"><span class="banda-label">SUPPLY:</span> <span class="banda-val">' + fmtInt(d.supply) + '</span> <span class="banda-unit">PULA</span></span>';
             return html + sep + html;
         }
+
         function update(d) {
             var el = document.getElementById('bandaContinut');
             if (el) el.innerHTML = buildContent(d);
+            localStorage.setItem('pula_pret', JSON.stringify(d));
         }
-        fetch(jsonPath + '?v=' + Date.now())
-            .then(function(r){return r.json();})
-            .then(update)
-            .catch(function(){
-                var ls = localStorage.getItem('pula_pret');
-                if (ls) try { update(JSON.parse(ls)); } catch(e){}
-            });
-        document.addEventListener('pulaReady', function() {
-            var p = window.pulaPriceUsd || 2.368e-6;
-            var cu = p * 1e6;
-            update({
-                usd: cu,
-                ron: cu * (window.ratesRon || 4.65),
-                eur: cu * (window.ratesEur || 0.92),
-                bwp: cu * (window.ratesBwp || 13.75),
+
+        function fetchLive(staticData) {
+            var priceUsd = window.pulaPriceUsd || 2.368e-6;
+            var carutaUsd = priceUsd * 1e6;
+            var ron = window.ratesRon || 4.7;
+            var d = Object.assign({}, staticData, {
+                usd: carutaUsd,
+                ron: carutaUsd * ron,
+                eur: carutaUsd * (window.ratesEur || 0.92),
+                bwp: carutaUsd * (window.ratesBwp || 13.7),
                 sol: window.pulaPriceSol || 0,
-                market_cap_usd: Math.round(953800000 * p),
-                supply: 953800000
+                market_cap_usd: Math.round(priceUsd * (staticData.supply || 1e9))
             });
-        });
+            fetch('https://api.metals.live/v1/spot/gold')
+                .then(function(r){ return r.json(); })
+                .then(function(gold) {
+                    var ozUsd = Array.isArray(gold) ? gold[0].gold : gold.gold;
+                    if (ozUsd) d.aur_ron_per_gram = (ozUsd / 31.103) * ron;
+                    update(d);
+                }).catch(function(){ update(d); });
+        }
+
+        window._pulaStaticData = {};
+        document.addEventListener('pulaReady', function() { fetchLive(window._pulaStaticData); });
+        // Citește pret.json pentru motorina/kwh, apoi fetch live
+        fetch(jsonPath + '?v=' + Date.now())
+            .then(function(r){ return r.json(); })
+            .then(function(staticData) {
+                window._pulaStaticData = staticData;
+                update(staticData); // afișează imediat datele statice
+                fetchLive(staticData); // apoi actualizează cu date live
+            })
+            .catch(function() {
+                var ls = localStorage.getItem('pula_pret');
+                var fallback = ls ? JSON.parse(ls) : {};
+                update(fallback);
+                fetchLive(fallback);
+            });
     })();
     </script>
 
@@ -129,80 +179,80 @@
             
             <div class="carduri-container">
                 <div class="card">
-                    <h3>Critica Simbolului: Banii vs. Bogăția</h3>
+                    <h3><span style="color:#e53935">Critica Simbolului</span><br><span class="text-verde">Banii vs. Bogăția</span></h3>
                     <p>Inspirati de Alan Watts, recunoaștem eroarea fundamentală a omului modern: <strong>confundăm simbolul (banii) cu realitatea (bogăția)</strong>. Alergăm după cifre pe un ecran, uitând de bogăția reală: timpul liber, comunitatea, sănătatea ecosistemului. PULA, ca "unitate de plată", este un simbol folosit ironic pentru a ne reaminti de această confuzie.</p>
                 </div>
                 <div class="card">
-                    <h3>Principiul MIND: O Nouă Măsură a Succesului</h3>
+                    <h3><span style="color:#e53935">Principiul MIND</span><br><span class="text-verde">O Nouă Măsură a Succesului</span></h3>
                     <p>În loc să măsurăm succesul doar prin Market Cap, PULAverse este ghidat de principiul MIND, propus de Emad Mostaque: un echilibru între <strong>Material, Inteligență, Rețea (Network) și Diversitate</strong>. Acesta este adevăratul indicator al unei societăți prospere.</p>
                 </div>
             </div>
         </section>
 
         <section class="sectiune" id="pula-verde">
-            <h2>🟢 <span class="text-verde">P.U.L.A. Verde</span>: Perpetuum Universal cu Lumină și Apă</h2>
+            <h2>🟢 <span class="text-verde">P.U.L.A. Verde</span><br><span style="font-size:0.6em;font-weight:normal;color:#e53935;font-family:Arial,sans-serif">Perpetuum Universal cu Lumină și Apă</span></h2>
             <p>Inițiativa <span class="text-verde">PULA Verde</span> este manifestul nostru ecologic. Este viziunea noastră de a "face banii să crească în copaci", redefinind valoarea într-un mod sustenabil, în spiritul lui Alan Watts de "a lăsa natura în pace". Am pornit de la un simplu experiment, "Jurnalul Ardeiului Nemuritor", pentru a demonstra că valoarea reală este generată de cele mai simple forțe ale naturii.</p>
             
             <div class="jurnal-ardei-container">
                 <div class="jurnal-intrare stanga">
                     <div class="jurnal-continut">
-                        <h3>Ziua 1 (21 Iulie)</h3>
+                        <h3>Ziua 1</h3>
                         <p>Legenda începe. După o săptămână de la plantare, micul nostru erou verde își face curaj și se înalță din pământul reavăn. Fragil, dar determinat.</p>
                         <img src="imagini/1-21-iulie.jpg" alt="Ardei PULA Verde - 21 Iulie" class="jurnal-imagine">
                     </div>
                 </div>
                 <div class="jurnal-intrare dreapta">
                     <div class="jurnal-continut">
-                        <h3>Ziua 4 (24 Iulie)</h3>
+                        <h3>Ziua 4</h3>
                         <p>Motorul cu clorofilă prinde turații. Se vede clar o nouă pereche de frunze, un semn că sistemul se stabilizează și începe să producă.</p>
                         <img src="imagini/2-24-iulie.jpg" alt="Ardei PULA Verde - 24 Iulie" class="jurnal-imagine">
                     </div>
                 </div>
                 <div class="jurnal-intrare stanga">
                     <div class="jurnal-continut">
-                        <h3>Ziua 8 (28 Iulie)</h3>
+                        <h3>Ziua 8</h3>
                         <p>O săptămână de progres vizibil! Planta și-a dublat aproape înălțimea. E dovada clară că <span class="text-verde">PULA Verde</span> nu e doar o idee, ci un organism viu.</p>
                         <img src="imagini/3-28-iulie.jpg" alt="Ardei PULA Verde - 28 Iulie" class="jurnal-imagine">
                     </div>
                 </div>
                 <div class="jurnal-intrare dreapta">
                     <div class="jurnal-continut">
-                        <h3>Ziua 14 (3 August)</h3>
+                        <h3>Ziua 14</h3>
                         <p>După două săptămâni, ardeiul nostru nu mai este un răsad, ci un voinic în toată regula. Frunzele sunt mari, viguroase.</p>
                         <img src="imagini/4-3-august.jpg" alt="Ardei PULA Verde - 3 August" class="jurnal-imagine">
                     </div>
                 </div>
                 <div class="jurnal-intrare stanga">
                     <div class="jurnal-continut">
-                        <h3>Ziua 23 (12 August)</h3>
+                        <h3>Ziua 23</h3>
                         <p>Momentul culminant! Apar primele flori! Acesta este "Proof-of-Work"-ul suprem, dovada că sistemul se reproduce. Am făcut PULA... să înflorească!</p>
                         <img src="imagini/5-12-august.jpg" alt="Ardei PULA Verde - 12 August, cu flori" class="jurnal-imagine">
                     </div>
                 </div>
                 <div class="jurnal-intrare dreapta">
                     <div class="jurnal-continut">
-                        <h3>Ziua 27 (16 August)</h3>
+                        <h3>Ziua 27</h3>
                         <p>Planta este acum un tufiș în miniatură, plin de flori și promisiuni. Fiecare floare este un potențial "output" de valoare.</p>
                         <img src="imagini/6-16-august.jpg" alt="Ardei PULA Verde - 16 August" class="jurnal-imagine">
                     </div>
                 </div>
                 <div class="jurnal-intrare stanga">
                     <div class="jurnal-continut">
-                        <h3>Ziua 32 (21 August)</h3>
+                        <h3>Ziua 32</h3>
                         <p>O lună de la începutul documentării. <span class="text-verde">PULA Verde</span> este acum o entitate matură, un ecosistem în sine. Așteptăm cu nerăbdare rodul.</p>
                         <img src="imagini/7-21-august.jpg" alt="Ardei PULA Verde - 21 August" class="jurnal-imagine">
                     </div>
                 </div>
                 <div class="jurnal-intrare dreapta">
                     <div class="jurnal-continut">
-                        <h3>Momentul Adevărului: Primul Ardei PULA!</h3>
+                        <h3>Momentul Adevărului<br><span class="text-verde">Primul Ardei PULA!</span></h3>
                         <p>După atâta muncă (a soarelui, a apei și a clorofilei), iată și rodul! Primul ardei PULA și-a făcut apariția. Mic, verde și plin de potențial iute.</p>
                         <img src="imagini/ardei-cu-rod.jpg" alt="Primul ardei PULA" class="jurnal-imagine">
                     </div>
                 </div>
                 <div class="jurnal-intrare stanga">
                     <div class="jurnal-continut">
-                        <h3>Recolta Finală:<br><span class="text-verde">P.U.L.A. Verde la apogeu</span></h3>
+                        <h3>Recolta Finală<br><span class="text-verde">P.U.L.A. Verde la apogeu</span></h3><p style="color:#aaa;font-style:italic;margin-top:4px">Perpetuum Universal cu Lumină și Apă</p>
                         <p>Ciclu complet. Am demonstrat că, dacă lași natura să lucreze și îi oferi condițiile necesare, abundența este inevitabilă. Ardeiul nostru este gata să dea gust vieții.</p>
                         <img src="imagini/ultima.jpg" alt="Recolta finală PULA" class="jurnal-imagine">
                     </div>
@@ -211,45 +261,29 @@
         </section>
 
         <section class="sectiune" id="vulva-cronologie">
-            <h2>🌺 Cronologia Nașterii: PULA → V.U.L.V.A. → LIMBA</h2>
+            <h2>🌺 Cronologia Nașterii</h2>
             <p>Există evenimente pe care calendarul popular le-a știut dintotdeauna, dar omul modern le-a uitat. PULA of Dracula le readuce în centrul scenei. Trei date. Trei momente cosmice. Un singur lanț de cauzalitate.</p>
 
             <div class="jurnal-ardei-container">
                 <div class="jurnal-intrare stanga">
                     <div class="jurnal-continut">
-                        <h3>⚒️ 1 Mai 2026 — Ziua Abolirii Muncii</h3>
+                        <h3>⚒️ <span style="color:#4caf50">1 Mai 2026</span><br><span style="color:#e53935">Ziua Abolirii Muncii</span></h3>
                         <p>Lansarea internațională a PULA of Dracula. Ziua Muncii devine ziua în care declarăm, solemn și cu umor dacic, că <strong>munca urmează să fie abolită</strong>. Nu mâine. Dar procesul a început. PULA iese în lume.</p>
                     </div>
                 </div>
                 <div class="jurnal-intrare dreapta">
                     <div class="jurnal-continut">
-                        <h3>🌺 24 Iunie 2026 — Sânzienele: Nașterea V.U.L.V.A.</h3>
-                        <p>În noaptea Sânzienelor, când granița dintre lumea văzută și cea nevăzută e cea mai subțire, se deschide <strong>V.U.L.V.A.</strong> — <em>Vault for Universal Labor Value Abolishment</em>. Cei care depun PULA în Vault primesc <strong>L.I.M.B.A.</strong> — <em>Living Instrument for Multiplied Birth Assets</em> — un token certificat care circulă liber în cele 9 luni de gestație. Jertfa de intrare: <strong>1 SOL per tranzacție</strong>, vărsată într-un wallet public dedicat, vizibil live pe site, care nu permite niciodată retrageri. Jertfa rămâne. Dovada rămâne.</p>
+                        <h3>🌺 <span style="color:#4caf50">24 Iunie 2026</span><br><span style="color:#e53935">Deschiderea V.U.L.V.A.</span></h3>
+                        <p>În noaptea Sânzienelor, când granița dintre lumea văzută și cea nevăzută e cea mai subțire, se deschide <strong>V.U.L.V.A.</strong> — <em>Vault for Universal Labor Value Abolishment</em>.</p>
                     </div>
                 </div>
                 <div class="jurnal-intrare stanga">
                     <div class="jurnal-continut">
-                        <h3>👶 25 Martie 2027 — Blagoveștenia: Marea Naștere</h3>
-                        <p>Exact 9 luni mai târziu, de Blagoveștenia — ziua Bunei Vestiri, când natura primește vestea primăverii — are loc <strong>Marea Naștere</strong>. Fiecare unitate de PULA depusă se întoarce <strong>multiplicată de 8.5x</strong>. Nu e magie. E geografie temporală: ai plantat în noaptea Sânzienelor, recoltezi de Buna Vestire. Natura știe ce face.</p>
+                        <h3>👶 <span style="color:#4caf50">25 Martie 2027</span><br><span style="color:#e53935">Marea Naștere</span></h3>
+                        <p>Exact 9 luni mai târziu, de ziua Bunei Vestiri, când natura primește vestea primăverii, are loc Marea Naștere. Fiecare unitate de PULA depusă se întoarce multiplicată de 9 ori.</p>
                     </div>
                 </div>
             </div>
-
-            <div class="carduri-container" style="margin-top: 30px;">
-                <div class="card" style="border-color: #e91e8c; background-color: #2a1a2e;">
-                    <h3>🌺 Ce este V.U.L.V.A.?</h3>
-                    <p><strong>Vault for Universal Labor Value Abolishment.</strong> Un smart contract pe Solana care acceptă PULA, ține evidența gestației și distribuie multiplicarea la termen. Transparent, public, imuabil. Exact cum trebuie să fie.</p>
-                </div>
-                <div class="card" style="border-color: #9c27b0; background-color: #2e2230;">
-                    <h3>👅 Ce este L.I.M.B.A.?</h3>
-                    <p><strong>Living Instrument for Multiplied Birth Assets.</strong> Tokenul emis prin <strong>G.U.R.A.</strong> (Gateway for Universal Reproductive Asset) când bagi PULA în V.U.L.V.A. Circulă liber pe piață în cele 9 luni. Poți să-l ții, poți să-l tranzacționezi. La Marea Naștere, L.I.M.B.A. se transformă în PULA × 8.5.</p>
-                </div>
-                <div class="card" style="border-color: #ffd700; background-color: #2a2600;">
-                    <h3>🔥 Jertfa Sacră</h3>
-                    <p>Intrarea în V.U.L.V.A. costă <strong>1 SOL per tranzacție</strong>. Acest SOL merge automat într-un <strong>wallet public dedicat</strong>, afișat live pe site. Nu iese niciodată. Nu poate fi retras. Este Jertfa care sfințește mecanismul și dovedește seriozitatea intenției.</p>
-                </div>
-            </div>
-            <p style="text-align:center; margin-top:20px;"><a href="vulva.html" class="btn-download">🌺 Descoperă V.U.L.V.A. în detaliu</a></p>
         </section>
 
         <section class="sectiune" id="whitepaper">

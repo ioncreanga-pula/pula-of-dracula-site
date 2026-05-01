@@ -9,7 +9,10 @@
       gtag('js', new Date());
       gtag('config', 'G-EFLQ0JP2SR');
     </script>
-    <link rel="canonical" href="https://pulaofdracula.fun/simulator.html" />
+    <link rel="canonical" href="https://pulaofdracula.fun/en/simulator.html" />
+    <link rel="alternate" hreflang="ro" href="https://pulaofdracula.fun/simulator.html" />
+    <link rel="alternate" hreflang="en" href="https://pulaofdracula.fun/en/simulator.html" />
+    <link rel="alternate" hreflang="x-default" href="https://pulaofdracula.fun/en/simulator.html" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PULA Strategy Terminal</title>
@@ -40,7 +43,7 @@
             min-height: calc(100vh - 80px); 
             position: relative;
         }
-
+        
         .unified-header { 
             background: #0a0a0a; 
             border: 1px solid #444; 
@@ -48,13 +51,14 @@
             border-radius: 12px; 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
-            gap: 10px; 
-            align-items: center; 
-            flex-shrink: 0; 
+            gap: 10px;
+            align-items: center;
+            flex-shrink: 0;
             margin-top: 0;
         }
+        
         .header-left { text-align: left; }
-        .header-right { text-align: right; }
+        .header-right { text-align: right; padding-right: 10px; }
 
         .row-label { color: #fcd116; font-size: 0.9em; font-weight: bold; display: block; }
         .row-main-val { font-size: 1.8em; font-weight: bold; line-height: 1.1; margin: 4px 0; display: block; }
@@ -67,17 +71,22 @@
 
         .area-chart { position: relative; flex-grow: 1; background: #050505; border-radius: 12px; border: 1px solid #333; min-height: 200px; overflow: hidden; margin: 5px 0; width: 100%; }
         
-        #raydium-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 100; border: 4px solid #00ffa3; text-align: center; }
-        .raydium-text { color: #00ffa3; font-size: 2em; font-weight: bold; text-shadow: 0 0 20px #00ffa3; }
+        #raydium-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 100; border: 4px solid #00ffa3; text-align: center;
+        }
+        .raydium-text { color: #00ffa3; font-size: 2.5em; font-weight: bold; text-shadow: 0 0 20px #00ffa3; }
         .btn-overlay-reset { background: #00ffa3; color: #000; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; margin-top: 20px; cursor: pointer; }
 
         .row-bottom { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
         .area-inv { background: #1a1a1a; padding: 10px; border-radius: 10px; border-left: 4px solid #ce1126; }
-        .dca-controls { display: flex; align-items: center; gap: 6px; margin-top: 8px; background: #2.315; padding: 4px; border-radius: 6px; }
+        .dca-controls { display: flex; align-items: center; gap: 6px; margin-top: 8px; background: #222; padding: 4px; border-radius: 6px; }
         .buying-power { color: #4caf50; font-size: 0.75em; font-weight: bold; margin-top: 5px; display: block; }
         
         .area-peers { background: #111; padding: 10px; border-radius: 10px; display: flex; flex-direction: column; gap: 6px; }
-        .control-row { display: flex; align-items: center; justify-content: space-between; background: #2.315; padding: 5px 10px; border-radius: 8px; }
+        .control-row { display: flex; align-items: center; justify-content: space-between; background: #222; padding: 5px 10px; border-radius: 8px; }
         .btn-step { background: #ce1126; color: white; border: none; width: 28px; height: 28px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.2em; }
         
         label { font-size: 0.75em; color: #fcd116; font-weight: bold; display: block; text-transform: uppercase; margin-bottom: 2px; }
@@ -94,15 +103,14 @@
     <header class="site-header">
         <div class="header-container container">
             <div class="logo-container">
-                <a href="index.html" class="logo-link">
+                <a href="/en/index.html" class="logo-link">
                     <img src="../imagini/pula-logo-mic.png" alt="PULA Logo Mic" class="logo-nav">
                     <span class="logo-text">P.U.L.A.</span>
                 </a>
             </div>
 
-            <!-- Price Wagon Ticker -->
-
             <nav class="navigatie-principala">
+                <!-- Language switcher -->
                 <div class="language-switcher">
                     <a href="../simulator.html" class="lang-link"><img src="../imagini/flag-ro.png" alt="Română"></a>
                     <a href="simulator.html" class="lang-link active-lang"><img src="../imagini/flag-en.png" alt="English"></a>
@@ -115,7 +123,7 @@
         <div class="banda-wrap">
             <div class="banda-continut" id="bandaContinut">
                 <!-- continut incarcat de JS -->
-                <span class="banda-item"><span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">10.10</span> <span class="banda-unit">RON</span></span>
+                <span class="banda-item"><span class="banda-label">1 CART:</span> <span class="banda-val">10.10</span> <span class="banda-unit">RON</span></span>
                 <span class="banda-sep">◆</span>
                 <span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$2,210</span></span>
                 <span class="banda-sep">◆</span>
@@ -125,57 +133,112 @@
     </div>
     <script>
     (function() {
+        var PAIR = '4btoeuklvrqycz8r8xugana4czsvopwsmzbfpvghhghr';
         var jsonPath = '/admin/pret.json';
-        function fmt(n, dec) { return (n !== null && n !== undefined) ? Number(n).toFixed(dec) : '—'; }
-        function fmtInt(n) { return Number(n).toLocaleString('ro-RO'); }
+
+        function fmt(n, dec) { return (n !== null && n !== undefined && !isNaN(n)) ? Number(n).toFixed(dec) : '—'; }
+        function fmtPula(n) {
+            if (!n || isNaN(n)) return '—';
+            if (n >= 1e9) return (n/1e9).toFixed(2) + ' Barns of PULA';
+            if (n >= 1e6) return (n/1e6).toFixed(2) + ' Carts of PULA';
+            if (n >= 1e3) return (n/1e3).toFixed(2) + ' Bundles of PULA';
+            if (n >= 1) {
+                var rounded = Math.round(n);
+                return rounded.toLocaleString('en-US') + ' PULA';
+            }
+            if (n >= 1e-3) return (n*1e3).toFixed(2) + ' Drops of PULA';
+            return (n*1e6).toFixed(2) + ' Nothing';
+        }
+        function fmtInt(n) { return Number(n).toLocaleString('en-US'); }
+
         function buildContent(d) {
             var sep = '<span class="banda-sep">◆</span>';
             var pipe = ' <span class="banda-unit">|</span> ';
             var vals = [
                 '<span class="banda-val">' + fmt(d.ron,2) + '</span> <span class="banda-unit">RON</span>',
-                '<span class="banda-val">' + fmt(d.usd,2) + '</span> <span class="banda-unit">USD</span>',
-                '<span class="banda-val">' + fmt(d.eur,2) + '</span> <span class="banda-unit">EUR</span>',
-                '<span class="banda-val">' + fmt(d.bwp,2) + '</span> <span class="banda-unit">BWP</span>',
-                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>',
-                '<span class="banda-val">' + fmt(d.btc,9) + '</span> <span class="banda-unit">BTC</span>',
-                '<span class="banda-val">' + fmt(d.eth,8) + '</span> <span class="banda-unit">ETH</span>'
+                '<span class="banda-val">' + fmt(d.usd,4) + '</span> <span class="banda-unit">USD</span>',
+                '<span class="banda-val">' + fmt(d.eur,4) + '</span> <span class="banda-unit">EUR</span>',
+                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>'
             ];
-            var html = '<span class="banda-item"><span class="banda-label">1 CĂRUȚĂ:</span> ' + vals.join(pipe) + '</span>';
-            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(d.market_cap_usd) + '</span></span>';
+            var html = '<span class="banda-item"><span class="banda-label">1 CART:</span> ' + vals.join(pipe) + '</span>';
+            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(Math.round(d.market_cap_usd)) + '</span></span>';
+            if (d.motorina_ron && d.ron) {
+                var pula_per_litru = (d.motorina_ron / d.ron) * 1e6;
+                html += sep + '<span class="banda-item"><span class="banda-label">1L Diesel:</span> <span class="banda-val">' + fmtPula(pula_per_litru) + '</span></span>';
+            }
+            if (d.kwh_ron && d.ron) {
+                var pula_per_kwh = (d.kwh_ron / d.ron) * 1e6;
+                html += sep + '<span class="banda-item"><span class="banda-label">1 kWh:</span> <span class="banda-val">' + fmtPula(pula_per_kwh) + '</span></span>';
+            }
+            if (d.aur_ron_per_gram && d.ron) {
+                var pula_per_gram_aur = (d.aur_ron_per_gram / d.ron) * 1e6;
+                html += sep + '<span class="banda-item"><span class="banda-label">1g Gold:</span> <span class="banda-val">' + fmtPula(pula_per_gram_aur) + '</span></span>';
+            }
             html += sep + '<span class="banda-item"><span class="banda-label">SUPPLY:</span> <span class="banda-val">' + fmtInt(d.supply) + '</span> <span class="banda-unit">PULA</span></span>';
             return html + sep + html;
         }
+
         function update(d) {
             var el = document.getElementById('bandaContinut');
             if (el) el.innerHTML = buildContent(d);
+            localStorage.setItem('pula_pret', JSON.stringify(d));
         }
-        fetch(jsonPath + '?v=' + Date.now())
-            .then(function(r){return r.json();})
-            .then(update)
-            .catch(function(){
-                var ls = localStorage.getItem('pula_pret');
-                if (ls) try { update(JSON.parse(ls)); } catch(e){}
+
+        function fetchLive(staticData) {
+            var priceUsd = window.pulaPriceUsd || 2.368e-6;
+            var carutaUsd = priceUsd * 1e6;
+            var ron = window.ratesRon || 4.7;
+            var d = Object.assign({}, staticData, {
+                usd: carutaUsd,
+                ron: carutaUsd * ron,
+                eur: carutaUsd * (window.ratesEur || 0.92),
+                sol: window.pulaPriceSol || 0,
+                market_cap_usd: Math.round(priceUsd * (staticData.supply || 1e9))
             });
+            fetch('https://api.metals.live/v1/spot/gold')
+                .then(function(r){ return r.json(); })
+                .then(function(gold) {
+                    var ozUsd = Array.isArray(gold) ? gold[0].gold : gold.gold;
+                    if (ozUsd) d.aur_ron_per_gram = (ozUsd / 31.103) * ron;
+                    update(d);
+                }).catch(function(){ update(d); });
+        }
+
+        window._pulaStaticData = {};
         document.addEventListener('pulaReady', function() {
-            var p = window.pulaPriceUsd || 2.368e-6;
-            var r = window.ratesRon || 4.65;
-            var cu = p * 1e6;
-            update({usd:cu, ron:cu*r, eur:cu*(window.ratesEur||0.92), bwp:cu*(window.ratesBwp||13.75), sol:window.pulaPriceSol||0, market_cap_usd:Math.round(953800000*p), supply:953800000});
+            fetchLive(window._pulaStaticData);
+            // trigger simulator update so it can pick up live USD price
+            if (typeof window.simUpdate === 'function') window.simUpdate();
         });
+        fetch(jsonPath + '?v=' + Date.now())
+            .then(function(r){ return r.json(); })
+            .then(function(staticData) {
+                window._pulaStaticData = staticData;
+                update(staticData);
+                fetchLive(staticData);
+            })
+            .catch(function() {
+                var ls = localStorage.getItem('pula_pret');
+                var fallback = ls ? JSON.parse(ls) : {};
+                update(fallback);
+                fetchLive(fallback);
+            });
     })();
     </script>
 
     <div class="dashboard">
+
+        <!-- UNIFIED HEADER SIMETRIC -->
         <div class="unified-header">
             <div class="header-left">
-                <span class="row-label">WEEK 12</span>
+                <span class="row-label">WEEK <button class="btn-step" onclick="step('weeks', -1)" style="width:22px; height:22px; font-size:1em; vertical-align:middle;">-</button> <span id="v-weeks" style="font-weight:bold;">12</span> <button class="btn-step" onclick="step('weeks', 1)" style="width:22px; height:22px; font-size:1em; vertical-align:middle;">+</button></span>
                 <span id="header-mult-text" class="row-main-val color-roz">1.0x</span>
-                <div id="pula-w12-box" class="row-sub-info color-albastru-deschis">1 Wagon PULA = $2.315 USD</div>
+                <span id="pula-w12-box" class="row-sub-info color-albastru-deschis">1 Cart in W12 = 2.37 USD</span>
             </div>
             <div class="header-right">
-                <span class="row-label color-alb">PROFIT:</span>
-                <span id="header-val-text" class="row-main-val color-verde">$23.7</span>
-                <div id="diesel" class="row-sub-info color-albastru-inchis">⛽ 1.1L DIESEL</div>
+                <span class="row-label color-alb">GAIN:</span>
+                <span id="header-val-text" class="row-main-val color-verde">23.70 USD</span>
+                <span id="diesel" class="row-sub-info color-albastru-inchis">⛽ 6.3 gal Diesel</span>
             </div>
         </div>
 
@@ -189,38 +252,37 @@
 
         <div class="row-bottom">
             <div class="area-inv">
-                <label>1 WAGON = $2.315 USD</label>
-                <label>INVEST AMOUNT</label>
-                <div style="display:flex; align-items:center;">
-                    <input type="number" id="inv" value="23.7">
+                <label id="pret-caruta-label">1 Cart of PULA = 2.37 USD</label>
+                <div style="display:flex; align-items:center; gap:8px; margin-top:8px;">
+                    <label style="margin:0;">Buy for</label>
+                    <input type="number" id="inv" value="10" style="width:80px; text-align:center;">
                     <span class="input-unit">USD</span>
                 </div>
-                <span id="buying-power" class="buying-power">TOTAL: 10.0 WAGONS</span>
-                
-                <div class="dca-controls">
-                    <input type="checkbox" id="dca-on">
-                    <span style="font-size:0.75em; color:#4caf50; font-weight:bold;">DCA every</span>
+                <div class="dca-controls" style="margin-top:8px;">
+                    <input type="checkbox" id="dca-on" checked>
+                    <span style="font-size:0.85em; color:#4caf50; font-weight:bold;">Once every</span>
                     <button class="btn-step" onclick="step('days', -1)" style="width:22px; height:22px; font-size:1em;">-</button>
                     <span id="v-days" style="font-size:0.85em; font-weight:bold;">7</span>
-                    <button class="btn-step" onclick="step('days', 1)" style="width:22px; height:22px; font-size:1em;">+</button> days
+                    <button class="btn-step" onclick="step('days', 1)" style="width:22px; height:22px; font-size:1em;">+</button>days
                 </div>
+                <span id="buying-power" class="buying-power" style="display:block; margin-top:10px;">Total at week 12: 120 USD or 53.19 Carts of PULA</span>
             </div>
             <div class="area-peers">
                 <div class="control-row">
-                    <span style="font-size:0.75em; color:#888; font-weight:bold;">NEW PEERS</br>/WEEK</span>
+                    <span style="font-size:0.75em; color:#888; font-weight:bold;">REBELS<br>/WEEK</span>
                     <button class="btn-step" onclick="step('peers', -5)">-</button>
-                    <span id="v-peers" class="val-mini">0</span>
+                    <span id="v-peers" class="val-mini">100</span>
                     <button class="btn-step" onclick="step('peers', 5)">+</button>
                 </div>
                 <div class="control-row">
-                    <span style="font-size:0.75em; color:#888; font-weight:bold;">AVG BUY</br>/PEER</span>
-                    <button class="btn-step" onclick="step('avg', -10)">-</button>
-                    <span id="v-avg" class="val-mini">0</span>
-                    <button class="btn-step" onclick="step('avg', 10)">+</button>
+                    <span style="font-size:0.75em; color:#888; font-weight:bold;">INVESTMENT<br>/REBEL</span>
+                    <button class="btn-step" onclick="step('avg', -5)">-</button>
+                    <span id="v-avg" class="val-mini">20</span>
+                    <button class="btn-step" onclick="step('avg', 5)">+</button>
                 </div>
                 <div id="mcap-container" class="mcap-box">
-                    <div>1 Barn MarketCap:</div>
-                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">$2.3150</div>
+                    <div>Market Cap 1 Barn:</div>
+                    <div id="mcap-val" style="font-size: 1.2em; margin-top: 5px;">2,370 USD</div>
                 </div>
             </div>
         </div>
@@ -229,7 +291,7 @@
     <script>
         const ctx = document.getElementById('growthChart').getContext('2d');
         let chart;
-        let state = { peers: 0, avg: 0, days: 7 };
+        let state = { peers: 100, avg: 20, days: 7, weeks: 12 };
         let isGraduated = false;
 
         const ui = {
@@ -251,18 +313,18 @@
         };
 
         function step(key, delta) {
-            if (isGraduated) return;
-            state[key] = Math.max(key === 'days' ? 1 : 0, state[key] + delta);
-            ui.v_peers.innerText = state.peers;
-            ui.v_avg.innerText = state.avg;
-            ui.v_days.innerText = state.days;
+            state[key] = Math.max(0, (state[key] || 0) + delta);
+            if (key === 'days') state[key] = Math.max(1, state[key]);
+            if (key === 'weeks') state[key] = Math.min(52, Math.max(1, state[key]));
+            const el = document.getElementById('v-' + key);
+            if (el) el.innerText = state[key];
             update();
         }
 
         function resetSim() {
             isGraduated = false;
-            state = { peers: 0, avg: 0, days: 7 };
-            ui.inv.value = 23.7;
+            state = { peers: 0, avg: 0, days: 7, weeks: 12 };
+            ui.inv.value = 10;
             ui.dca.checked = false;
             ui.v_peers.innerText = 0; ui.v_avg.innerText = 0; ui.v_days.innerText = 7;
             ui.btns.forEach(b => b.disabled = false);
@@ -271,54 +333,115 @@
         }
 
         function update() {
-            const initialMC_USD = 2370;
-            const ronToUsd = window.ratesRon || 4.3629;
-            const invAmount_USD = parseFloat(ui.inv.value) || 0;
+            // === BONDING CURVE MODEL (USD) ===
+            // Price = MarketCap / 1000 (for 1 Cart = 1M PULA out of 1B supply)
+            // Each buy raises MC, so it raises the price for the next buy
+            
+            const SUPPLY = 1e9; // 1 billion PULA
+            const CARUTA = 1e6; // 1 million PULA
+            const priceUsdInit = window.pulaPriceUsd || 2.37e-6;
+            const dieselUsdPerGal = 3.50; // Avg US diesel price USD/gallon
+            
+            // Initial MC in USD (from current live price)
+            let mcUSD = priceUsdInit * SUPPLY;
+            const mcInitUSD = mcUSD;
+            
+            const invAmount = parseFloat(ui.inv.value) || 0; // USD
             const isDCA = ui.dca.checked;
-
-            const totalIn = isDCA ? invAmount_USD * (Math.floor(84 / state.days) + 1) : invAmount_USD;
-            ui.buyingPower.innerText = `TOTAL: ${(totalIn / 2.315).toFixed(1)} WAGONS`;
-
-            let labels = []; let values = [];
-            let currentMC_USD = initialMC_USD;
+            const totalWeeks = state.weeks;
+            const daysTotal = totalWeeks * 7;
+            
+            // Number of DCA buys until week w
+            function buysUntilWeek(w) {
+                if (!isDCA) return (w >= 0 ? 1 : 0);
+                return Math.floor((w * 7) / state.days) + 1; // +1 for the initial buy at day 0
+            }
+            
+            let labels = [], values = [];
+            let myCarute = 0;
+            let myUsdSpent = 0;
+            let lastBuyCount = 0;
             isGraduated = false;
-
-            for (let w = 0; w <= 12; w++) {
+            
+            for (let w = 0; w <= totalWeeks; w++) {
                 labels.push('W' + w);
-                if (w === 0) {
-                    let startInv = isDCA ? (invAmount_USD * (7/state.days)) : invAmount_USD;
-                    currentMC_USD += startInv;
+                
+                // 1. My DCA buys this week
+                const targetBuys = isDCA ? buysUntilWeek(w) : (w === 0 ? 1 : 0);
+                const newBuys = targetBuys - lastBuyCount;
+                for (let b = 0; b < newBuys; b++) {
+                    const pricePerCaruta = mcUSD / 1000; // 1 Cart = 1/1000 of supply
+                    const carute = invAmount / pricePerCaruta;
+                    myCarute += carute;
+                    myUsdSpent += invAmount;
+                    mcUSD += invAmount;
                 }
+                lastBuyCount = targetBuys;
+                
+                // 2. Rebels enter weekly (not at w=0)
                 if (w > 0) {
-                    let newCap = (w * state.peers * (state.avg / ronToUsd));
-                    if (isDCA) newCap += (invAmount_USD * (7 / state.days));
-                    currentMC_USD += newCap;
+                    const peerInflow = state.peers * state.avg; // USD
+                    mcUSD += peerInflow;
                 }
-                if (currentMC_USD >= (initialMC_USD + 34303) && !isGraduated) {
+                
+                // 3. Graduation check (Raydium at 80 SOL ≈ 36,673 USD)
+                const gradThreshUSD = 36673;
+                if (mcUSD >= gradThreshUSD && !isGraduated) {
                     isGraduated = true;
                     ui.overlay.style.display = 'flex';
                     ui.btns.forEach(b => b.disabled = true);
                     ui.inputs.forEach(i => i.disabled = true);
                 }
-                const multiplier = currentMC_USD / (initialMC_USD + (isDCA ? 0 : invAmount_USD)); 
-                let currentMyInvest = isDCA ? (invAmount_USD * (Math.floor((w * 7) / state.days) + 1)) : invAmount_USD;
-                values.push((currentMyInvest * (currentMC_USD / (initialMC_USD + invAmount_USD))).toFixed(1));
+                
+                // 4. Current value of my portfolio
+                const pricePerCaruta = mcUSD / 1000;
+                const myValue = myCarute * pricePerCaruta;
+                values.push(myValue.toFixed(2));
+                
                 if (isGraduated) break;
             }
-
+            
             if (!isGraduated) ui.overlay.style.display = 'none';
-
-            const lastV = values[values.length - 1];
-            ui.mcap.innerText = `$${Math.round(currentMC_USD).toLocaleString('en-US')}`;
-            if (currentMC_USD < initialMC_USD) ui.mcapCont.classList.add('mcap-down');
+            
+            const finalValue = parseFloat(values[values.length - 1]);
+            const gain = finalValue - myUsdSpent;
+            const multiplier = myUsdSpent > 0 ? finalValue / myUsdSpent : 1;
+            
+            // === EN FORMATTING ===
+            function fmtUSD(n) {
+                return Math.round(n).toLocaleString('en-US');
+            }
+            function fmtUSDdec(n, dec) {
+                return n.toLocaleString('en-US', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+            }
+            
+            // Total Carts accumulated (for TOTAL display)
+            const carutaCount = myCarute;
+            const carutaCountStr = fmtUSDdec(carutaCount, 2) + ' Carts of PULA';
+            const usdSpentStr = fmtUSD(myUsdSpent) + ' USD';
+            
+            ui.buyingPower.innerText = `Total at week ${totalWeeks}: ${usdSpentStr} or ${carutaCountStr}`;
+            
+            // Market Cap 1 Barn (= 1B PULA = total supply)
+            const hambarUSD = mcUSD; // 1 Barn = full supply
+            ui.mcap.innerText = fmtUSD(hambarUSD) + ' USD';
+            
+            if (mcUSD < mcInitUSD) ui.mcapCont.classList.add('mcap-down');
             else ui.mcapCont.classList.remove('mcap-down');
-
-            const totalGrowth = currentMC_USD / initialMC_USD;
-            ui.pulaW12Box.innerText = `1 Wagon PULA = $${(2.315 * totalGrowth).toFixed(2)} USD`;
-            ui.resVal.innerText = `$${parseFloat(lastV).toLocaleString('en-US')}`;
-            ui.resMult.innerText = (lastV / (totalIn || 1)).toFixed(1) + 'x';
-            ui.diesel.innerText = `⛽ ${(lastV / 2.195).toFixed(1)}L DIESEL`;
-
+            
+            // Cart price: input zone shows price NOW, header shows price in final week
+            const pretCarutaInit = mcInitUSD / 1000;
+            const pretCarutaFinal = mcUSD / 1000;
+            const pretLabel = document.getElementById('pret-caruta-label');
+            if (pretLabel) pretLabel.innerText = `1 Cart now = ${fmtUSDdec(pretCarutaInit, 2)} USD`;
+            ui.pulaW12Box.innerText = `1 Cart in W${totalWeeks} = ${fmtUSDdec(pretCarutaFinal, 2)} USD`;
+            
+            // Gain + multiplier
+            ui.resVal.innerText = fmtUSDdec(finalValue, 2) + ' USD';
+            ui.resMult.innerText = fmtUSDdec(multiplier, 1) + 'x';
+            ui.diesel.innerText = `⛽ ${fmtUSDdec(finalValue / dieselUsdPerGal, 1)} gal Diesel`;
+            
+            // === CHART ===
             if (chart) chart.destroy();
             chart = new Chart(ctx, {
                 type: 'line',
@@ -326,22 +449,24 @@
                     labels: labels,
                     datasets: [{
                         data: values,
-                        borderColor: isGraduated ? '#00ffa3' : (currentMC_USD < initialMC_USD ? '#ff4444' : '#fcd116'),
+                        borderColor: isGraduated ? '#00ffa3' : (mcUSD < mcInitUSD ? '#ff4444' : '#fcd116'),
                         borderWidth: 4,
-                        backgroundColor: isGraduated ? 'rgba(0, 255, 163, 0.15)' : 'rgba(2.315, 209, 22, 0.1)',
+                        backgroundColor: isGraduated ? 'rgba(0, 255, 163, 0.15)' : 'rgba(252, 209, 22, 0.1)',
                         fill: true, tension: 0.4, pointRadius: 0
                     }]
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false, animation: false,
                     scales: {
-                        y: { position: 'right', grid: { color: '#111' }, ticks: { color: isGraduated ? '#00ffa3' : (currentMC_USD < initialMC_USD ? '#ff4444' : '#4caf50'), font: { size: 10, weight: 'bold' } } },
+                        y: { position: 'right', grid: { color: '#111' }, ticks: { color: isGraduated ? '#00ffa3' : (mcUSD < mcInitUSD ? '#ff4444' : '#4caf50'), font: { size: 10, weight: 'bold' } } },
                         x: { grid: { display: false }, ticks: { color: '#555', font: { size: 10 } } }
                     },
                     plugins: { legend: { display: false } }
                 }
             });
         }
+        // Expose for external triggers (when live price updates)
+        window.simUpdate = update;
         ui.inv.addEventListener('input', update);
         ui.dca.addEventListener('input', update);
         window.onload = update;
@@ -349,9 +474,9 @@
 
     <footer style="margin-top: 50px; padding: 40px 20px; background: #050505; border-top: 1px solid #111; color: #555; text-align: center; font-family: sans-serif;">
         <div style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
-            <p style="margin-bottom: 15px; font-size: 0.85rem; color: #444;"><strong>Disclaimer:</strong> This is a memecoin and a social experiment. It does not represent financial advice. All calculations in the simulator are purely indicative and based on hypothetical growth. Have fun responsibly!</p>
-            <p style="margin-bottom: 15px; font-size: 0.9rem;">&copy; 2018-2.3156 PULA of Dracula. All rights are as volatile as the crypto market.</p>
-            <p style="margin-bottom: 5px; font-size: 0.9rem;">Contact: <a href="mailto:ioncreanga2.195@gmail.com" style="color: #fcd116; text-decoration: none; font-weight: bold;">ioncreanga2.195@gmail.com</a></p>
+            <p style="margin-bottom: 15px; font-size: 0.85rem; color: #444;"><strong>Disclaimer:</strong> This is a memecoin and a social experiment. Not financial advice. All simulator calculations are purely indicative and based on hypothetical growth scenarios. Have fun responsibly!</p>
+            <p style="margin-bottom: 15px; font-size: 0.9rem;">&copy; 2018-2026 PULA of Dracula. All rights are as volatile as the crypto market.</p>
+            <p style="margin-bottom: 5px; font-size: 0.9rem;">Contact: <a href="mailto:ioncreanga2025@gmail.com" style="color: #fcd116; text-decoration: none; font-weight: bold;">ioncreanga2025@gmail.com</a></p>
             <p style="font-size: 0.8rem;">Site accessible also via: <a href="https://pula.short.gy/" target="_blank" rel="noopener noreferrer" style="color: #444; text-decoration: underline;">pula.short.gy</a></p>
         </div>
     </footer>

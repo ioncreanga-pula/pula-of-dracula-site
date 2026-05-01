@@ -1,5 +1,6 @@
-const CACHE_NAME = 'cur-wallet-v132';
+const CACHE_NAME = 'cur-wallet-v135';
 const ASSETS = [
+  '/traista',
   '/traista/',
   '/traista/index.html',
   '/traista/favicon.ico',
@@ -38,6 +39,6 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request))
+    caches.match(event.request).then((cached) => cached || fetch(event.request, { redirect: 'follow' }))
   );
 });

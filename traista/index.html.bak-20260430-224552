@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      function fetchSolPrice() {
+        fetch('https://api.binance.com/api/v3/ticker/price?symbol=SOLUSDT')
+          .then(r => r.json())
+          .then(d => { window.solPriceUsd = parseFloat(d.price) || 150; })
+          .catch(() => { window.solPriceUsd = window.solPriceUsd || 150; });
+      }
+      fetchSolPrice();
+      setTimeout(fetchSolPrice, 3000);
+      setTimeout(fetchSolPrice, 8000);
+    </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <link rel="manifest" href="/traista/manifest.json">
+    <meta name="theme-color" content="#ce1126">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="C.U.R.">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>C.U.R. Wallet - PULA of Dracula</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="C.U.R. Wallet - PULA of Dracula">
+    <meta property="og:description" content="Portofelul oficial PULA of Dracula. Conectează-te cu Phantom și gestionează PULA pe Solana.">
+    <meta property="og:image" content="https://pulaofdracula.fun/imagini/CUR.png">
+    <meta property="og:url" content="https://pulaofdracula.fun/traista/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://pulaofdracula.fun/imagini/CUR.png">
+    <script src="https://bundle.run/buffer@6.0.3"></script>
+    <script>
+      window.global = window;
+      window.Buffer = window.Buffer || (typeof buffer !== 'undefined' ? buffer.Buffer : null);
+      window.process = window.process || { env: { NODE_ENV: 'production' } };
+    </script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script src="https://terminal.jup.ag/main-v2.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+    <script src="./qr-styled.js" defer></script>
+    <script>
+      // Fetch SOL price pentru afisare gaz in lei
+      (function() {
+        fetch('https://api.dexscreener.com/latest/dex/pairs/solana/4btoeuklvrqycz8r8xugana4czsvopwsmzbfpvghhghr')
+          .then(function(r){ return r.json(); })
+          .then(function(d){
+            var pair = d.pair || (d.pairs && d.pairs[0]);
+            if (!pair || !pair.priceUsd || !pair.priceNative) return;
+            var solUsd = parseFloat(pair.priceUsd) / parseFloat(pair.priceNative);
+            fetch('https://api.frankfurter.app/latest?from=USD&to=RON')
+              .then(function(r){ return r.json(); })
+              .then(function(fx){
+                window.solRonPrice = solUsd * (fx.rates && fx.rates.RON ? fx.rates.RON : 4.7);
+              }).catch(function(){ window.solRonPrice = solUsd * 4.7; });
+          }).catch(function(){});
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets_v75/index-cbJp19NE.js?v=131"></script>
+    <link rel="stylesheet" crossorigin href="./assets_v75/index-BkABBNYp.css?v=131">
+
+  <script src="/pret-live.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      window.onerror = function(msg, url, line, col, error) {
+        var div = document.createElement('div');
+        div.style.position = 'fixed';
+        div.style.top = '0';
+        div.style.left = '0';
+        div.style.width = '100%';
+        div.style.height = '100%';
+        div.style.backgroundColor = 'rgba(255,0,0,0.9)';
+        div.style.color = 'white';
+        div.style.padding = '20px';
+        div.style.zIndex = '99999';
+        div.style.fontFamily = 'monospace';
+        div.style.overflow = 'auto';
+        div.innerHTML = '<h1>❌ EROARE RUNTIME:</h1>' +
+                        '<p><strong>Mesaj:</strong> ' + msg + '</p>' +
+                        '<pre>' + (error && error.stack ? error.stack : 'No stack trace available') + '</pre>';
+        document.body.appendChild(div);
+      };
+    </script>
+    <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/traista/service-worker.js');
+}
+</script>
+  </body>
+</html>
