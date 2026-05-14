@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Rabojul Datornicilor</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000;
+      color: #e8e0c8;
+      font-family: 'Courier New', Courier, monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #ffd700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px #ffd70088;
+    }
+
+    header p {
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      color: #666;
+      letter-spacing: 0.2em;
+    }
+
+    .catastif {
+      background: #0a0a00;
+      border: 1px solid #ffd70044;
+      border-top: 3px solid #ffd700;
+      border-bottom: 3px solid #cc0000;
+      max-width: 560px;
+      width: 100%;
+      padding: 2rem;
+      box-shadow: 0 0 30px #ffd70011, inset 0 0 60px #00000088;
+      position: relative;
+    }
+
+    .catastif::before {
+      content: '⚖';
+      position: absolute;
+      top: -1.1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000;
+      padding: 0 0.6rem;
+      color: #ffd700;
+      font-size: 1.2rem;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1.5rem;
+      margin-bottom: 1.8rem;
+      font-size: 0.85rem;
+      border-bottom: 1px dashed #333;
+      padding-bottom: 1.2rem;
+    }
+
+    .meta .label { color: #888; }
+    .meta .value { color: #ffd700; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    thead tr {
+      border-bottom: 1px solid #ffd70066;
+    }
+
+    thead th {
+      color: #ffd700;
+      text-align: left;
+      padding: 0.45rem 0.5rem;
+      letter-spacing: 0.06em;
+      font-weight: normal;
+    }
+
+    thead th:not(:first-child) { text-align: right; }
+
+    tbody tr {
+      border-bottom: 1px dotted #1a1a00;
+    }
+
+    tbody tr:hover { background: #0f0f00; }
+
+    tbody td {
+      padding: 0.55rem 0.5rem;
+      color: #e8e0c8;
+    }
+
+    tbody td:not(:first-child) { text-align: right; }
+
+    .neg { color: #cc0000; }
+
+    tfoot tr {
+      border-top: 2px solid #cc0000;
+    }
+
+    tfoot td {
+      padding: 0.7rem 0.5rem;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    tfoot td:first-child { color: #cc0000; text-transform: uppercase; }
+    tfoot td:last-child  { color: #cc0000; text-align: right; font-size: 1.15rem; text-shadow: 0 0 8px #cc000099; }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.7rem;
+      color: #444;
+      letter-spacing: 0.15em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Rabojul Datornicilor</h1>
+    <p>pulaofdracula.fun</p>
+  </header>
+
+  <div class="catastif">
+    <div class="meta">
+      <span class="label">Datornic</span>
+      <span class="value">Arhitect</span>
+      <span class="label">Creditor</span>
+      <span class="value">IonCreanga</span>
+      <span class="label">Tarif</span>
+      <span class="value">125 RON/zi</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Descriere</th>
+          <th>Zile</th>
+          <th>Sumă</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lucrări inițiale</td>
+          <td style="text-align:right">5</td>
+          <td>625 RON</td>
+        </tr>
+        <tr>
+          <td>Plată primită</td>
+          <td style="text-align:right">—</td>
+          <td class="neg">-300 RON</td>
+        </tr>
+        <tr>
+          <td>Lucrări suplimentare</td>
+          <td style="text-align:right">3</td>
+          <td>375 RON</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">Total datorat</td>
+          <td>700 RON</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <footer>Actualizat săptămânal · 13 Mai 2026</footer>
+
+</body>
+</html>
