@@ -26,7 +26,7 @@
     }
 
     header h1 {
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: #ffd700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -36,16 +36,22 @@
     header p {
       margin-top: 0.4rem;
       font-size: 0.8rem;
-      color: #666;
       letter-spacing: 0.2em;
     }
+
+    header p a {
+      color: #cc0000;
+      text-decoration: none;
+    }
+
+    header p a:hover { text-decoration: underline; }
 
     .catastif {
       background: #0a0a00;
       border: 1px solid #ffd70044;
       border-top: 3px solid #ffd700;
       border-bottom: 3px solid #cc0000;
-      max-width: 560px;
+      max-width: 580px;
       width: 100%;
       padding: 2rem;
       box-shadow: 0 0 30px #ffd70011, inset 0 0 60px #00000088;
@@ -83,9 +89,7 @@
       font-size: 0.88rem;
     }
 
-    thead tr {
-      border-bottom: 1px solid #ffd70066;
-    }
+    thead tr { border-bottom: 1px solid #ffd70066; }
 
     thead th {
       color: #ffd700;
@@ -97,33 +101,77 @@
 
     thead th:not(:first-child) { text-align: right; }
 
-    tbody tr {
-      border-bottom: 1px dotted #1a1a00;
-    }
-
+    tbody tr { border-bottom: 1px dotted #1a1a00; }
     tbody tr:hover { background: #0f0f00; }
 
     tbody td {
       padding: 0.55rem 0.5rem;
       color: #e8e0c8;
+      vertical-align: top;
     }
 
     tbody td:not(:first-child) { text-align: right; }
 
     .neg { color: #cc0000; }
 
-    tfoot tr {
-      border-top: 2px solid #cc0000;
+    .pula-stack {
+      margin-top: 0.35rem;
+      padding-top: 0.3rem;
+      border-top: 1px dotted #2a2a00;
+      display: flex;
+      flex-direction: column;
+      gap: 0.08rem;
     }
+
+    .pula-stack span {
+      font-size: 0.62rem;
+      color: #22bb44;
+      line-height: 1.45;
+    }
+
+    .pula-stack.neg-pula span { color: #cc4444; }
+    .pula-stack .pula-label { color: #888; font-style: italic; }
+
+    .adica-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.08rem;
+      margin-top: 0.6rem;
+      padding-top: 0.5rem;
+      border-top: 1px dotted #2a2a00;
+      font-size: 0.62rem;
+    }
+
+    .adica-block span { color: #22bb44; }
+    .adica-block .pula-label { color: #888; font-style: italic; }
+
+    tfoot tr { border-top: 2px solid #cc0000; }
 
     tfoot td {
       padding: 0.7rem 0.5rem;
       font-size: 1rem;
       letter-spacing: 0.05em;
+      vertical-align: top;
     }
 
     tfoot td:first-child { color: #cc0000; text-transform: uppercase; }
-    tfoot td:last-child  { color: #cc0000; text-align: right; font-size: 1.15rem; text-shadow: 0 0 8px #cc000099; }
+
+    tfoot td:last-child {
+      color: #cc0000;
+      text-align: right;
+      font-size: 1.15rem;
+      text-shadow: 0 0 8px #cc000099;
+    }
+
+    .rate-note {
+      margin-top: 1rem;
+      font-size: 0.62rem;
+      color: #333;
+      border-top: 1px dotted #1a1a00;
+      padding-top: 0.6rem;
+      text-align: right;
+    }
 
     footer {
       margin-top: 2rem;
@@ -138,7 +186,7 @@
 
   <header>
     <h1>Rabojul Datornicilor</h1>
-    <p>pulaofdracula.fun</p>
+    <p><a href="https://pulaofdracula.fun" target="_blank" rel="noopener noreferrer">pulaofdracula.fun</a></p>
   </header>
 
   <div class="catastif">
@@ -183,6 +231,14 @@
         </tr>
       </tfoot>
     </table>
+
+    <div class="adica-block">
+      <span class="pula-label">Adică</span>
+      <span>53 de Căruțe</span>
+      <span>110 Legături</span>
+      <span>și 773 de PULA</span>
+    </div>
+
   </div>
 
   <footer>Actualizat săptămânal · 13 Mai 2026</footer>
