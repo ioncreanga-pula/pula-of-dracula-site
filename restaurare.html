@@ -1,450 +1,837 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Restaurarea clădirii — Jurnalul lucrării</title>
+<title>Jurnal de restaurare — documentare de șantier</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+:root{
+  --bg:#f5f3ee;
+  --paper:#fff;
+  --ink:#222;
+  --muted:#6c6a65;
+  --accent:#9a6a35;
+  --line:#ded9cf;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+*{box-sizing:border-box}
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f1eb;
-            color: #292929;
-            line-height: 1.7;
-        }
+html{scroll-behavior:smooth}
 
-        header {
-            background: #252525;
-            color: white;
-            padding: 70px 20px;
-            text-align: center;
-        }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Inter,Arial,sans-serif;
+  line-height:1.55;
+}
 
-        header h1 {
-            margin: 0 0 15px;
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 700;
-        }
+.hero{
+  min-height:72vh;
+  display:flex;
+  align-items:flex-end;
+  padding:7vw;
+  color:white;
+  background:
+    linear-gradient(135deg,rgba(25,23,20,.94),rgba(109,90,67,.86)),
+    url("imagini/IMG_20260805_105001.jpg") center/cover;
+}
 
-        header p {
-            max-width: 750px;
-            margin: auto;
-            color: #ddd;
-            font-size: 1.1rem;
-        }
+.hero-inner{
+  max-width:1050px;
+}
 
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background: rgba(255,255,255,0.96);
-            border-bottom: 1px solid #ddd;
-            padding: 12px 10px;
-            text-align: center;
-        }
+.kicker{
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size:.8rem;
+  opacity:.8;
+}
 
-        nav a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 0.95rem;
-        }
+h1{
+  font-family:Georgia,serif;
+  font-size:clamp(2.6rem,7vw,6rem);
+  line-height:.98;
+  margin:.4em 0;
+}
 
-        nav a:hover {
-            text-decoration: underline;
-        }
+.hero p{
+  max-width:760px;
+  font-size:1.12rem;
+  opacity:.9;
+}
 
-        main {
-            max-width: 1100px;
-            margin: auto;
-            padding: 30px 20px 80px;
-        }
+.container{
+  max-width:1180px;
+  margin:auto;
+  padding:0 24px;
+}
 
-        section {
-            margin: 70px 0;
-        }
+.intro{
+  background:var(--paper);
+  margin:-50px auto 50px;
+  position:relative;
+  border-radius:18px;
+  padding:34px;
+  box-shadow:0 15px 45px #0001;
+  max-width:1000px;
+}
 
-        .intro {
-            background: white;
-            padding: 35px;
-            border-radius: 14px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:24px;
+}
 
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #222;
-        }
+.stat{
+  padding:18px;
+  background:#f3efe8;
+  border-radius:12px;
+}
 
-        h3 {
-            margin-top: 35px;
-            font-size: 1.35rem;
-        }
+.stat b{
+  display:block;
+  font-size:1.5rem;
+  color:var(--accent);
+}
 
-        p {
-            font-size: 1.05rem;
-        }
+.section{
+  padding:50px 0;
+  border-bottom:1px solid var(--line);
+}
 
-        .stage {
-            border-left: 5px solid #777;
-            padding-left: 25px;
-        }
+.section-head{
+  display:flex;
+  gap:18px;
+  align-items:baseline;
+  margin-bottom:22px;
+}
 
-        .stage-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #777;
-            font-weight: bold;
-        }
+.section-head span{
+  font-size:.8rem;
+  letter-spacing:.15em;
+  color:var(--accent);
+  font-weight:700;
+}
 
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-top: 30px;
-        }
+h2{
+  font-family:Georgia,serif;
+  font-size:2rem;
+  margin:0;
+}
 
-        figure {
-            margin: 0;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-        }
+.section-intro{
+  max-width:850px;
+  color:#444;
+  margin-bottom:28px;
+}
 
-        figure img {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
 
-        figcaption {
-            padding: 15px 17px;
-            font-size: 0.95rem;
-            color: #555;
-        }
+.photo-card{
+  margin:0;
+  background:var(--paper);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 25px #00000012;
+}
 
-        .highlight {
-            background: #e8e2d7;
-            padding: 25px;
-            border-radius: 12px;
-            margin-top: 25px;
-        }
+.photo-card img{
+  width:100%;
+  display:block;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  cursor:zoom-in;
+}
 
-        .quote {
-            font-size: 1.3rem;
-            font-style: italic;
-            text-align: center;
-            margin: 60px auto;
-            max-width: 800px;
-            color: #555;
-        }
+.photo-card figcaption{
+  padding:14px 16px;
+  color:var(--muted);
+  font-size:.92rem;
+}
 
-        footer {
-            background: #252525;
-            color: #bbb;
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9rem;
-        }
+.note{
+  padding:20px;
+  border-left:4px solid var(--accent);
+  background:#f0ebe2;
+  margin:25px 0;
+}
 
-        @media (max-width: 700px) {
-            .photo-grid {
-                grid-template-columns: 1fr;
-            }
+.highlight{
+  background:#2b2926;
+  color:white;
+  border-radius:16px;
+  padding:30px;
+  margin:30px 0;
+}
 
-            .intro {
-                padding: 25px 20px;
-            }
+.highlight h3{
+  font-family:Georgia,serif;
+  font-size:1.5rem;
+  margin-top:0;
+}
 
-            section {
-                margin: 50px 0;
-            }
+.footer{
+  padding:50px 0 80px;
+  color:var(--muted);
+  font-size:.9rem;
+}
 
-            nav a {
-                display: inline-block;
-                margin: 4px 7px;
-            }
-        }
-    </style>
+#lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000d;
+  z-index:10;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+}
+
+#lightbox img{
+  max-width:95vw;
+  max-height:90vh;
+  object-fit:contain;
+}
+
+#lightbox p{
+  position:absolute;
+  bottom:10px;
+  color:white;
+  text-align:center;
+  max-width:900px;
+}
+
+@media(max-width:700px){
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    min-height:65vh;
+    padding:28px;
+  }
+
+  .container{
+    padding:0 16px;
+  }
+
+  .intro{
+    padding:24px;
+  }
+
+  .section{
+    padding:40px 0;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <h1>Jurnalul lucrării</h1>
+<header class="hero">
+
+  <div class="hero-inner">
+
+    <div class="kicker">
+      Jurnal de restaurare · documentare de șantier
+    </div>
+
+    <h1>
+      De la planșă<br>
+      la fațadă.
+    </h1>
+
     <p>
-        Restaurare, intervenții și refacerea elementelor decorative
-        ale unei clădiri istorice.
+      Documentarea etapelor de lucru realizate până în prezent,
+      cu fotografii de șantier, documentație tehnică și imagini
+      ale intervențiilor asupra elementelor decorative.
     </p>
+
+  </div>
+
 </header>
 
-<nav>
-    <a href="#inceput">Începutul lucrării</a>
-    <a href="#interventii">Intervenții</a>
-    <a href="#ornamente">Elemente decorative</a>
-    <a href="#etapa-noua">Sub acoperiș</a>
-</nav>
 
-<main>
-
-    <!-- INTRODUCERE -->
-
-    <section id="inceput">
-        <div class="intro">
-
-            <div class="stage-title">Despre lucrare</div>
-
-            <h2>De la zidul degradat la o fațadă refăcută</h2>
-
-            <p>
-                Lucrarea presupune restaurarea și refacerea unor elemente
-                ale unei clădiri vechi, păstrând cât mai mult posibil
-                caracterul și detaliile construcției existente.
-            </p>
-
-            <p>
-                Înainte ca noile finisaje și ornamente să poată fi montate,
-                zonele deteriorate trebuie curățate, reparate și pregătite.
-                O parte dintre elementele existente sunt păstrate,
-                iar cele deteriorate sau lipsă sunt refăcute și adaptate
-                construcției originale.
-            </p>
-
-        </div>
-    </section>
-
-
-    <!-- INTERVENTII -->
-
-    <section id="interventii">
-
-        <div class="stage">
-
-            <div class="stage-title">Etapa 1</div>
-
-            <h2>Intervenții și restaurare</h2>
-
-            <p>
-                Prima parte a lucrării a presupus îndepărtarea materialului
-                degradat și pregătirea suportului. Acolo unde tencuiala
-                sau elementele decorative nu mai erau stabile, acestea
-                au fost îndepărtate pentru a permite repararea zidăriei.
-            </p>
-
-            <p>
-                Lucrările au fost executate pe schelă, în zone dificile
-                și înguste, cu acces limitat. Fiecare porțiune a trebuit
-                pregătită înainte de aplicarea materialelor noi.
-            </p>
-
-            <div class="photo-grid">
-
-                <!-- Schimbă numele fișierelor cu numele reale de pe GitHub -->
-
-                <figure>
-                    <img src="interventie-1.jpg"
-                         alt="Intervenție asupra fațadei">
-                    <figcaption>
-                        Îndepărtarea materialului degradat și pregătirea
-                        suprafeței pentru restaurare.
-                    </figcaption>
-                </figure>
-
-                <figure>
-                    <img src="interventie-2.jpg"
-                         alt="Lucrări de restaurare pe fațadă">
-                    <figcaption>
-                        Lucrări de intervenție și refacere a suprafețelor.
-                    </figcaption>
-                </figure>
-
-                <figure>
-                    <img src="interventie-3.jpg"
-                         alt="Element decorativ în timpul restaurării">
-                    <figcaption>
-                        Refacerea și integrarea elementelor decorative
-                        în structura existentă.
-                    </figcaption>
-                </figure>
-
-                <figure>
-                    <img src="interventie-4.jpg"
-                         alt="Fațada în timpul lucrărilor">
-                    <figcaption>
-                        O altă etapă a intervenției asupra fațadei.
-                    </figcaption>
-                </figure>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- MODELE DECORATIVE -->
-
-    <section id="ornamente">
-
-        <div class="stage">
-
-            <div class="stage-title">Etapa 2</div>
-
-            <h2>Refacerea elementelor decorative</h2>
-
-            <p>
-                Clădirea are numeroase elemente decorative care trebuie
-                păstrate sau refăcute. Acestea nu sunt simple suprafețe
-                drepte: fiecare piesă trebuie potrivită cu formele și
-                dimensiunile existente.
-            </p>
-
-            <p>
-                Restaurarea presupune atât lucrări de pregătire a zidului,
-                cât și prelucrarea elementelor decorative astfel încât
-                acestea să se integreze în construcția existentă.
-            </p>
-
-            <div class="photo-grid">
-
-                <figure>
-                    <img src="ornament-1.jpg"
-                         alt="Element decorativ al fațadei">
-                    <figcaption>
-                        Detaliu al ornamentelor arhitecturale existente.
-                    </figcaption>
-                </figure>
-
-                <figure>
-                    <img src="ornament-2.jpg"
-                         alt="Element decorativ în timpul lucrării">
-                    <figcaption>
-                        Element decorativ în timpul intervenției.
-                    </figcaption>
-                </figure>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ETAPA NOUA -->
-
-    <section id="etapa-noua">
-
-        <div class="stage">
-
-            <div class="stage-title">Etapa 3</div>
-
-            <h2>Adaptarea și montarea modelelor de sub acoperiș</h2>
-
-            <p>
-                O parte importantă a lucrării a fost înlocuirea și
-                remontarea elementelor decorative aflate sub acoperiș.
-                Modelele noi nu au avut exact aceeași grosime ca elementele
-                originale, astfel că montarea lor a necesitat adaptarea
-                pieselor la construcția existentă.
-            </p>
-
-            <p>
-                Pentru a obține o îmbinare corectă și pentru a păstra
-                alinierea cu elementele vechi, piesele noi au fost
-                ajustate și tăiate cu flexul.
-            </p>
-
-            <div class="highlight">
-
-                <h3>O adaptare necesară pe teren</h3>
-
-                <p>
-                    Diferența de grosime dintre elementele noi și cele
-                    existente nu a permis montarea directă. În anumite
-                    zone a fost necesară deschiderea unui canal nou în
-                    zidărie pentru ca piesele să poată fi poziționate
-                    și fixate corect.
-                </p>
-
-            </div>
-
-
-            <div class="photo-grid">
-
-                <figure>
-                    <img src="modele-sub-acoperis-1.jpg"
-                         alt="Element decorativ de sub acoperiș">
-                    <figcaption>
-                        Detaliu al elementului decorativ și al zonei
-                        în care acesta trebuie adaptat la construcția
-                        existentă.
-                    </figcaption>
-                </figure>
-
-
-                <figure>
-                    <img src="modele-sub-acoperis-2.jpg"
-                         alt="Ajustarea elementului decorativ cu flexul">
-                    <figcaption>
-                        Ajustarea elementului decorativ cu flexul pentru
-                        obținerea dimensiunii necesare montajului.
-                    </figcaption>
-                </figure>
-
-
-                <figure>
-                    <img src="modele-sub-acoperis-3.jpg"
-                         alt="Canal nou în zidărie">
-                    <figcaption>
-                        Deschiderea unui canal nou în zidărie pentru
-                        a permite poziționarea corectă a elementului.
-                    </figcaption>
-                </figure>
-
-
-                <figure>
-                    <img src="modele-sub-acoperis-4.jpg"
-                         alt="Element decorativ montat sub acoperiș">
-                    <figcaption>
-                        Elementul după adaptare și montare în ansamblul
-                        existent.
-                    </figcaption>
-                </figure>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <p class="quote">
-        „Restaurarea nu înseamnă doar să acoperi ceea ce este vechi.
-        Înseamnă să înțelegi construcția existentă și să găsești soluția
-        potrivită pentru fiecare problemă.”
+<main class="container">
+
+
+<div class="intro">
+
+  <h2 style="font-size:1.55rem">
+    Ce s-a făcut până acum
+  </h2>
+
+  <p>
+    Acest portofoliu prezintă, într-o formă vizuală și ușor de urmărit,
+    activitatea documentată pe șantier: pregătirea și organizarea
+    zonelor de lucru, montarea și utilizarea schelei, consultarea
+    documentației tehnice, intervențiile asupra suprafețelor decorative,
+    decopertările, curățarea și evacuarea materialelor rezultate,
+    precum și montarea și ajustarea unor elemente decorative noi.
+  </p>
+
+  <div class="stats">
+
+    <div class="stat">
+      <b>6+</b>
+      etape de documentare
+    </div>
+
+    <div class="stat">
+      <b>30+</b>
+      fotografii de șantier
+    </div>
+
+    <div class="stat">
+      <b>5</b>
+      membri ai echipei
+    </div>
+
+  </div>
+
+  <div class="note">
+    <b>Notă:</b>
+    aceasta este o prezentare de portofoliu și documentare vizuală,
+    nu un proces-verbal tehnic. Descrierile tehnice pot fi completate
+    și verificate ulterior pe baza documentației de restaurare.
+  </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- 01 CONTEXT -->
+<!-- ========================================================= -->
+
+<section class="section" id="s01">
+
+  <div class="section-head">
+    <span>01</span>
+    <h2>Contextul și clădirea</h2>
+  </div>
+
+  <p class="section-intro">
+    Imagini de ansamblu ale clădirii și ale elementelor arhitecturale
+    care fac obiectul intervențiilor de restaurare.
+  </p>
+
+  <div class="gallery">
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG_20260805_105001.jpg"
+        alt="Fațada clădirii"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Fațada clădirii și contextul arhitectural.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG_20260805_104948.jpg"
+        alt="Clădirea văzută din exterior"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Vedere asupra clădirii și a zonei de intervenție.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG_20260805_105019.jpg"
+        alt="Fațadă și detalii arhitecturale"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Detalii ale fațadei înaintea intervențiilor.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG-20260805-WA0010.jpeg"
+        alt="Vedere generală asupra clădirii"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Vedere generală asupra imobilului.
+      </figcaption>
+    </figure>
+
+  </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- 02 DOCUMENTAȚIA -->
+<!-- ========================================================= -->
+
+<section class="section" id="s02">
+
+  <div class="section-head">
+    <span>02</span>
+    <h2>Documentația tehnică</h2>
+  </div>
+
+  <p class="section-intro">
+    Planșele și documentele tehnice sunt folosite pentru înțelegerea
+    formelor originale și pentru orientarea intervențiilor de pe șantier.
+  </p>
+
+  <div class="gallery">
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG_20260807_075447.jpg"
+        alt="Planșă tehnică"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Planșă tehnică utilizată pentru documentarea intervenției.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG_20260807_075434.jpg"
+        alt="Detaliu de planșă"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Detaliu din documentația tehnică.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG_20260807_075443.jpg"
+        alt="Plan de restaurare"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Plan și detalii pentru intervențiile asupra clădirii.
+      </figcaption>
+    </figure>
+
+  </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- 03 SCHELA -->
+<!-- ========================================================= -->
+
+<section class="section" id="s03">
+
+  <div class="section-head">
+    <span>03</span>
+    <h2>Organizarea șantierului și schela</h2>
+  </div>
+
+  <p class="section-intro">
+    Pentru accesul la zonele înalte ale fațadei a fost realizată
+    și utilizată o structură de lucru din lemn, adaptată geometriei
+    clădirii.
+  </p>
+
+  <div class="gallery">
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG-20260807-WA0021.jpg"
+        alt="Lucrări pe schelă"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Lucrări desfășurate de pe schelă.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG_20260807_105520.jpg"
+        alt="Lucrător pe schelă"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Accesul la zona de intervenție prin structura de lucru.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG_20260807_105556.jpg"
+        alt="Lucrări executate pe schelă"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Intervenții realizate la nivelul superior al fațadei.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/image-1785992070881.jpg"
+        alt="Structura de protecție și acces"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Structura de lucru și protecție din zona fațadei.
+      </figcaption>
+    </figure>
+
+  </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- 04 INTERVENȚII -->
+<!-- ========================================================= -->
+
+<section class="section" id="s04">
+
+  <div class="section-head">
+    <span>04</span>
+    <h2>Intervenții și restaurare</h2>
+  </div>
+
+  <p class="section-intro">
+    În această etapă au fost îndepărtate porțiunile degradate,
+    curățate zonele afectate și pregătite suprafețele pentru
+    intervențiile de restaurare și refacere.
+  </p>
+
+  <div class="gallery">
+
+    <figure class="photo-card">
+      <img
+        src="imagini/image-1785992345098.jpg"
+        alt="Zonă de intervenție pe fațadă"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Zonă a fațadei pregătită pentru intervenție.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/image-1785992384482.jpg"
+        alt="Detaliu al fațadei"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Detaliu al stratului existent și al zonei de intervenție.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG_20260810_115312.jpg"
+        alt="Detaliu al elementului decorativ"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Detaliu al zonei decorative după îndepărtarea materialului degradat.
+      </figcaption>
+    </figure>
+
+  </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- 05 DECOGERTARE -->
+<!-- ========================================================= -->
+
+<section class="section" id="s05">
+
+  <div class="section-head">
+    <span>05</span>
+    <h2>Decopertări, curățare și evacuare</h2>
+  </div>
+
+  <p class="section-intro">
+    Materialele desprinse în urma decopertării au fost colectate,
+    încărcate și evacuate din zona de lucru.
+  </p>
+
+  <div class="gallery">
+
+    <figure class="photo-card">
+      <img
+        src="imagini/image-1785992027805.jpg"
+        alt="Material rezultat din decopertare"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Material rezultat în urma lucrărilor de decopertare.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/image-1785991993185.jpg"
+        alt="Materiale colectate pe șantier"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Colectarea materialelor rezultate din intervenții.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG_20260806_102847.jpg"
+        alt="Morman de materiale rezultate"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Materialele rezultate înainte de evacuare.
+      </figcaption>
+    </figure>
+
+    <figure class="photo-card">
+      <img
+        src="imagini/IMG_20260804_153508.jpg"
+        alt="Container pentru materiale"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+      <figcaption>
+        Organizarea zonei pentru colectarea și evacuarea materialelor.
+      </figcaption>
+    </figure>
+
+  </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- 06 ELEMENTE DECORATIVE NOI -->
+<!-- ========================================================= -->
+
+<section class="section" id="s06">
+
+  <div class="section-head">
+    <span>06</span>
+    <h2>Montarea elementelor decorative noi</h2>
+  </div>
+
+  <p class="section-intro">
+    O etapă distinctă a lucrării a fost montarea unor elemente decorative
+    noi în zona de sub acoperiș. În timpul montajului s-a constatat că
+    modelele noi sunt mai groase decât elementele existente, ceea ce a
+    impus ajustarea lor și pregătirea suplimentară a suportului.
+  </p>
+
+
+  <div class="highlight">
+
+    <h3>Ajustare și adaptare la construcția existentă</h3>
+
+    <p>
+      Pentru ca elementele noi să poată fi montate corect în poziția
+      prevăzută, acestea au trebuit ajustate la fața locului.
+      Grosimea mai mare față de modelele vechi a făcut necesară
+      tăierea și adaptarea pieselor cu flexul.
     </p>
+
+    <p>
+      În același timp, în suportul existent a fost realizat un canal
+      nou, astfel încât elementele să poată fi așezate și fixate
+      corespunzător. Intervenția a presupus atât prelucrarea pieselor
+      noi, cât și adaptarea punctuală a construcției existente.
+    </p>
+
+  </div>
+
+
+  <div class="gallery">
+
+    <figure class="photo-card">
+
+      <img
+        src="imagini/IMG_20260810_115141.jpg"
+        alt="Element decorativ nou montat sub acoperiș"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+
+      <figcaption>
+        Elementele decorative noi, observate în zona de sub acoperiș.
+        Grosimea lor diferă de cea a modelelor existente.
+      </figcaption>
+
+    </figure>
+
+
+    <figure class="photo-card">
+
+      <img
+        src="imagini/IMG_20260810_115202.jpg"
+        alt="Flex folosit pentru ajustarea elementelor decorative"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+
+      <figcaption>
+        Ajustarea elementelor decorative la dimensiunile necesare
+        pentru montajul în construcția existentă.
+      </figcaption>
+
+    </figure>
+
+
+    <figure class="photo-card">
+
+      <img
+        src="imagini/IMG_20260810_115312.jpg"
+        alt="Canal pregătit în zona de montaj"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+
+      <figcaption>
+        Zona suportului în care a fost necesară realizarea unui
+        canal nou pentru montarea elementelor.
+      </figcaption>
+
+    </figure>
+
+
+    <figure class="photo-card">
+
+      <img
+        src="imagini/IMG_20260810_115501.jpg"
+        alt="Element decorativ nou montat"
+        loading="lazy"
+        onclick="openLightbox(this.src,this.alt)">
+
+      <figcaption>
+        Detaliu al modelului decorativ nou și al zonei pregătite
+        pentru montaj.
+      </figcaption>
+
+    </figure>
+
+  </div>
+
+
+  <div class="note">
+
+    <b>Observație de șantier:</b>
+    diferența de grosime dintre modelele noi și cele vechi a făcut
+    necesară o adaptare direct pe construcție. Această etapă arată
+    foarte bine diferența dintre o simplă înlocuire a unui element
+    și necesitatea de a-l adapta la geometria reală a clădirii.
+
+  </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- 07 CONTINUARE -->
+<!-- ========================================================= -->
+
+<section class="section" id="s07">
+
+  <div class="section-head">
+    <span>07</span>
+    <h2>Lucrarea continuă</h2>
+  </div>
+
+  <p class="section-intro">
+
+    Restaurarea este un proces în desfășurare. Pe măsură ce apar
+    noi etape, acestea vor fi adăugate în jurnal împreună cu
+    fotografii și observații de șantier.
+
+  </p>
+
+  <div class="note">
+
+    <b>Documentarea continuă.</b>
+    Fotografiile nu sunt doar o arhivă a lucrării, ci și o modalitate
+    de a păstra vizibil procesul prin care clădirea este readusă,
+    etapă cu etapă, către forma sa restaurată.
+
+  </div>
+
+</section>
+
+
+<footer class="footer">
+
+  <b>Jurnal de restaurare — versiune de lucru</b>
+  <br>
+
+  Documentație fotografică realizată pe șantier.
+  Materialul poate fi actualizat pe măsură ce apar noi etape,
+  planșe și fotografii.
+
+</footer>
+
 
 </main>
 
 
-<footer>
-    Jurnal fotografic al lucrării
-    <br>
-    Fotografii realizate pe parcursul intervențiilor.
-</footer>
+<!-- ========================================================= -->
+<!-- LIGHTBOX -->
+<!-- ========================================================= -->
+
+<div id="lightbox" onclick="closeLightbox()">
+
+  <img id="lightbox-img" src="" alt="">
+
+  <p id="lightbox-cap"></p>
+
+</div>
+
+
+<script>
+
+function openLightbox(src, alt){
+
+  document.getElementById("lightbox-img").src = src;
+
+  document.getElementById("lightbox-cap").textContent = alt;
+
+  document.getElementById("lightbox").style.display = "flex";
+
+}
+
+function closeLightbox(){
+
+  document.getElementById("lightbox").style.display = "none";
+
+}
+
+document.addEventListener("keydown", function(e){
+
+  if(e.key === "Escape"){
+
+    closeLightbox();
+
+  }
+
+});
+
+</script>
 
 </body>
-  </html>
+</html>
