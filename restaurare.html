@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Restaurarea clădirii — Jurnalul lucrării</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f1eb;
+            color: #292929;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #252525;
+            color: white;
+            padding: 70px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 15px;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+        }
+
+        header p {
+            max-width: 750px;
+            margin: auto;
+            color: #ddd;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255,255,255,0.96);
+            border-bottom: 1px solid #ddd;
+            padding: 12px 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 20px 80px;
+        }
+
+        section {
+            margin: 70px 0;
+        }
+
+        .intro {
+            background: white;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        h3 {
+            margin-top: 35px;
+            font-size: 1.35rem;
+        }
+
+        p {
+            font-size: 1.05rem;
+        }
+
+        .stage {
+            border-left: 5px solid #777;
+            padding-left: 25px;
+        }
+
+        .stage-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #777;
+            font-weight: bold;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        figure {
+            margin: 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        }
+
+        figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        figcaption {
+            padding: 15px 17px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .highlight {
+            background: #e8e2d7;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+
+        .quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            text-align: center;
+            margin: 60px auto;
+            max-width: 800px;
+            color: #555;
+        }
+
+        footer {
+            background: #252525;
+            color: #bbb;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 700px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .intro {
+                padding: 25px 20px;
+            }
+
+            section {
+                margin: 50px 0;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 4px 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Jurnalul lucrării</h1>
+    <p>
+        Restaurare, intervenții și refacerea elementelor decorative
+        ale unei clădiri istorice.
+    </p>
+</header>
+
+<nav>
+    <a href="#inceput">Începutul lucrării</a>
+    <a href="#interventii">Intervenții</a>
+    <a href="#ornamente">Elemente decorative</a>
+    <a href="#etapa-noua">Sub acoperiș</a>
+</nav>
+
+<main>
+
+    <!-- INTRODUCERE -->
+
+    <section id="inceput">
+        <div class="intro">
+
+            <div class="stage-title">Despre lucrare</div>
+
+            <h2>De la zidul degradat la o fațadă refăcută</h2>
+
+            <p>
+                Lucrarea presupune restaurarea și refacerea unor elemente
+                ale unei clădiri vechi, păstrând cât mai mult posibil
+                caracterul și detaliile construcției existente.
+            </p>
+
+            <p>
+                Înainte ca noile finisaje și ornamente să poată fi montate,
+                zonele deteriorate trebuie curățate, reparate și pregătite.
+                O parte dintre elementele existente sunt păstrate,
+                iar cele deteriorate sau lipsă sunt refăcute și adaptate
+                construcției originale.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- INTERVENTII -->
+
+    <section id="interventii">
+
+        <div class="stage">
+
+            <div class="stage-title">Etapa 1</div>
+
+            <h2>Intervenții și restaurare</h2>
+
+            <p>
+                Prima parte a lucrării a presupus îndepărtarea materialului
+                degradat și pregătirea suportului. Acolo unde tencuiala
+                sau elementele decorative nu mai erau stabile, acestea
+                au fost îndepărtate pentru a permite repararea zidăriei.
+            </p>
+
+            <p>
+                Lucrările au fost executate pe schelă, în zone dificile
+                și înguste, cu acces limitat. Fiecare porțiune a trebuit
+                pregătită înainte de aplicarea materialelor noi.
+            </p>
+
+            <div class="photo-grid">
+
+                <!-- Schimbă numele fișierelor cu numele reale de pe GitHub -->
+
+                <figure>
+                    <img src="interventie-1.jpg"
+                         alt="Intervenție asupra fațadei">
+                    <figcaption>
+                        Îndepărtarea materialului degradat și pregătirea
+                        suprafeței pentru restaurare.
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="interventie-2.jpg"
+                         alt="Lucrări de restaurare pe fațadă">
+                    <figcaption>
+                        Lucrări de intervenție și refacere a suprafețelor.
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="interventie-3.jpg"
+                         alt="Element decorativ în timpul restaurării">
+                    <figcaption>
+                        Refacerea și integrarea elementelor decorative
+                        în structura existentă.
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="interventie-4.jpg"
+                         alt="Fațada în timpul lucrărilor">
+                    <figcaption>
+                        O altă etapă a intervenției asupra fațadei.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MODELE DECORATIVE -->
+
+    <section id="ornamente">
+
+        <div class="stage">
+
+            <div class="stage-title">Etapa 2</div>
+
+            <h2>Refacerea elementelor decorative</h2>
+
+            <p>
+                Clădirea are numeroase elemente decorative care trebuie
+                păstrate sau refăcute. Acestea nu sunt simple suprafețe
+                drepte: fiecare piesă trebuie potrivită cu formele și
+                dimensiunile existente.
+            </p>
+
+            <p>
+                Restaurarea presupune atât lucrări de pregătire a zidului,
+                cât și prelucrarea elementelor decorative astfel încât
+                acestea să se integreze în construcția existentă.
+            </p>
+
+            <div class="photo-grid">
+
+                <figure>
+                    <img src="ornament-1.jpg"
+                         alt="Element decorativ al fațadei">
+                    <figcaption>
+                        Detaliu al ornamentelor arhitecturale existente.
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="ornament-2.jpg"
+                         alt="Element decorativ în timpul lucrării">
+                    <figcaption>
+                        Element decorativ în timpul intervenției.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ETAPA NOUA -->
+
+    <section id="etapa-noua">
+
+        <div class="stage">
+
+            <div class="stage-title">Etapa 3</div>
+
+            <h2>Adaptarea și montarea modelelor de sub acoperiș</h2>
+
+            <p>
+                O parte importantă a lucrării a fost înlocuirea și
+                remontarea elementelor decorative aflate sub acoperiș.
+                Modelele noi nu au avut exact aceeași grosime ca elementele
+                originale, astfel că montarea lor a necesitat adaptarea
+                pieselor la construcția existentă.
+            </p>
+
+            <p>
+                Pentru a obține o îmbinare corectă și pentru a păstra
+                alinierea cu elementele vechi, piesele noi au fost
+                ajustate și tăiate cu flexul.
+            </p>
+
+            <div class="highlight">
+
+                <h3>O adaptare necesară pe teren</h3>
+
+                <p>
+                    Diferența de grosime dintre elementele noi și cele
+                    existente nu a permis montarea directă. În anumite
+                    zone a fost necesară deschiderea unui canal nou în
+                    zidărie pentru ca piesele să poată fi poziționate
+                    și fixate corect.
+                </p>
+
+            </div>
+
+
+            <div class="photo-grid">
+
+                <figure>
+                    <img src="modele-sub-acoperis-1.jpg"
+                         alt="Element decorativ de sub acoperiș">
+                    <figcaption>
+                        Detaliu al elementului decorativ și al zonei
+                        în care acesta trebuie adaptat la construcția
+                        existentă.
+                    </figcaption>
+                </figure>
+
+
+                <figure>
+                    <img src="modele-sub-acoperis-2.jpg"
+                         alt="Ajustarea elementului decorativ cu flexul">
+                    <figcaption>
+                        Ajustarea elementului decorativ cu flexul pentru
+                        obținerea dimensiunii necesare montajului.
+                    </figcaption>
+                </figure>
+
+
+                <figure>
+                    <img src="modele-sub-acoperis-3.jpg"
+                         alt="Canal nou în zidărie">
+                    <figcaption>
+                        Deschiderea unui canal nou în zidărie pentru
+                        a permite poziționarea corectă a elementului.
+                    </figcaption>
+                </figure>
+
+
+                <figure>
+                    <img src="modele-sub-acoperis-4.jpg"
+                         alt="Element decorativ montat sub acoperiș">
+                    <figcaption>
+                        Elementul după adaptare și montare în ansamblul
+                        existent.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <p class="quote">
+        „Restaurarea nu înseamnă doar să acoperi ceea ce este vechi.
+        Înseamnă să înțelegi construcția existentă și să găsești soluția
+        potrivită pentru fiecare problemă.”
+    </p>
+
+</main>
+
+
+<footer>
+    Jurnal fotografic al lucrării
+    <br>
+    Fotografii realizate pe parcursul intervențiilor.
+</footer>
+
+</body>
+  </html>
