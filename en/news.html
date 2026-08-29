@@ -143,5 +143,14 @@
         </div>
     </footer>
     <script src="../script.js"></script>
+<script>
+(function(){
+  var p = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('nav a').forEach(function(a){
+    var h = (a.getAttribute('href')||'').split('/').pop();
+    if (h === p) a.classList.add('nav-active');
+  });
+})();
+</script>
 </body>
 </html>

@@ -50,6 +50,7 @@
                     <li><a href="roadmap.html" class="nav-link">Roadmap</a></li>
                     <li><a href="how-to-buy.html" class="nav-link">Buy</a></li>
                     <li><a href="community.html" class="nav-link">Community</a></li>
+                    <li><a href="vulva.html" class="nav-link">V.U.L.V.A.</a></li>
                 </ul>
                 <div class="language-switcher">
                     <a href="../viziunea.html" class="lang-link"><img src="../imagini/flag-ro.png" alt="Română"></a>
@@ -258,19 +259,19 @@
             <div class="jurnal-ardei-container">
                 <div class="jurnal-intrare stanga">
                     <div class="jurnal-continut">
-                        <h3>⚒️ <span style="color:#4caf50">May 1, 2026</span><br><span style="color:#e53935">Labor Abolition Day</span></h3>
+                        <h3>⚒️ <span style="color:#4caf50">May 1, 2027</span><br><span style="color:#e53935">Labor Abolition Day</span></h3>
                         <p>The international launch of PULA of Dracula. Labor Day becomes the day we solemnly and with Dacian humor declare that <strong>labor is to be abolished</strong>. Not tomorrow. But the process has begun. PULA goes out into the world.</p>
                     </div>
                 </div>
                 <div class="jurnal-intrare dreapta">
                     <div class="jurnal-continut">
-                        <h3>🌺 <span style="color:#4caf50">June 24, 2026</span><br><span style="color:#e53935">V.U.L.V.A. Opens</span></h3>
+                        <h3>🌺 <span style="color:#4caf50">June 24, 2027</span><br><span style="color:#e53935">V.U.L.V.A. Opens</span></h3>
                         <p>On the night of Sânziene (Midsummer), when the boundary between the seen and unseen worlds is at its thinnest, <strong>V.U.L.V.A.</strong> opens — <em>Vault for Universal Labor Value Abolishment</em>.</p>
                     </div>
                 </div>
                 <div class="jurnal-intrare stanga">
                     <div class="jurnal-continut">
-                        <h3>👶 <span style="color:#4caf50">March 25, 2027</span><br><span style="color:#e53935">The Great Birth</span></h3>
+                        <h3>👶 <span style="color:#4caf50">March 25, 2028</span><br><span style="color:#e53935">The Great Birth</span></h3>
                         <p>Exactly 9 months later, on the Feast of the Annunciation, when nature receives the news of spring, the Great Birth takes place. Every unit of PULA deposited returns multiplied 9 times.</p>
                     </div>
                 </div>
@@ -295,5 +296,14 @@
     </footer>
 
     <script src="../script.js"></script>
+<script>
+(function(){
+  var p = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('nav a').forEach(function(a){
+    var h = (a.getAttribute('href')||'').split('/').pop();
+    if (h === p) a.classList.add('nav-active');
+  });
+})();
+</script>
 </body>
 </html>

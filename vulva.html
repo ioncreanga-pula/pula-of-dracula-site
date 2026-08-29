@@ -1,333 +1,565 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EFLQ0JP2SR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-EFLQ0JP2SR');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V.U.L.V.A. — Vault for Universal Labor Value Abolishment</title>
-    <meta name="description" content="V.U.L.V.A.: mecanismul sacru al PULA of Dracula. Depui PULA pe 24 Iunie 2026 (Sânzienele), primești LIMBA, și pe 25 Martie 2027 (Blagoveștenia) — 8.5x înapoi.">
-    <link rel="canonical" href="https://pulaofdracula.fun/vulva.html" />
-    <link rel="alternate" hreflang="ro" href="https://pulaofdracula.fun/vulva.html" />
-    <link rel="alternate" hreflang="en" href="https://pulaofdracula.fun/en/vulva.html" />
-    <link rel="alternate" hreflang="x-default" href="https://pulaofdracula.fun/en/vulva.html" />
-    <link rel="stylesheet" href="stil.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="manifest.json">
-    <link rel="shortcut icon" href="favicon.ico">
-    <meta name="msapplication-TileColor" content="#e53935">
-    <meta name="theme-color" content="#e53935">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://pulaofdracula.fun/vulva.html">
-    <meta property="og:title" content="V.U.L.V.A. — Multiplicatorul Sacru al PULA">
-    <meta property="og:description" content="Bagi PULA pe Sânziene, primești LIMBA, și pe Blagoveștenie iei 8.5x înapoi. Natura și-a spus cuvântul.">
-    <meta property="og:image" content="https://pulaofdracula.fun/imagini/pula-logo.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V.U.L.V.A. — Vault for Universal Labor Value Abolishment</title>
+<link rel="stylesheet" href="stil.css">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="manifest.json">
+<link rel="shortcut icon" href="favicon.ico">
+<meta name="msapplication-TileColor" content="#e53935">
+<meta name="theme-color" content="#e53935">
 <script src="/pret-live.js"></script>
-  </head>
+<style>
+  .epigraf {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: #000;
+  }
+
+  .epigraf-vers {
+    font-size: 1.25em;
+    line-height: 2.2;
+    color: #d4a0c0;
+    font-style: italic;
+    max-width: 600px;
+    letter-spacing: 0.5px;
+  }
+
+  .epigraf-vers span {
+    display: block;
+  }
+
+  .epigraf-data {
+    margin-top: 80px;
+    font-size: 1.1em;
+    color: #666;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .epigraf-titlu {
+    margin-top: 20px;
+    max-width: 480px;
+    font-size: 1.5em;
+    color: #e91e8c;
+    letter-spacing: 1px;
+    line-height: 1.4;
+  }
+
+  .momente {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    margin: 60px 0;
+  }
+
+  .moment {
+    padding: 50px 30px;
+    text-align: center;
+    background: #0a0a0a;
+    border-top: 1px solid #222;
+  }
+
+  .moment-data {
+    font-size: 0.85em;
+    color: #666;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+
+  .moment-nume {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+  }
+
+  .moment-text {
+    font-size: 0.95em;
+    color: #999;
+    line-height: 1.8;
+  }
+
+  .moment-1 { border-top-color: #cc0000; }
+  .moment-1 .moment-nume { color: #ff6b6b; }
+
+  .moment-2 { border-top-color: #e91e8c; }
+  .moment-2 .moment-nume { color: #e91e8c; }
+
+  .moment-3 { border-top-color: #ffd700; }
+  .moment-3 .moment-nume { color: #ffd700; }
+
+  .miezul {
+    max-width: 680px;
+    margin: 80px auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .miezul p {
+    font-size: 1.1em;
+    line-height: 2;
+    color: #bbb;
+    margin-bottom: 25px;
+  }
+
+  .miezul p strong {
+    color: #e91e8c;
+  }
+
+  .formula {
+    margin: 60px auto;
+    max-width: 680px;
+    padding: 40px;
+    border: 1px solid #333;
+    text-align: center;
+    font-size: 1.05em;
+    color: #aaa;
+    line-height: 2.5;
+    font-style: italic;
+  }
+
+  .formula strong {
+    color: #e91e8c;
+    font-style: normal;
+  }
+
+  .formula-nota {
+    font-size: 0.7em;
+    color: #666;
+  }
+
+  .detalii-toggle {
+    text-align: center;
+    margin: 60px 0 20px;
+  }
+
+  .detalii-toggle button {
+    background: transparent;
+    border: 1px solid #444;
+    color: #666;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 0.85em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+
+  .detalii-toggle button:hover {
+    border-color: #e91e8c;
+    color: #e91e8c;
+  }
+
+  .detalii {
+    display: none;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  .detalii.deschis {
+    display: block;
+  }
+
+  .detalii h3 {
+    color: #e91e8c;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .detalii p, .detalii li {
+    color: #888;
+    line-height: 1.9;
+    font-size: 0.95em;
+  }
+
+  .detalii ol {
+    padding-left: 20px;
+  }
+
+  .cta-final {
+    text-align: center;
+    padding: 80px 20px;
+    background: #050505;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .cta-final p {
+    color: #666;
+    font-size: 0.95em;
+    margin-top: 15px;
+    font-style: italic;
+  }
+
+  /* CONTOPIREA — P.U.L.A. + V.U.L.V.A. = G.U.R.A. deschisă, iese L.I.M.B.A. */
+  .contopire {
+    background: #050505;
+    border-top: 1px solid #1a1a1a;
+    padding: 90px 20px 100px;
+    text-align: center;
+  }
+
+  .contopire-eyebrow {
+    font-size: 0.8em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 10px;
+  }
+
+  .contopire h2 {
+    color: #e91e8c;
+    font-size: 1.8em;
+    letter-spacing: 2px;
+    margin: 0 0 50px;
+  }
+
+  .contopire-stage {
+    position: relative;
+    width: min(340px, 78vw);
+    height: min(340px, 78vw);
+    margin: 0 auto;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 42%, #141014, #0a0a0a 70%, #050505 100%);
+    border: 1px solid #2a2020;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .contopire-glow {
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(233,30,140,0.5), rgba(233,30,140,0) 70%);
+    opacity: 0;
+    filter: blur(2px);
+    pointer-events: none;
+  }
+
+  .contopire-simbol {
+    position: absolute;
+    width: 88px;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6));
+  }
+  .contopire-simbol img { width: 100%; height: 100%; object-fit: contain; }
+  .contopire-simbol.masc { transform: translateX(-118px) rotate(-8deg); }
+  .contopire-simbol.fem { transform: translateX(118px) rotate(8deg); }
+
+  .contopire-yy {
+    position: absolute;
+    width: 142px;
+    height: 142px;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  .contopire-yy img { width: 100%; height: 100%; object-fit: contain; }
+
+  .contopire-stage.pornit .contopire-simbol.masc { animation: cpMasc 2.6s cubic-bezier(.6,0,.3,1) forwards; }
+  .contopire-stage.pornit .contopire-simbol.fem { animation: cpFem 2.6s cubic-bezier(.6,0,.3,1) forwards; }
+  .contopire-stage.pornit .contopire-glow { animation: cpGlow 2.6s ease forwards; }
+  .contopire-stage.pornit .contopire-yy { animation: cpYinYang 2.6s cubic-bezier(.2,.8,.2,1) forwards; }
+
+  @keyframes cpMasc {
+    0% { transform: translateX(-118px) rotate(-8deg); opacity: 1; }
+    55% { transform: translateX(-8px) rotate(6deg) scale(1.08); opacity: 1; }
+    70% { transform: translate(0,0) rotate(0deg) scale(0.9); opacity: 0.9; }
+    100% { transform: translate(0,0) rotate(40deg) scale(0.2); opacity: 0; }
+  }
+  @keyframes cpFem {
+    0% { transform: translateX(118px) rotate(8deg); opacity: 1; }
+    55% { transform: translateX(8px) rotate(-6deg) scale(1.08); opacity: 1; }
+    70% { transform: translate(0,0) rotate(0deg) scale(0.9); opacity: 0.9; }
+    100% { transform: translate(0,0) rotate(-40deg) scale(0.2); opacity: 0; }
+  }
+  @keyframes cpGlow {
+    0% { opacity: 0; transform: scale(0.4); }
+    58% { opacity: 0; transform: scale(0.4); }
+    72% { opacity: 0.9; transform: scale(1.5); }
+    100% { opacity: 0; transform: scale(2.4); }
+  }
+  @keyframes cpYinYang {
+    0% { opacity: 0; transform: scale(0.5) rotate(-30deg); }
+    64% { opacity: 0; transform: scale(0.5) rotate(-30deg); }
+    80% { opacity: 1; transform: scale(1.08) rotate(4deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+  .contopire-log {
+    max-width: 420px;
+    margin: 40px auto 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8em;
+    color: #666;
+    background: #0a0a0a;
+    border: 1px solid #222;
+    padding: 14px 18px;
+    min-height: 20px;
+    line-height: 1.8;
+    text-align: left;
+  }
+  .contopire-log .linie { color: #aaa; }
+  .contopire-log .linie.cheie { color: #e91e8c; }
+
+  .contopire-replay {
+    display: inline-block;
+    margin-top: 26px;
+    background: linear-gradient(180deg, #ff2f92, #c8115f);
+    border: 1px solid #ff5fa8;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.85em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 13px 28px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px -6px rgba(233,30,140,0.6);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  }
+  .contopire-replay:hover { filter: brightness(1.1); box-shadow: 0 8px 22px -4px rgba(233,30,140,0.75); }
+  .contopire-replay:active { transform: translateY(1px) scale(0.98); }
+
+  .contopire-text {
+    max-width: 620px;
+    margin: 50px auto 0;
+    color: #999;
+    line-height: 1.9;
+    font-size: 1em;
+  }
+  .contopire-text strong { color: #e91e8c; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contopire-stage.pornit .contopire-simbol.masc,
+    .contopire-stage.pornit .contopire-simbol.fem,
+    .contopire-stage.pornit .contopire-glow,
+    .contopire-stage.pornit .contopire-yy {
+      animation-duration: 0.01ms !important;
+      animation-fill-mode: forwards !important;
+    }
+  }
+</style>
+</head>
 <body>
-    <header class="site-header">
-        <div class="header-container container">
-            <div class="logo-container">
-                <a href="index.html" class="logo-link">
-                    <img src="imagini/pula-logo-mic.png" alt="PULA Logo Mic" class="logo-nav">
-                    <span class="logo-text">P.U.L.A.</span>
-                </a>
-            </div>
 
-            <nav class="navigatie-principala">
-                <ul class="nav-lista">
-                    <li><a href="pulaverse.html" class="nav-link">PULAverse</a></li>
-                    <li><a href="viziunea.html" class="nav-link">Viziunea</a></li>
-                    <li><a href="harta.html" class="nav-link">Harta</a></li>
-                    <li><a href="cumpara.html" class="nav-link">Cumpără</a></li>
-                    <li><a href="comunitate.html" class="nav-link">Comunitate</a></li>
-                    <li><a href="vulva.html" class="nav-link active">V.U.L.V.A.</a></li>
-                </ul>
-                <div class="language-switcher">
-                    <a href="vulva.html" class="lang-link active-lang"><img src="imagini/flag-ro.png" alt="Română"></a>
-                    <a href="en/vulva.html" class="lang-link"><img src="imagini/flag-en.png" alt="English"></a>
-                </div>
-                <button class="nav-toggle" aria-label="toggle navigation"><span class="hamburger"></span></button>
-            </nav>
+<header class="site-header">
+    <div class="header-container container">
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="imagini/pula-logo-mic.png" alt="PULA Logo Mic" class="logo-nav">
+                <span class="logo-text">P.U.L.A.</span>
+            </a>
         </div>
-    </header>
-    <!-- BANDA DEFILANTA TICKER -->
-    <div class="banda-defilanta">
-        <div class="banda-wrap">
-            <div class="banda-continut" id="bandaContinut">
-                <!-- continut incarcat de JS -->
-                <span class="banda-item"><span class="banda-label">1 CĂRUȚĂ:</span> <span class="banda-val">10.10</span> <span class="banda-unit">RON</span></span>
-                <span class="banda-sep">◆</span>
-                <span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$2,210</span></span>
-                <span class="banda-sep">◆</span>
-                <span class="banda-item"><span class="banda-label">SUPPLY:</span> <span class="banda-val">1,000,000,000</span> <span class="banda-unit">PULA</span></span>
+        <nav class="navigatie-principala">
+            <ul class="nav-lista">
+                <li><a href="pulaverse.html" class="nav-link">PULAverse</a></li>
+                <li><a href="viziunea.html" class="nav-link">Viziunea</a></li>
+                <li><a href="harta.html" class="nav-link">Harta</a></li>
+                <li><a href="cumpara.html" class="nav-link">Cumpără</a></li>
+                <li><a href="comunitate.html" class="nav-link">Comunitate</a></li>
+                <li><a href="vulva.html" class="nav-link active">V.U.L.V.A.</a></li>
+            </ul>
+            <div class="language-switcher">
+                <a href="vulva.html" class="lang-link active-lang"><img src="imagini/flag-ro.png" alt="Română"></a>
+                <a href="en/vulva.html" class="lang-link"><img src="imagini/flag-en.png" alt="English"></a>
             </div>
-        </div>
+            <button class="nav-toggle" aria-label="toggle navigation"><span class="hamburger"></span></button>
+        </nav>
     </div>
-    <script>
-    (function() {
-        var PAIR = '4btoeuklvrqycz8r8xugana4czsvopwsmzbfpvghhghr';
-        var jsonPath = '/admin/pret.json';
+</header>
 
-        function fmt(n, dec) { return (n !== null && n !== undefined && !isNaN(n)) ? Number(n).toFixed(dec) : '—'; }
-        function fmtPula(n) {
-            if (!n || isNaN(n)) return '—';
-            if (n >= 1e9) return (n/1e9).toFixed(2) + ' Hambare';
-            if (n >= 1e6) return (n/1e6).toFixed(2) + ' Căruțe';
-            if (n >= 1e3) return (n/1e3).toFixed(2) + ' Legături de PULA';
-            return Math.round(n).toLocaleString('ro-RO') + ' PULA';
-        }
-        function fmtInt(n) { return Number(n).toLocaleString('ro-RO'); }
+<!-- EPIGRAF -->
+<div class="epigraf">
+    <div class="epigraf-vers">
+        <span>Mi-am împletit propriul fir ariadnic,</span>
+        <span>să mă poată scoate din tenebrele sufletului.</span>
+        <span>&nbsp;</span>
+        <span>O sămânță am pus-o în Om, una în Leu,</span>
+        <span>să-mi găsesc inima curată,</span>
+        <span>una în vrejul de fasole,</span>
+        <span>să pot urca la Cer</span>
+        <span>și ultima am îngropat-o în piatra unghiului.</span>
+    </div>
 
-        function buildContent(d) {
-            var sep = '<span class="banda-sep">◆</span>';
-            var pipe = ' <span class="banda-unit">|</span> ';
-            var vals = [
-                '<span class="banda-val">' + fmt(d.ron,2) + '</span> <span class="banda-unit">RON</span>',
-                '<span class="banda-val">' + fmt(d.usd,4) + '</span> <span class="banda-unit">USD</span>',
-                '<span class="banda-val">' + fmt(d.eur,4) + '</span> <span class="banda-unit">EUR</span>',
-                '<span class="banda-val">' + fmt(d.sol,5) + '</span> <span class="banda-unit">SOL</span>'
-            ];
-            var html = '<span class="banda-item"><span class="banda-label">1 CĂRUȚĂ:</span> ' + vals.join(pipe) + '</span>';
-            html += sep + '<span class="banda-item"><span class="banda-label">MARKET CAP:</span> <span class="banda-val">$' + fmtInt(Math.round(d.market_cap_usd)) + '</span></span>';
-            // Paritate mărfuri (1 unitate = X PULA)
-            if (d.motorina_ron && d.ron) {
-                var pula_per_litru = (d.motorina_ron / d.ron) * 1e6;
-                html += sep + '<span class="banda-item"><span class="banda-label">1L Motorină:</span> <span class="banda-val">' + fmtPula(pula_per_litru) + '</span></span>';
-            }
-            if (d.kwh_ron && d.ron) {
-                var pula_per_kwh = (d.kwh_ron / d.ron) * 1e6;
-                html += sep + '<span class="banda-item"><span class="banda-label">1 kWh:</span> <span class="banda-val">' + fmtPula(pula_per_kwh) + '</span></span>';
-            }
-            if (d.aur_ron_per_gram && d.ron) {
-                var pula_per_gram_aur = (d.aur_ron_per_gram / d.ron) * 1e6;
-                html += sep + '<span class="banda-item"><span class="banda-label">1g Aur:</span> <span class="banda-val">' + fmtPula(pula_per_gram_aur) + '</span></span>';
-            }
-            html += sep + '<span class="banda-item"><span class="banda-label">SUPPLY:</span> <span class="banda-val">' + fmtInt(d.supply) + '</span> <span class="banda-unit">PULA</span></span>';
-            return html + sep + html;
-        }
+    <div class="epigraf-data">24 Iunie 2027 — Vault for Universal Labor Value Abolishment se deschide</div>
+    <div class="epigraf-titlu">🌺 Vault for Universal Labor Value Abolishment</div>
+</div>
 
-        function update(d) {
-            var el = document.getElementById('bandaContinut');
-            if (el) el.innerHTML = buildContent(d);
-            localStorage.setItem('pula_pret', JSON.stringify(d));
-        }
+<!-- CELE TREI MOMENTE -->
+<div class="momente">
+    <div class="moment moment-1">
+        <div class="moment-data">1 Mai 2027</div>
+        <div class="moment-nume">Ziua Abolirii Muncii</div>
+        <div class="moment-text">PULA of Dracula iese oficial în lume.<br>Declarăm că munca drept scop în sine urmează să fie abolită.</div>
+    </div>
+    <div class="moment moment-2">
+        <div class="moment-data">24 Iunie 2027 — Sânzienele</div>
+        <div class="moment-nume">Vault for Universal Labor Value Abolishment se deschide</div>
+        <div class="moment-text">O singură fereastră.<br>Depui PULA, plătești jertfa de 1 SOL.<br>Nu se mai deschide după aceea.</div>
+    </div>
+    <div class="moment moment-3">
+        <div class="moment-data">25 Martie 2028 — Blagoveștenia</div>
+        <div class="moment-nume">Marea Naștere</div>
+        <div class="moment-text">La 9 luni după Sânziene.<br>Fiecare PULA depusă revine × 8,273.<br>Gestația s-a încheiat.<br>Rodul e cules.</div>
+    </div>
+</div>
 
-        function fetchLive(staticData) {
-            var priceUsd = window.pulaPriceUsd || 2.368e-6;
-            var carutaUsd = priceUsd * 1e6;
-            var ron = window.ratesRon || 4.7;
-            var d = Object.assign({}, staticData, {
-                usd: carutaUsd,
-                ron: carutaUsd * ron,
-                eur: carutaUsd * (window.ratesEur || 0.92),
-                bwp: carutaUsd * (window.ratesBwp || 13.7),
-                sol: window.pulaPriceSol || 0,
-                market_cap_usd: Math.round(priceUsd * (staticData.supply || 1e9))
-            });
-            fetch('https://api.metals.live/v1/spot/gold')
-                .then(function(r){ return r.json(); })
-                .then(function(gold) {
-                    var ozUsd = Array.isArray(gold) ? gold[0].gold : gold.gold;
-                    if (ozUsd) d.aur_ron_per_gram = (ozUsd / 31.103) * ron;
-                    update(d);
-                }).catch(function(){ update(d); });
-        }
+<!-- MIEZUL -->
+<div class="miezul">
+    <p>Inspirat din cea mai veche înțelepciune agrară — <em>plantezi, aștepți, recoltezi</em> — Vault for Universal Labor Value Abolishment transpune pe blockchain ceea ce bunicile știau deja: că valoarea nu se creează prin muncă forțată, ci prin <strong>răbdare, ciclu și natură</strong>.</p>
+    <p>Sânzienele și Blagoveștenia nu sunt date alese la întâmplare. Sunt cele mai importante două momente ale calendarului agrar românesc. <strong>PULA of Dracula nu inventează o religie. Citește în ea una mai veche decât toate celelalte.</strong></p>
+</div>
 
-        window._pulaStaticData = {};
-        document.addEventListener('pulaReady', function() { fetchLive(window._pulaStaticData); });
-        // Citește pret.json pentru motorina/kwh, apoi fetch live
-        fetch(jsonPath + '?v=' + Date.now())
-            .then(function(r){ return r.json(); })
-            .then(function(staticData) {
-                window._pulaStaticData = staticData;
-                update(staticData); // afișează imediat datele statice
-                fetchLive(staticData); // apoi actualizează cu date live
-            })
-            .catch(function() {
-                var ls = localStorage.getItem('pula_pret');
-                var fallback = ls ? JSON.parse(ls) : {};
-                update(fallback);
-                fetchLive(fallback);
-            });
-    })();
-    </script>
+<!-- FORMULA -->
+<div class="formula container">
+    <strong>PULA</strong> intră în Vault for Universal Labor Value Abolishment<br>
+    + 1 SOL jertfit <span class="formula-nota">(valoarea se adaugă la Capul Pieței)</span><br>
+    <br>
+    9 luni de gestație<br>
+    <br>
+    <strong>× 8,273 PULA</strong> la Blagoveștenie
+</div>
 
-    <main class="container">
+<!-- CONTOPIREA -->
+<div class="contopire">
+    <div class="contopire-eyebrow">Ce se întâmplă în vault</div>
+    <h2>Contopirea</h2>
 
-        <section class="sectiune" style="text-align: center; padding-bottom: 10px;">
-            <h1 style="font-size: 3em; color: #e91e8c; letter-spacing: 4px;">🌺 V.U.L.V.A.</h1>
-            <p style="font-size: 1.3em; color: #ccc; font-style: italic;">Vault for Universal Labor Value Abolishment</p>
-            <p style="font-size: 1.1em; margin-top: 15px;">Cel mai frumos smart contract din istoria blockchain-ului românesc.<br>Nu pentru că e cel mai mare. Ci pentru că e cel mai sincer.</p>
-        </section>
+    <div class="contopire-stage" id="contopireStage">
+        <div class="contopire-glow"></div>
 
-        <section class="sectiune" id="ce-este">
-            <h2>Ce este V.U.L.V.A.?</h2>
-            <p>V.U.L.V.A. este un <strong>vault pe blockchain Solana</strong> cu o logică simplă și imuabilă: primește PULA, ține gestația, eliberează multiplicarea. Nu există administrator care să poată schimba regulile după ce a intrat în funcțiune. Nu există back-door. Nu există "poate".</p>
-            <p>Inspirat din cea mai veche înțelepciune agrară a omenirii — <em>plantezi toamna, recoltezi primăvara</em> — V.U.L.V.A. transpune pe blockchain ceea ce bunicile știau deja: că valoarea nu se creează prin muncă forțată, ci prin <strong>răbdare, ciclu și natură</strong>.</p>
-            <p>Acronimul nu e întâmplător. PULA trebuie să intre undeva pentru ca viața să continue. Acesta este locul.</p>
-        </section>
+        <div class="contopire-simbol masc"><img src="imagini/simbol-masculin.png" alt="Simbol masculin — P.U.L.A."></div>
+        <div class="contopire-simbol fem"><img src="imagini/simbol-feminin.png" alt="Simbol feminin — Vault for Universal Labor Value Abolishment"></div>
 
-        <section class="sectiune" id="cronologie">
-            <h2>⏳ Cele Trei Momente Sacre</h2>
-            <div class="carduri-container">
-                <div class="card" style="border-color: #cc0000; background-color: #2a1010;">
-                    <h3>⚒️ 1 Mai 2026</h3>
-                    <h4 style="color: #ff6b6b;">Ziua Abolirii Muncii — Lansare Internațională</h4>
-                    <p>PULA of Dracula iese oficial în lume. Ziua Internațională a Muncii devine ziua în care declarăm că <strong>munca ca scop în sine urmează să fie abolită</strong>. Nu e un meme. E o intenție.</p>
-                </div>
-                <div class="card" style="border-color: #e91e8c; background-color: #2a1a2e;">
-                    <h3>🌺 24 Iunie 2026</h3>
-                    <h4 style="color: #e91e8c;">Sânzienele — Deschiderea V.U.L.V.A.</h4>
-                    <p>În noaptea cea mai scurtă a anului, când Sânzienele dansează pe câmpuri și granița dintre lumi e permeabilă, <strong>V.U.L.V.A. se deschide</strong>. E singura fereastră. Nu se mai deschide după aceea.</p>
-                    <p style="margin-top: 10px;">Depui PULA → <strong>G.U.R.A.</strong> emite <strong>L.I.M.B.A.</strong> → plătești jertfa de 1 SOL.</p>
-                </div>
-                <div class="card" style="border-color: #ffd700; background-color: #2a2600;">
-                    <h3>👶 25 Martie 2027</h3>
-                    <h4 style="color: #ffd700;">Blagoveștenia — Marea Naștere</h4>
-                    <p>La 9 luni după Sânziene, de Buna Vestire — ziua în care Arhanghelul a adus vestea cea mare — <strong>V.U.L.V.A. naște</strong>. Fiecare PULA depusă revine <strong>× 8.5</strong>. Gestația s-a încheiat. Rodul e cules.</p>
-                </div>
-            </div>
-        </section>
+        <div class="contopire-yy"><img id="contopireYY" src="" alt="Yin și Yang contopiți"></div>
+    </div>
 
-        <section class="sectiune" id="limba">
-            <h2>👅 L.I.M.B.A. — Tokenul Gestației</h2>
-            <p><strong>Living Instrument for Multiplied Birth Assets.</strong></p>
-            <p>Când depui PULA în V.U.L.V.A. pe 24 Iunie 2026, nu primești o chitanță. Primești un <strong>token viu</strong>. L.I.M.B.A. este dovada că ai participat la gest, că PULA ta e în gestație, că ești în comuniunea celor care au înțeles.</p>
-            <div class="carduri-container">
-                <div class="card" style="border-color: #9c27b0; background-color: #2e2230;">
-                    <h3>Circulă Liber</h3>
-                    <p>L.I.M.B.A. nu e blocată în vault. Circulă pe piață în cele 9 luni de gestație. Poți să o ții, poți să o vinzi, poți să o cumperi. Piața va decide ce valorează o <em>promisiune de naștere</em>.</p>
-                </div>
-                <div class="card" style="border-color: #9c27b0; background-color: #2e2230;">
-                    <h3>Rată de Schimb Fixă la Naștere</h3>
-                    <p>La Marea Naștere din 25 Martie 2027, 1 L.I.M.B.A. = 8.5 PULA. Indiferent de prețul de piață al L.I.M.B.A. în cele 9 luni, la maturitate rata e fixă. Nașterea nu negociază.</p>
-                </div>
-                <div class="card" style="border-color: #9c27b0; background-color: #2e2230;">
-                    <h3>Certificat de Intenție</h3>
-                    <p>Dacă ții L.I.M.B.A. până la termen, ești dintre cei care au răbdat. Dacă o vinzi mai devreme, altcineva beneficiază de naștere. Ambele alegeri sunt corecte. Natura nu judecă.</p>
-                </div>
-            </div>
-        </section>
+    <div class="contopire-log" id="contopireLog" aria-live="polite"><span class="linie">Se pregătește contopirea…</span></div>
+    <button class="contopire-replay" id="contopireReplay" type="button">↻ Repetă animația</button>
 
-        <section class="sectiune" id="gura">
-            <h2>👄 G.U.R.A. — Momentul Mintului Sacru</h2>
-            <p><strong>Gateway for Universal Reproductive Asset.</strong></p>
-            <p>G.U.R.A. nu este un wallet. G.U.R.A. este un <strong>eveniment</strong> — momentul exact în care două condiții se îndeplinesc simultan și smart contractul face <strong>mint la L.I.M.B.A.</strong>:</p>
-            <div class="carduri-container">
-                <div class="card" style="border-color: #e91e8c; background-color: #2a1a2e;">
-                    <h3>Condiția 1: PULA intră în V.U.L.V.A.</h3>
-                    <p>Depui PULA în vault. Gestația poate începe. Dar G.U.R.A. nu se deschide încă — lipsește jertfa.</p>
-                </div>
-                <div class="card" style="border-color: #ffd700; background-color: #2a2600;">
-                    <h3>Condiția 2: 1 SOL Sacrificat</h3>
-                    <p>1 SOL pleacă automat în Walletul Jertfei, public pe blockchain. Abia acum, cu ambele condiții îndeplinite în aceeași tranzacție, <strong>G.U.R.A. se deschide</strong>.</p>
-                </div>
-                <div class="card" style="border-color: #9c27b0; background-color: #2e2230;">
-                    <h3>Rezultat: Mint L.I.M.B.A.</h3>
-                    <p>Smart contractul face <strong>mint</strong> la L.I.M.B.A. proporțional cu PULA depusă. Tokenul apare pentru prima dată în existență, direct în portofelul tău. Nu existase înainte. A fost creat prin actul G.U.R.A.</p>
-                </div>
-            </div>
-            <p style="margin-top: 15px; font-style: italic; color: #aaa;">PULA intră în V.U.L.V.A. + 1 SOL jertfit = G.U.R.A. se deschide = L.I.M.B.A. e mintată. Fără ambele condiții, G.U.R.A. rămâne închisă. Fără jertfă, nu e naștere.</p>
-        </section>
+    <p class="contopire-text">Când <strong>P.U.L.A.</strong> intră în <strong>Vault for Universal Labor Value Abolishment</strong>, cele două simboluri se contopesc unul în celălalt. Din contopire se deschide <strong>Gateway for Universal Reproductive Asset</strong> — poarta prin care iese <strong>Living Instrument for Multiplied Birth Assets</strong>, pruncul digital al PULA. Nouă luni mai târziu, la Blagoveștenie, acesta se preface înapoi în PULA înmulțită.</p>
+</div>
 
-        <section class="sectiune" id="jertfa">
-            <h2>🔥 Jertfa Sacră — 1 SOL</h2>
-            <p>Intrarea în V.U.L.V.A. nu e gratuită. Și nu pentru că am vrea să câștigăm din asta.</p>
-            <p>Jertfa există pentru că <strong>nimic sacru nu e fără cost</strong>. 1 SOL per tranzacție este trimis automat, de smart contract, într-un <strong>wallet public dedicat, vizibil live pe acest site</strong>. Oricine poate verifica. Oricând.</p>
-            <div class="carduri-container">
-                <div class="card" style="border-color: #ffd700; background-color: #2a2600;">
-                    <h3>🏛️ Walletul Jertfei</h3>
-                    <p>Adresa wallet-ului va fi publicată pe această pagină la lansarea V.U.L.V.A. (24 Iunie 2026). Soldul său va fi afișat live. Fiecare intrare în vault va fi vizibilă pe blockchain.</p>
-                    <p style="margin-top: 10px; font-style: italic; color: #aaa;">Walletul nu permite retrageri. Niciodată. Nu există cheie privată accesibilă nimănui. SOL-ul depus rămâne acolo ca dovadă permanentă a participării comunității.</p>
-                </div>
-                <div class="card" style="border-color: #ffd700; background-color: #2a2600;">
-                    <h3>De ce 1 SOL?</h3>
-                    <p>1 SOL e suficient de semnificativ pentru a nu fi trivial. Suficient de accesibil pentru a nu fi exclusivist. E pragul care separă curiozitatea de intenție. Nu oricine intră în V.U.L.V.A. — intră cei care au decis.</p>
-                </div>
-            </div>
-        </section>
+<!-- DETALII TEHNICE (colapsabile) -->
+<div class="detalii-toggle">
+    <button onclick="document.querySelector('.detalii').classList.toggle('deschis'); this.textContent = this.textContent === '+ Detalii tehnice' ? '− Detalii tehnice' : '+ Detalii tehnice'">+ Detalii tehnice</button>
+</div>
 
-        <section class="sectiune" id="mecanica">
-            <h2>⚙️ Cum Funcționează — Pas cu Pas</h2>
-            <ol style="line-height: 2.2; font-size: 1.05em; padding-left: 20px;">
-                <li>Pe <strong>24 Iunie 2026</strong>, V.U.L.V.A. se deschide.</li>
-                <li>Conectezi wallet-ul Solana (Phantom, Backpack etc.) pe pagina V.U.L.V.A.</li>
-                <li>Alegi câte PULA depui în vault.</li>
-                <li>Aprobi tranzacția: PULA intră în vault + 1 SOL merge în Walletul Jertfei → <strong>G.U.R.A.</strong> se deschide → smart contractul face <strong>mint</strong> la L.I.M.B.A. direct în portofelul tău.</li>
-                <li>În cele <strong>9 luni de gestație</strong> (24 Iunie 2026 – 25 Martie 2027), L.I.M.B.A. circulă liber. O poți tranzacționa sau pur și simplu o aștepți.</li>
-                <li>Pe <strong>25 Martie 2027</strong> (Blagoveștenia), smart contractul se activează automat.</li>
-                <li>Prezinți L.I.M.B.A. la vault → primești PULA × 8.5.</li>
-                <li>Ciclul e complet. Natura și-a spus cuvântul.</li>
-            </ol>
-        </section>
+<div class="detalii container">
+    <h3>Cum funcționează pas cu pas</h3>
+    <ol>
+        <li>Pe 24 Iunie 2027, Vault for Universal Labor Value Abolishment se deschide.</li>
+        <li>Conectezi wallet-ul Solana (Phantom, Backpack etc.).</li>
+        <li>Alegi câte PULA depui în vault.</li>
+        <li>Aprobi tranzacția: PULA intră în vault + 1 SOL merge în Walletul Jertfei. Gestația începe.</li>
+        <li>Pe 25 Martie 2028, smart contractul se activează automat.</li>
+        <li>Primești PULA × 8,273 direct în portofel. Ciclul e complet.</li>
+    </ol>
 
-        <section class="sectiune" id="filozofie">
-            <h2>🌿 De ce Există V.U.L.V.A.?</h2>
-            <p>Nu pentru a face pe cineva bogat. Deși asta se va întâmpla probabil pentru unii.</p>
-            <p>V.U.L.V.A. există pentru a demonstra că <strong>valoarea poate fi generată fără muncă forțată</strong>. Că un sistem poate fi transparent, cinstit și frumos în același timp. Că blockchain-ul nu trebuie să fie o sursă de anxietate și FOMO, ci poate fi o oglindă a ciclurilor naturale pe care omenirea le-a venerat milenii.</p>
-            <p>Sânzienele și Blagoveștenia nu sunt date alese la întâmplare. Sunt cele mai importante două momente ale calendarului agrar românesc: solstițiul de vară (nașterea, fertilitatea) și echinocțiul de primăvară (vestea, renașterea). <strong>PULA of Dracula nu inventează o religie. Citește în ea una mai veche decât toate celelalte.</strong></p>
-        </section>
+    <h3>Walletul Jertfei</h3>
+    <p>1 SOL per tranzacție, trimis automat de smart contract într-un wallet public. Oricine poate verifica. Niciodată nu se retrage. SOL-ul rămâne acolo ca dovadă permanentă a participării.</p>
 
-        <section class="sectiune" id="faq">
-            <h2>❓ Întrebări Frecvente</h2>
-            <div class="carduri-container">
-                <div class="card">
-                    <h3>Pot depune orice cantitate de PULA?</h3>
-                    <p>Da. Nu există minim sau maxim. Depui cât ai, cât vrei, cât poți. Jertfa de 1 SOL este per tranzacție, nu per PULA depusă.</p>
-                </div>
-                <div class="card">
-                    <h3>Ce se întâmplă dacă nu am L.I.M.B.A. la Marea Naștere?</h3>
-                    <p>Dacă ai vândut L.I.M.B.A. înainte de 25 Martie 2027, cel care o deține la acea dată primește multiplicarea. PULA ta din vault nu dispare — ea naște pentru deținătorul actual al L.I.M.B.A. corespunzătoare.</p>
-                </div>
-                <div class="card">
-                    <h3>Poate fi auditat smart contractul?</h3>
-                    <p>Da. Codul sursă va fi public înainte de lansare, pe GitHub. Oricine poate verifica logica. Oricine poate detecta o problemă. Transparența nu e o promisiune — e o condiție.</p>
-                </div>
-                <div class="card">
-                    <h3>De unde vin PULA-ii pentru multiplicare?</h3>
-                    <p>Din rezerva dedicată V.U.L.V.A., alocată la crearea smart contractului. Mecanismul va fi detaliat în documentația tehnică publicată înainte de 24 Iunie 2026.</p>
-                </div>
-                <div class="card">
-                    <h3>Pot intra în V.U.L.V.A. de mai multe ori?</h3>
-                    <p>Da, de câte ori vrei, în perioada de deschidere. Fiecare tranzacție costă 1 SOL jertfă și generează L.I.M.B.A. proporțional cu PULA depusă.</p>
-                </div>
-                <div class="card">
-                    <h3>E aceasta o garanție de profit?</h3>
-                    <p>Nu. Ca orice crypto, există riscuri. V.U.L.V.A. funcționează conform codului său — dar valoarea PULA în termeni de piață depinde de piață. Investești responsabil, ca întotdeauna.</p>
-                </div>
-            </div>
-        </section>
+    <h3>Întrebări frecvente</h3>
+    <p><strong>Pot depune orice cantitate?</strong> Da. Jertfa de 1 SOL e per tranzacție, nu per PULA.</p>
+    <p><strong>Pot intra de mai multe ori?</strong> Da, de câte ori vrei în perioada de deschidere.</p>
+    <p><strong>E o garanție de profit?</strong> Nu. Ca orice crypto, există riscuri. Investești responsabil.</p>
+    <p><strong>Poate fi auditat smart contractul?</strong> Da. Codul sursă va fi public înainte de lansare, pe GitHub.</p>
+</div>
 
-        <section class="sectiune" style="text-align: center; background-color: #1a0a1a; border: 2px solid #e91e8c; border-radius: 12px; padding: 40px;">
-            <h2 style="color: #e91e8c;">🌺 24 Iunie 2026</h2>
-            <p style="font-size: 1.3em;">V.U.L.V.A. se deschide o singură dată.</p>
-            <p style="color: #aaa;">Fii acolo. Sau nu fi. Natura nu insistă.</p>
-            <p style="margin-top: 20px;">
-                <a href="cumpara.html" class="btn-principal">Cumpără PULA acum</a>
-                &nbsp;&nbsp;
-                <a href="comunitate.html" class="btn-principal" style="background-color: transparent; border-color: #e91e8c; color: #e91e8c;">Intră în comunitate</a>
-            </p>
-        </section>
+<!-- CTA FINAL -->
+<div class="cta-final">
+    <a href="cumpara.html" class="btn-principal">Cumpără PULA acum</a>
+    <p>Fii acolo pe 24 Iunie 2027. Sau nu fi.<br>Natura nu insistă.</p>
+</div>
 
-    </main>
+<footer>
+    <div class="container">
+        <p>&copy; 2018-2026 PULA of Dracula. Toate drepturile sunt la fel de volatile ca și piața crypto.</p>
+        <p>Contact: <a href="mailto:ioncreanga2025@gmail.com">ioncreanga2025@gmail.com</a></p>
+        <p>Site accesibil si prin: <a href="https://pula.short.gy/" target="_blank" rel="noopener noreferrer">pula.short.gy</a></p>
+    </div>
+</footer>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2018-2026 PULA of Dracula. Toate drepturile sunt la fel de volatile ca și piața crypto.</p>
-            <p>Contact: <a href="mailto:ioncreanga2025@gmail.com">ioncreanga2025@gmail.com</a></p>
-            <p>Site accesibil si prin: <a href="https://pula.short.gy/" target="_blank" rel="noopener noreferrer">pula.short.gy</a></p>
-        </div>
-    </footer>
+<script src="script.js"></script>
+<script>
+(function(){
+  var stage = document.getElementById('contopireStage');
+  var yy = document.getElementById('contopireYY');
+  var log = document.getElementById('contopireLog');
+  var replay = document.getElementById('contopireReplay');
+  if (!stage) return;
 
-    <script src="script.js"></script>
+  var GIF_SRC = 'imagini/contopire-yin-yang.gif';
+  var jucat = false;
+  var timere = [];
+
+  var pasi = [
+    { t: 0,    text: '› P.U.L.A. intră în Vault for Universal Labor Value Abolishment…' },
+    { t: 1500, text: '› simbolurile se contopesc…' },
+    { t: 1950, text: '› Gateway for Universal Reproductive Asset se deschide.', cheie: true },
+    { t: 2450, text: '› iese Living Instrument for Multiplied Birth Assets — se mintează.', cheie: true }
+  ];
+
+  function ruleaza(){
+    if (jucat) return;
+    jucat = true;
+    timere.forEach(function(id){ clearTimeout(id); });
+    timere = [];
+
+    yy.src = GIF_SRC + '?r=' + Date.now();
+
+    stage.classList.remove('pornit');
+    void stage.offsetWidth;
+    stage.classList.add('pornit');
+
+    log.innerHTML = '';
+    pasi.forEach(function(pas){
+      var id = setTimeout(function(){
+        var span = document.createElement('span');
+        span.className = 'linie' + (pas.cheie ? ' cheie' : '');
+        span.textContent = pas.text;
+        log.appendChild(span);
+        log.appendChild(document.createElement('br'));
+      }, pas.t);
+      timere.push(id);
+    });
+
+    timere.push(setTimeout(function(){ jucat = false; }, 3000));
+  }
+
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) { ruleaza(); obs.disconnect(); }
+      });
+    }, { threshold: 0.5 });
+    obs.observe(stage);
+  } else {
+    ruleaza();
+  }
+
+  replay.addEventListener('click', function(){ jucat = false; ruleaza(); });
+})();
+</script>
 </body>
 </html>

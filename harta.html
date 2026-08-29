@@ -46,6 +46,7 @@
                     <li><a href="harta.html" class="nav-link active">Harta</a></li>
                     <li><a href="cumpara.html" class="nav-link">Cumpără</a></li>
                     <li><a href="comunitate.html" class="nav-link">Comunitate</a></li>
+                    <li><a href="vulva.html" class="nav-link">V.U.L.V.A.</a></li>
                 </ul>
                 <div class="language-switcher">
                     <a href="harta.html" class="lang-link active-lang"><img src="imagini/flag-ro.png" alt="Română"></a>
@@ -176,15 +177,15 @@
             <h3 style="color: #e91e8c;">✨ Faza 0: Cronologia Sacră — Datele pe care le-a Știut Calendarul</h3>
             <div class="carduri-container">
                 <div class="card" style="border-color: #cc0000; background-color: #2a1010;">
-                    <h3>⚒️ <span style="color:#e53935">1 Mai 2026</span><br><span class="text-verde">Lansare Internațională</span></h3>
+                    <h3>⚒️ <span style="color:#e53935">1 Mai 2027</span><br><span class="text-verde">Lansare Internațională</span></h3>
                     <p><strong>Ziua Abolirii Muncii.</strong> PULA of Dracula iese în lume. Lansare internațională oficială. Ziua Muncii devine ziua în care declarăm că munca are zilele numărate. Sămânța cosmică e plantată.</p>
                 </div>
                 <div class="card" style="border-color: #e91e8c; background-color: #2a1a2e;">
-                    <h3>🌺 <span style="color:#e53935">24 Iunie 2026</span><br><span class="text-verde">Deschiderea V.U.L.V.A.</span></h3>
+                    <h3>🌺 <span style="color:#e53935">24 Iunie 2027</span><br><span class="text-verde">Deschiderea V.U.L.V.A.</span></h3>
                     <p>În noaptea Sânzienelor, când granița dintre lumea văzută și cea nevăzută e cea mai subțire, se deschide V.U.L.V.A. — Vault for Universal Labor Value Abolishment.</p>
                 </div>
                 <div class="card" style="border-color: #ffd700; background-color: #2a2600;">
-                    <h3>👶 <span style="color:#e53935">25 Martie 2027</span><br><span class="text-verde">Marea Naștere</span></h3>
+                    <h3>👶 <span style="color:#e53935">25 Martie 2028</span><br><span class="text-verde">Marea Naștere</span></h3>
                     <p>Exact 9 luni mai târziu, de ziua Bunei Vestiri, când natura primește vestea primăverii, are loc Marea Naștere. Fiecare unitate de PULA depusă se întoarce multiplicată de 9 ori.</p>
                 </div>
             </div>
@@ -231,5 +232,14 @@
     </footer>
 
     <script src="script.js"></script>
+<script>
+(function(){
+  var p = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('nav a').forEach(function(a){
+    var h = (a.getAttribute('href')||'').split('/').pop();
+    if (h === p) a.classList.add('nav-active');
+  });
+})();
+</script>
 </body>
 </html>

@@ -460,3 +460,25 @@
 .agoniseala-grid { display: grid; grid-template-columns: 30px 40px 30px 40px 30px 40px 30px auto; align-items: center; row-gap: 6px; }
 .agoniseala-grid .edu-note { display: none; }
 .agoniseala-grid strong { color: #fff; font-family: Courier New,monospace; font-size: 1rem; }
+
+.gaz-section{width:100%}
+.gaz-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.gaz-sol-text{font-size:15px;font-weight:700}
+.gaz-status{font-size:15px;font-weight:700;text-align:right}
+.gaz-critic .gaz-sol-text,.gaz-critic .gaz-status{color:#ff4444}
+.gaz-bebinca .gaz-sol-text,.gaz-bebinca .gaz-status{color:#f5a623}
+.gaz-basinos .gaz-sol-text,.gaz-basinos .gaz-status{color:#4caf50}
+.gaz-subtitle{color:#ddd;font-size:11px;font-style:italic;margin-bottom:12px}
+.gaz-table{width:100%;border-collapse:collapse;font-size:13px}
+.gaz-table-label{color:#666;font-size:12px;padding-right:8px;width:48%;padding-top:4px;padding-bottom:4px;vertical-align:top}
+.gaz-table-val{text-align:right;padding-top:4px;padding-bottom:4px;vertical-align:top}
+.gaz-sol-maro{color:#a0785a;font-size:13px;font-weight:600;display:block}
+.gaz-partze{color:#ffe066;font-size:13px;font-weight:600;display:block}
+.gaz-pula-val{color:#4caf50;font-size:13px;font-weight:600;display:block}
+.gaz-ron-val{color:#00bcd4;font-size:13px;font-weight:600;display:block}
+.gaz-separator{border:none;border-top:1px solid #2a2a2a;margin:6px 0}
+.gaz-neprefacut{color:#ff4444;font-size:12px;font-style:italic;display:block}
+.btn-partze{background:#6b4c2a;color:#d4a96a;border:1px solid #a0785a;border-radius:6px;padding:7px 12px;font-size:12px;font-weight:600;cursor:pointer;width:100%;margin-top:10px}
+.gaz-critic .gaz-status{animation:blink 1.5s infinite;text-decoration:underline}
+
+.parturi-count { color: #ffe066; font-size: .8rem; font-weight: 600; margin-top: 2px; }

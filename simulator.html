@@ -432,5 +432,14 @@
             <p style="font-size: 0.8rem;">Site accesibil și prin: <a href="https://pula.short.gy/" target="_blank" rel="noopener noreferrer" style="color: #444; text-decoration: underline;">pula.short.gy</a></p>
         </div>
     </footer>
+<script>
+(function(){
+  var p = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('nav a').forEach(function(a){
+    var h = (a.getAttribute('href')||'').split('/').pop();
+    if (h === p) a.classList.add('nav-active');
+  });
+})();
+</script>
 </body>
 </html>
