@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case study: accessibility of three pages on anaf.ro – Fagus</title>
+<meta name="description" content="A demonstration accessibility check of three public pages on anaf.ro: the tools used, Lighthouse scores and the five most important issues, explained in plain language.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1E4D2B" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#173522" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://fagus.ro/en/case-study.html">
+<link rel="alternate" hreflang="ro" href="https://fagus.ro/studiu-de-caz.html">
+<link rel="alternate" hreflang="en" href="https://fagus.ro/en/case-study.html">
+<link rel="alternate" hreflang="x-default" href="https://fagus.ro/studiu-de-caz.html">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="preload" href="../fonts/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/theme.js"></script>
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-disc">
+        <picture>
+          <source srcset="../img/logo-240.webp" type="image/webp">
+          <img src="../img/logo-240.png" alt="" width="50" height="50">
+        </picture>
+      </span>
+      <span class="brand-name">FAGUS</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Main menu">
+      <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="menu">
+        <svg class="icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        <span class="menu-toggle-label">Menu</span>
+      </button>
+      <ul class="nav-list" id="menu">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#how-we-work">How we work</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="case-study.html" aria-current="page">Case study</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-tools">
+      <ul class="lang" aria-label="Language">
+        <li><a href="../studiu-de-caz.html" lang="ro" hreflang="ro">RO<span class="vh"> – română</span></a></li>
+        <li><a href="case-study.html" lang="en" hreflang="en" aria-current="true">EN<span class="vh"> – English</span></a></li>
+      </ul>
+      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Dark mode" title="Dark mode" hidden>
+        <svg class="icon-moon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        <svg class="icon-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="content" tabindex="-1">
+
+  <div class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Case study · demonstration check</p>
+      <h1>How accessible are three public pages on anaf.ro</h1>
+      <p>A short check of a three-page sample from the Romanian tax agency's website, carried out on 1 October 2026. It shows the kind of issues an accessibility audit brings up, and how they get fixed.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap prose">
+
+      <div class="note" role="note">
+        <p><strong>This is a demonstration check, not a full audit.</strong></p>
+        <p>I looked at only three pages, once, in a single browser. Automated tools catch only part of the accessibility issues on a page; the rest only show up in manual testing and testing with assistive technology. The results describe the pages as they were on the day of the check and are not an assessment of the whole site's conformance.</p>
+      </div>
+
+      <h2>What was checked</h2>
+      <p>Date of the check: <strong>1 October 2026</strong>. Each page was loaded a handful of times; the site was not crawled.</p>
+      <ol>
+        <li><strong>Home page</strong>: <a href="https://www.anaf.ro/">https://www.anaf.ro/</a></li>
+        <li><strong>Company lookup by tax ID</strong> (the register of VAT-registered businesses): <a href="https://www.anaf.ro/RegistruTVA/">https://www.anaf.ro/RegistruTVA/</a></li>
+        <li><strong>Downloadable forms page</strong> (<span lang="ro">„Toate formularele, cu explicații”</span>, reached from the taxpayer assistance menu): <a href="https://static.anaf.ro/static/10/Anaf/AsistentaContribuabili_r/Toateformularele/Toate_Formularele.html">https://static.anaf.ro/static/10/Anaf/AsistentaContribuabili_r/Toateformularele/Toate_Formularele.html</a></li>
+      </ol>
+
+      <h2>Tools and method</h2>
+      <ul>
+        <li><strong>axe-core 4.13.0</strong>: WCAG 2.0, 2.1 and 2.2 rules at levels A and AA, plus best practices.</li>
+        <li><strong>Lighthouse 13.5.0</strong>: Accessibility category, desktop profile.</li>
+        <li><strong>Google Chrome 154</strong> on Linux, in a 1366 × 900 px window.</li>
+        <li><strong>Keyboard-only navigation</strong>: the first 45 presses of the Tab key on each page, noting which element receives focus and whether you can see it.</li>
+        <li><strong>200% zoom</strong> (and a 320 px width, the size of a small phone): whether the page scrolls sideways and whether elements overlap.</li>
+        <li><strong>Contrast and form labels</strong>: the tools' results, backed up by inspecting the fields on the page.</li>
+      </ul>
+      <p class="muted">Not checked: screen readers, the search results (the form was not submitted), the content of the PDF documents, other browsers and real phones.</p>
+
+      <h2>Results at a glance</h2>
+      <ul class="stats">
+        <li><span class="stat-nr">74<small> / 100</small></span><span class="stat-label">Lighthouse score, home page</span></li>
+        <li><span class="stat-nr">63<small> / 100</small></span><span class="stat-label">Lighthouse score, tax ID lookup</span></li>
+        <li><span class="stat-nr">80<small> / 100</small></span><span class="stat-label">Lighthouse score, forms page</span></li>
+      </ul>
+
+      <div class="table-wrap" role="region" aria-labelledby="table-title" tabindex="0">
+        <table>
+          <caption id="table-title">Issues reported by axe-core, by page</caption>
+          <thead>
+            <tr>
+              <th scope="col">Page</th>
+              <th scope="col" class="num">Lighthouse score</th>
+              <th scope="col" class="num">WCAG failures</th>
+              <th scope="col" class="num">Best practices</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Home page</th>
+              <td class="num">74</td>
+              <td class="num">6 types · 43 elements</td>
+              <td class="num">4 types · 4 elements</td>
+            </tr>
+            <tr>
+              <th scope="row">Tax ID lookup</th>
+              <td class="num">63</td>
+              <td class="num">4 types · 6 elements</td>
+              <td class="num">3 types · 6 elements</td>
+            </tr>
+            <tr>
+              <th scope="row">Forms page</th>
+              <td class="num">80</td>
+              <td class="num">2 types · 2 elements</td>
+              <td class="num">3 types · 8 elements</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>In total, axe-core reported <strong>51 elements that fail WCAG criteria</strong> and another 18 that depart from best practice. The keyboard and zoom checks added issues that automated tools cannot see; those are covered under points 3, 4 and 5 below.</p>
+
+      <h2>The five most important issues</h2>
+      <ol class="findings">
+        <li class="finding">
+          <p class="finding-nr" aria-hidden="true">01</p>
+          <h3>Images and buttons with no text description</h3>
+          <dl>
+            <dt>What's wrong</dt>
+            <dd>21 images and 6 image buttons have no alternative text. They include the display controls on the home page (brightness, for example) and the verification-code image on the tax ID lookup. There is a “Listen” button next to the code; I did not test whether the audio version works.</dd>
+            <dt>Who it affects</dt>
+            <dd>People who are blind or have low vision and use a screen reader. The software only announces “image” or “button”, without saying what it is for.</dd>
+            <dt>How to fix it</dt>
+            <dd>Every image that carries meaning gets a short description (the <code>alt</code> attribute), and every button gets a clear name. Purely decorative images are marked <code>alt=""</code> so they are skipped. The verification code needs an alternative that does not rely on sight.</dd>
+          </dl>
+        </li>
+        <li class="finding">
+          <p class="finding-nr" aria-hidden="true">02</p>
+          <h3>Links that don't say where they go</h3>
+          <dl>
+            <dt>What's wrong</dt>
+            <dd>15 links have no name at all: they contain only an image with no description, or they are empty. Among them are the logo that leads back to the home page (on pages 2 and 3) and the tax calendar banner.</dd>
+            <dt>Who it affects</dt>
+            <dd>Screen reader users hear just “link”, or a long web address. People using voice control have no name to say.</dd>
+            <dt>How to fix it</dt>
+            <dd>The image inside the link gets alternative text naming the destination, such as “ANAF – home page”. Empty links are removed.</dd>
+          </dl>
+        </li>
+        <li class="finding">
+          <p class="finding-nr" aria-hidden="true">03</p>
+          <h3>The page language is missing or wrong</h3>
+          <dl>
+            <dt>What's wrong</dt>
+            <dd>The home page and the tax ID lookup do not declare a language. The forms page is declared as English (<code>lang="en"</code>) although the text is Romanian; the automated tools did not flag this, it came up on inspection.</dd>
+            <dt>Who it affects</dt>
+            <dd>A screen reader picks its pronunciation from the declared language. Romanian text read with an English voice is hard to follow. The browser's automatic translation can get it wrong too.</dd>
+            <dt>How to fix it</dt>
+            <dd>A single change in the page template: <code>&lt;html lang="ro"&gt;</code>.</dd>
+          </dl>
+        </li>
+        <li class="finding">
+          <p class="finding-nr" aria-hidden="true">04</p>
+          <h3>Keyboard users lose track of where they are</h3>
+          <dl>
+            <dt>What's wrong</dt>
+            <dd>The home page has no “Skip to content” link, and 35 of the first 45 presses of Tab land on submenu links hidden off screen, so you cannot see where you are. On the forms page, the focus outline has been switched off for the search field and the category buttons (10 of the 12 elements). On the tax ID lookup the focus is visible and the form takes 7 steps to get through.</dd>
+            <dt>Who it affects</dt>
+            <dd>People who cannot use a mouse: those with motor disabilities or a tremor, and anyone who works from the keyboard alone.</dd>
+            <dt>How to fix it</dt>
+            <dd>Add a “Skip to content” link at the top of the page. Keep hidden submenus out of the tab order until they are opened. Never remove the focus outline (<code>outline: none</code>) without putting something visible in its place.</dd>
+          </dl>
+        </li>
+        <li class="finding">
+          <p class="finding-nr" aria-hidden="true">05</p>
+          <h3>At 200% zoom the page no longer fits the window</h3>
+          <dl>
+            <dt>What's wrong</dt>
+            <dd>The home page and the tax ID lookup have a fixed width: at 200% the page scrolls sideways, and on the home page the fixed buttons along the edges cover part of the content. The forms page adapts properly, down to the width of a small phone.</dd>
+            <dt>Who it affects</dt>
+            <dd>People with low vision who enlarge the page, and anyone visiting on a phone.</dd>
+            <dt>How to fix it</dt>
+            <dd>A flexible layout instead of fixed widths: add a <code>meta viewport</code> tag, use relative widths, and rearrange the fixed elements on narrow screens.</dd>
+          </dl>
+        </li>
+      </ol>
+
+      <h2>Other observations</h2>
+      <ul>
+        <li><strong>Form labels.</strong> On the tax ID lookup, both fields have properly linked labels. On the forms page, the search field only has hint text inside it, which disappears once you start typing.</li>
+        <li><strong>Contrast.</strong> The tools did not confirm any contrast problem. 19 elements could not be assessed automatically (text over images, for instance) and I did not measure them by hand.</li>
+        <li><strong>Structure.</strong> None of the three pages has a main heading (<code>h1</code>). On the home page 5 lists are built incorrectly, and on the tax ID lookup one frame (<code>iframe</code>) has no title.</li>
+        <li><strong>What is already there.</strong> The site has an accessibility statement, a panel of display options and a read-aloud feature.</li>
+      </ul>
+
+      <h2>What this means for your website</h2>
+      <p>The same five kinds of issues turn up on a great many websites, small business sites included. Most of them are fixed once, in the page template, and stay fixed.</p>
+      <p><a class="btn btn--primary" href="index.html?interes=audit#contact">Ask for an audit</a></p>
+
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p class="footer-legal">
+      <span>© 2026 Fagus · Ștefan Fagu</span>
+      <span>[FORMĂ JURIDICĂ] · CUI [CUI] · Nr. Reg. Com. [NR. REG. COM.] · Bucharest</span>
+    </p>
+    <ul class="footer-links">
+      <li><a href="accessibility-statement/index.html">Accessibility statement</a></li>
+      <li><a href="privacy/index.html">Privacy</a></li>
+      <li><a href="cookies/index.html">Cookies</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>

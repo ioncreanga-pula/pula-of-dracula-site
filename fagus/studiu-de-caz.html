@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studiu de caz: accesibilitatea a trei pagini de pe anaf.ro – Fagus</title>
+<meta name="description" content="Verificare demonstrativă de accesibilitate pe trei pagini publice de pe anaf.ro: instrumente folosite, scoruri Lighthouse și cele mai importante cinci probleme, explicate simplu.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1E4D2B" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#173522" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://fagus.ro/studiu-de-caz.html">
+<link rel="alternate" hreflang="ro" href="https://fagus.ro/studiu-de-caz.html">
+<link rel="alternate" hreflang="en" href="https://fagus.ro/en/case-study.html">
+<link rel="alternate" hreflang="x-default" href="https://fagus.ro/studiu-de-caz.html">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" href="fonts/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/theme.js"></script>
+<script src="js/main.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#continut">Sari la conținut</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-disc">
+        <picture>
+          <source srcset="img/logo-240.webp" type="image/webp">
+          <img src="img/logo-240.png" alt="" width="50" height="50">
+        </picture>
+      </span>
+      <span class="brand-name">FAGUS</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Meniu principal">
+      <button type="button" class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="meniu">
+        <svg class="icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        <span class="menu-toggle-label">Meniu</span>
+      </button>
+      <ul class="nav-list" id="meniu">
+        <li><a href="index.html#servicii">Servicii</a></li>
+        <li><a href="index.html#cum-lucram">Cum lucrăm</a></li>
+        <li><a href="index.html#despre">Despre</a></li>
+        <li><a href="studiu-de-caz.html" aria-current="page">Studiu de caz</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-tools">
+      <ul class="lang" aria-label="Limbă">
+        <li><a href="studiu-de-caz.html" lang="ro" hreflang="ro" aria-current="true">RO<span class="vh"> – română</span></a></li>
+        <li><a href="en/case-study.html" lang="en" hreflang="en">EN<span class="vh"> – English</span></a></li>
+      </ul>
+      <button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Mod întunecat" title="Mod întunecat" hidden>
+        <svg class="icon-moon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        <svg class="icon-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="continut" tabindex="-1">
+
+  <div class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Studiu de caz · verificare demonstrativă</p>
+      <h1>Cât de accesibile sunt trei pagini publice de pe anaf.ro</h1>
+      <p>O verificare scurtă, pe un eșantion de trei pagini, făcută la 1 octombrie 2026. Arată ce fel de probleme iese la iveală într-un audit de accesibilitate și cum se repară.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap prose">
+
+      <div class="note" role="note">
+        <p><strong>Aceasta este o verificare demonstrativă, nu un audit complet.</strong></p>
+        <p>Am verificat doar trei pagini, o singură dată, pe un singur browser. Instrumentele automate găsesc doar o parte din problemele de accesibilitate; restul se descoperă numai prin testare manuală și cu tehnologii asistive. Rezultatele descriu paginile așa cum erau la data verificării și nu reprezintă o evaluare a conformității întregului site.</p>
+      </div>
+
+      <h2>Ce am verificat</h2>
+      <p>Data verificării: <strong>1 octombrie 2026</strong>. Fiecare pagină a fost încărcată de câteva ori, fără parcurgerea automată a site-ului.</p>
+      <ol>
+        <li><strong>Prima pagină</strong>: <a href="https://www.anaf.ro/">https://www.anaf.ro/</a></li>
+        <li><strong>Căutarea după cod fiscal</strong> (Registrul persoanelor impozabile înregistrate în scopuri de TVA): <a href="https://www.anaf.ro/RegistruTVA/">https://www.anaf.ro/RegistruTVA/</a></li>
+        <li><strong>Pagina cu formulare de descărcat</strong> („Toate formularele, cu explicații”, la care se ajunge din meniul Asistență contribuabili): <a href="https://static.anaf.ro/static/10/Anaf/AsistentaContribuabili_r/Toateformularele/Toate_Formularele.html">https://static.anaf.ro/static/10/Anaf/AsistentaContribuabili_r/Toateformularele/Toate_Formularele.html</a></li>
+      </ol>
+
+      <h2>Instrumente și metodă</h2>
+      <ul>
+        <li><strong>axe-core 4.13.0</strong>: reguli WCAG 2.0, 2.1 și 2.2, nivelurile A și AA, plus bune practici.</li>
+        <li><strong>Lighthouse 13.5.0</strong>: categoria Accesibilitate, profil de desktop.</li>
+        <li><strong>Google Chrome 154</strong> pe Linux, fereastră de 1366 × 900 px.</li>
+        <li><strong>Navigare doar din tastatură</strong>: primele 45 de apăsări ale tastei Tab pe fiecare pagină, cu notarea elementului care primește focusul și a vizibilității lui.</li>
+        <li><strong>Zoom la 200%</strong> (și lățime de 320 px, cât un telefon mic): dacă apare derulare orizontală și dacă se suprapun elemente.</li>
+        <li><strong>Contrast și etichete de formular</strong>: rezultatele instrumentelor, completate cu inspectarea câmpurilor din pagină.</li>
+      </ul>
+      <p class="muted">Ce nu am verificat: cititoare de ecran, rezultatele căutării (nu am trimis formularul), conținutul documentelor PDF, alte browsere și telefoane reale.</p>
+
+      <h2>Rezultate pe scurt</h2>
+      <ul class="stats">
+        <li><span class="stat-nr">74<small> / 100</small></span><span class="stat-label">Scor Lighthouse, prima pagină</span></li>
+        <li><span class="stat-nr">63<small> / 100</small></span><span class="stat-label">Scor Lighthouse, căutarea după cod fiscal</span></li>
+        <li><span class="stat-nr">80<small> / 100</small></span><span class="stat-label">Scor Lighthouse, pagina cu formulare</span></li>
+      </ul>
+
+      <div class="table-wrap" role="region" aria-labelledby="tabel-titlu" tabindex="0">
+        <table>
+          <caption id="tabel-titlu">Probleme semnalate de axe-core, pe pagini</caption>
+          <thead>
+            <tr>
+              <th scope="col">Pagina</th>
+              <th scope="col" class="num">Scor Lighthouse</th>
+              <th scope="col" class="num">Încălcări WCAG</th>
+              <th scope="col" class="num">Bune practici</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Prima pagină</th>
+              <td class="num">74</td>
+              <td class="num">6 tipuri · 43 de elemente</td>
+              <td class="num">4 tipuri · 4 elemente</td>
+            </tr>
+            <tr>
+              <th scope="row">Căutarea după cod fiscal</th>
+              <td class="num">63</td>
+              <td class="num">4 tipuri · 6 elemente</td>
+              <td class="num">3 tipuri · 6 elemente</td>
+            </tr>
+            <tr>
+              <th scope="row">Pagina cu formulare</th>
+              <td class="num">80</td>
+              <td class="num">2 tipuri · 2 elemente</td>
+              <td class="num">3 tipuri · 8 elemente</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>În total, axe-core a semnalat <strong>51 de elemente care încalcă criterii WCAG</strong> și alte 18 care se abat de la bunele practici. Verificarea din tastatură și cea la zoom au mai adăugat probleme pe care instrumentele automate nu le văd; ele apar mai jos, la punctele 3, 4 și 5.</p>
+
+      <h2>Cele mai importante cinci probleme</h2>
+      <ol class="findings">
+        <li class="finding">
+          <p class="finding-nr" aria-hidden="true">01</p>
+          <h3>Imagini și butoane fără descriere în text</h3>
+          <dl>
+            <dt>Ce e greșit</dt>
+            <dd>21 de imagini și 6 butoane-imagine nu au text alternativ. Printre ele: butoanele de reglare a afișării de pe prima pagină (de exemplu, luminozitatea) și imaginea cu codul de verificare de la căutarea după cod fiscal. Lângă cod există un buton „Ascultă”; nu am testat dacă varianta audio funcționează.</dd>
+            <dt>Pe cine afectează</dt>
+            <dd>Persoanele nevăzătoare sau cu vedere slabă, care folosesc un cititor de ecran. Programul le citește doar „imagine” sau „buton”, fără să spună la ce folosește.</dd>
+            <dt>Cum se repară</dt>
+            <dd>Fiecare imagine care transmite ceva primește o descriere scurtă (atributul <code>alt</code>), iar fiecare buton un nume clar. Imaginile pur decorative se marchează cu <code>alt=""</code>, ca să fie sărite. Codul de verificare are nevoie de o alternativă care nu depinde de vedere.</dd>
+          </dl>
+        </li>
+        <li class="finding">
+          <p class="finding-nr" aria-hidden="true">02</p>
+          <h3>Linkuri care nu spun unde duc</h3>
+          <dl>
+            <dt>Ce e greșit</dt>
+            <dd>15 linkuri nu au niciun nume: conțin doar o imagine fără descriere sau sunt goale. Printre ele se află sigla care duce la prima pagină (pe paginile 2 și 3) și bannerul cu calendarul fiscal.</dd>
+            <dt>Pe cine afectează</dt>
+            <dd>Utilizatorii de cititoare de ecran aud doar „link” sau o adresă lungă. Cei care dau comenzi vocale nu au ce nume să rostească.</dd>
+            <dt>Cum se repară</dt>
+            <dd>Imaginea din link primește un text alternativ care spune destinația, de exemplu „ANAF – prima pagină”. Linkurile goale se șterg.</dd>
+          </dl>
+        </li>
+        <li class="finding">
+          <p class="finding-nr" aria-hidden="true">03</p>
+          <h3>Limba paginii lipsește sau e declarată greșit</h3>
+          <dl>
+            <dt>Ce e greșit</dt>
+            <dd>Prima pagină și căutarea după cod fiscal nu declară limba. Pagina cu formulare e declarată în engleză (<code>lang="en"</code>), deși textul e în română; instrumentele automate nu au semnalat acest lucru, l-am găsit la inspectare.</dd>
+            <dt>Pe cine afectează</dt>
+            <dd>Cititorul de ecran alege pronunția după limba declarată. Textul românesc citit cu voce englezească devine greu de înțeles. Traducerea automată din browser poate și ea să greșească.</dd>
+            <dt>Cum se repară</dt>
+            <dd>O singură modificare în șablonul paginii: <code>&lt;html lang="ro"&gt;</code>.</dd>
+          </dl>
+        </li>
+        <li class="finding">
+          <p class="finding-nr" aria-hidden="true">04</p>
+          <h3>La navigarea din tastatură, focusul se pierde</h3>
+          <dl>
+            <dt>Ce e greșit</dt>
+            <dd>Pe prima pagină nu există un link „Sari la conținut”, iar 35 dintre primele 45 de apăsări pe Tab duc la linkuri din submeniuri ascunse în afara ecranului: nu se vede unde te afli. Pe pagina cu formulare, conturul de focus a fost dezactivat pentru câmpul de căutare și pentru butoanele de categorii (10 din cele 12 elemente). La căutarea după cod fiscal focusul se vede și formularul se parcurge în 7 pași.</dd>
+            <dt>Pe cine afectează</dt>
+            <dd>Persoanele care nu pot folosi mouse-ul: cu dizabilități motorii, cu tremor, sau care lucrează doar din tastatură.</dd>
+            <dt>Cum se repară</dt>
+            <dd>Se adaugă un link „Sari la conținut” la începutul paginii. Submeniurile ascunse se scot din ordinea de parcurgere până când sunt deschise. Conturul de focus nu se dezactivează (<code>outline: none</code>) fără a pune altceva vizibil în loc.</dd>
+          </dl>
+        </li>
+        <li class="finding">
+          <p class="finding-nr" aria-hidden="true">05</p>
+          <h3>La zoom de 200% pagina nu mai încape în fereastră</h3>
+          <dl>
+            <dt>Ce e greșit</dt>
+            <dd>Prima pagină și căutarea după cod fiscal au lățime fixă: la 200% apare derulare orizontală, iar pe prima pagină butoanele fixe din margini acoperă o parte din conținut. Pagina cu formulare se adaptează corect, inclusiv la lățimea unui telefon mic.</dd>
+            <dt>Pe cine afectează</dt>
+            <dd>Persoanele cu vedere slabă care măresc pagina și oricine intră de pe telefon.</dd>
+            <dt>Cum se repară</dt>
+            <dd>Așezare flexibilă în loc de lățimi fixe: se adaugă <code>meta viewport</code>, lățimile se exprimă relativ, iar elementele fixe se rearanjează pe ecrane înguste.</dd>
+          </dl>
+        </li>
+      </ol>
+
+      <h2>Alte observații</h2>
+      <ul>
+        <li><strong>Etichete de formular.</strong> La căutarea după cod fiscal, ambele câmpuri au etichete legate corect. Pe pagina cu formulare, câmpul de căutare are doar un text orientativ în interior, care dispare când începi să scrii.</li>
+        <li><strong>Contrast.</strong> Instrumentele nu au confirmat nicio problemă de contrast. 19 elemente nu au putut fi evaluate automat (de exemplu, text peste imagini) și nu le-am măsurat manual.</li>
+        <li><strong>Structură.</strong> Niciuna dintre cele trei pagini nu are un titlu principal (<code>h1</code>). Pe prima pagină, 5 liste sunt construite incorect, iar la căutarea după cod fiscal un cadru (<code>iframe</code>) nu are titlu.</li>
+        <li><strong>Ce există deja.</strong> Site-ul are o declarație de accesibilitate, un panou cu opțiuni de afișare și citire cu voce a conținutului.</li>
+      </ul>
+
+      <h2>Ce înseamnă asta pentru site-ul tău</h2>
+      <p>Aceleași cinci tipuri de probleme apar pe foarte multe site-uri, inclusiv pe cele ale firmelor mici. Majoritatea se repară în șablonul paginii, o singură dată, și rămân rezolvate.</p>
+      <p><a class="btn btn--primary" href="index.html?interes=audit#contact">Cere un audit</a></p>
+
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p class="footer-legal">
+      <span>© 2026 Fagus · Ștefan Fagu</span>
+      <span>[FORMĂ JURIDICĂ] · CUI [CUI] · Nr. Reg. Com. [NR. REG. COM.] · București</span>
+    </p>
+    <ul class="footer-links">
+      <li><a href="declaratie-de-accesibilitate/index.html">Declarație de accesibilitate</a></li>
+      <li><a href="confidentialitate/index.html">Confidențialitate</a></li>
+      <li><a href="cookie-uri/index.html">Cookie-uri</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
