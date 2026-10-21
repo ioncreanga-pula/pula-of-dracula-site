@@ -1,1 +1,3 @@
 /traista /traista/ 301
+/fagus    https://fagus.ro/        301!
+/fagus/*  https://fagus.ro/:splat  301!
